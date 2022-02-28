@@ -6,6 +6,7 @@ class Tribe < ApplicationRecord
   has_many :bookings, through: :users
 
   validates :color, :credits, presence: true
+  validates :color, uniqueness: { scope: :house }
 
   def admin
     users.find_by(role: :admin)
