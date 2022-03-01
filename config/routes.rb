@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :bookings, except: %i[new create index]
+  resources :bookings, only: %i[show destroy]
 
   resources :tribes, except: %i[new create index] do
     resources :spendings, except: :show

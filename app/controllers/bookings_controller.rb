@@ -15,17 +15,13 @@ class BookingsController < ApplicationController
   end
 
   def create
-  end
-
-  def edit
-  end
-
-  def update
-    @booking = Booking.update(booking_params)
+    @booking = Booking.new(booking_params)
+    @booking.house = @house
+    @booking.user = current_user
     if @booking.save
       redirect_to booking_path(@booking)
     else
-      render :edit
+      render :new
     end
   end
 

@@ -1,14 +1,14 @@
 <h1>Liste des bookings de la house <%= @house.name %></h1>
 
 <ul>
-  <%= @bookings.each do %>
+  <% @bookings.each do |booking| %>
     <li>
-      <%= @booking.id %>
-      Arrivée: <%= @booking.arrival %>
-      Départ: <%= @booking.departure %>
-      Crédits: <%= @booking.total_price %>
-      Statut: <%= @booking.status %>
-      Membre: <%= @booking.user.first_name %>
+      <%= booking.id %>
+      Arrivée: <%= booking.arrival %>
+      Départ: <%= booking.departure %>
+      Crédits: <%= booking.total_price %>
+      Statut: <%= booking.status %>
+      Membre: <%= booking.user.first_name %>
     </li>
   <% end %>
 </ul>

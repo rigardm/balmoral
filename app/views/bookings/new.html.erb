@@ -1,8 +1,7 @@
 <h1>New Booking</h1>
 
-<%= simple_form_for(@house, @booking) do |f| %>
+<%= simple_form_for([ @house, @booking ]) do |f| %>
   <%= f.input :arrival %>
   <%= f.input :departure %>
-  <%= f.input :status %>
   <%= f.submit %>
 <% end %>
