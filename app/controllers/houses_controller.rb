@@ -25,7 +25,9 @@ class HousesController < ApplicationController
   end
 
   def update
-    @house.update(params[:id])
+    @house.update(house_params)
+
+    redirect_to house_path(@house)
   end
 
   def delete
@@ -35,7 +37,7 @@ class HousesController < ApplicationController
   private
 
   def house_params
-    params.require(:house).permit(:name, :daily_price)
+    params.require(:house).permit(:name, :daily_price, :address, :city, :country)
   end
 
   def set_house
