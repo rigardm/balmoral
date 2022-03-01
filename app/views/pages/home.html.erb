@@ -1,6 +1,8 @@
 <div class="container">
   <h1>Welcome to Balmoral ! </h1>
 
-  <p><%= link_to 'Create a house', new_house_path %></p>
+  <% if policy(House).create? %>
+    <p><%= link_to 'Create a house', new_house_path %></p>
+  <% end %>
   <%= image_tag "main_image.png" %>
 </div>
