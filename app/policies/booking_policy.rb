@@ -3,6 +3,9 @@ class BookingPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.where(house: user.house)
+      # instead of scope.all in order to get the same result as
+      # @bookings = @house.bookings # --> in the bookings controller #index
+      # to be checked with PAUL
     end
   end
 
