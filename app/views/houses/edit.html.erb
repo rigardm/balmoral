@@ -1,0 +1,10 @@
+<h2>Update your house</h2>
+
+<%= simple_form_for(@house) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :city %>
+  <%#= f.input :country %>
+  <%= f.input :daily_price %>
+  <%= f.submit %>
+<% end %>
