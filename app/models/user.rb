@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   has_many :bookings, dependent: :destroy
-  belongs_to :tribe, optional: true
+  belongs_to :tribe
   delegate :house, to: :tribe
 
   # validates :first_name, :role, presence: true
