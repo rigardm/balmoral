@@ -4,6 +4,24 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first_name" }%>
+    <%= f.input :last_name,
+                autofocus: true,
+                input_html: { autocomplete: "last_name" }%>
+    <%= f.association :tribe,
+                collection: Tribe.all,
+                autofocus: true,
+                label_method: :color,
+                input_html: { autocomplete: "tribe" }%>
+    <%= f.input :role,
+                collection: [["Vous êtes membre", :member],["Vous êtes admin", :admin]],
+                wrapper_html: {class: "d-flex flex-column"},
+                as: :radio_buttons,
+                autofocus: true,
+                input_html: { autocomplete: "role" }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true,

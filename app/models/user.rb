@@ -9,7 +9,7 @@ class User < ApplicationRecord
   belongs_to :tribe
   delegate :house, to: :tribe
 
-  validates :first_name, :role, presence: true
+  # validates :first_name, :role, presence: true
 
   enum role: {
     member: 0,

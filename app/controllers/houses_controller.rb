@@ -29,7 +29,7 @@ class HousesController < ApplicationController
   end
 
   def delete
-    @restaurant.destroy
+    @house.destroy
   end
 
   private
