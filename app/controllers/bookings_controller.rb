@@ -19,9 +19,21 @@ class BookingsController < ApplicationController
     @booking.house = @house
     @booking.user = current_user
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to house_bookings_path(@house)
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @booking.update(booking_params)
+    if @booking.save
+      redirect_to booking_path(@booking)
+    else
+      render :edit
     end
   end
 
@@ -42,6 +54,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:arrival, :departure, :status)
+    params.require(:booking).permit(:arrival, :departure)
   end
 end

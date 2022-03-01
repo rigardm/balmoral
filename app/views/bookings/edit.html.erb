@@ -1,0 +1,7 @@
+<h1>Edit Booking from <%= @booking.user.first_name %> (id: <%= @booking.id %>)</h1>
+
+<%= simple_form_for([ @house, @booking ]) do |f| %>
+  <%= f.input :arrival %>
+  <%= f.input :departure %>
+  <%= f.submit %>
+<% end %>
