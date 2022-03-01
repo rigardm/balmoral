@@ -6,10 +6,10 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   has_many :bookings, dependent: :destroy
-  belongs_to :tribe
+  belongs_to :tribe, optional: true
   delegate :house, to: :tribe
 
-  validates :first_name, :role, presence: true
+  # validates :first_name, :role, presence: true
 
   enum role: {
     member: 0,
