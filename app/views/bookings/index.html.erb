@@ -1,16 +1,23 @@
 <h1>Liste des bookings de la house <%= @house.name %></h1>
 
 <ul>
-  <%= @bookings.each do %>
+  <% @bookings.each do |booking| %>
     <li>
-      <%= @booking.id %>
-      Arrivée: <%= @booking.arrival %>
-      Départ: <%= @booking.departure %>
-      Crédits: <%= @booking.total_price %>
-      Statut: <%= @booking.status %>
-      Membre: <%= @booking.user.first_name %>
+      <%= booking.id %>
+      Arrivée: <%= booking.arrival %>
+      Départ: <%= booking.departure %>
+      Crédits: <%= booking.total_price %>
+      Statut: <%= booking.status %>
+      Membre: <%= booking.user.first_name %>
+      <%= link_to "Edit", edit_booking_path(booking) %>
+      <%= link_to "Delete",
+                  delete_booking_path(booking),
+                  method: :delete,
+                  data: { confirm: "Suppression de réservation: merci de confirmer"} %>
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Create booking", new_house_booking_path(@house) %>
 
 <%= link_to "Root", root_path %>

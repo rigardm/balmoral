@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :bookings, except: %i[new create index]
+  resources :bookings, only: %i[show edit update]
+  delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
 
   resources :tribes, except: %i[new create index] do
     resources :spendings, except: :show
