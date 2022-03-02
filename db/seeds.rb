@@ -44,7 +44,7 @@ tribu_bleue = Tribe.create!(
 puts "created #{Tribe.count} #{'tribe'.pluralize(Tribe.count)}"
 
 puts "4 out of 8: SEED USERS"
-michel = User.create!(
+michel = User.new(
   email: 'michel@michel.com',
   password: '000000',
   first_name: 'Michel',
@@ -52,7 +52,11 @@ michel = User.create!(
   role: :admin,
   tribe: tribu_verte
 )
-sophie = User.create!(
+file = URI.open('https://i.pravatar.cc/300?img=69')
+michel.photo.attach(io: file, filename: 'michel.jpg', content_type: 'image/jpg')
+michel.save!
+
+sophie = User.new(
   email: 'sophie@sophie.com',
   password: '000000',
   first_name: 'Sophie',
@@ -60,7 +64,11 @@ sophie = User.create!(
   role: :member,
   tribe: tribu_verte
 )
-laure = User.create!(
+file = URI.open('https://i.pravatar.cc/300?img=41')
+sophie.photo.attach(io: file, filename: 'sophie.jpg', content_type: 'image/jpg')
+sophie.save!
+
+laure = User.new(
   email: 'laure@laure.com',
   password: '000000',
   first_name: 'Laure',
@@ -68,7 +76,11 @@ laure = User.create!(
   role: :member,
   tribe: tribu_verte
 )
-oscar = User.create!(
+file = URI.open('https://i.pravatar.cc/300?img=45')
+laure.photo.attach(io: file, filename: 'laure.jpg', content_type: 'image/jpg')
+laure.save!
+
+oscar = User.new(
   email: 'oscar@oscar.com',
   password: '000000',
   first_name: 'Oscar',
@@ -76,7 +88,11 @@ oscar = User.create!(
   role: :member,
   tribe: tribu_verte
 )
-jacques = User.create!(
+file = URI.open('https://i.pravatar.cc/300?img=53')
+oscar.photo.attach(io: file, filename: 'oscar.jpg', content_type: 'image/jpg')
+oscar.save!
+
+jacques = User.new(
   email: 'jacques@jacques.com',
   password: '000000',
   first_name: 'Jacques',
@@ -84,7 +100,11 @@ jacques = User.create!(
   role: :admin,
   tribe: tribu_rose
 )
-elsa = User.create!(
+file = URI.open('https://i.pravatar.cc/300?img=50')
+jacques.photo.attach(io: file, filename: 'jacques.jpg', content_type: 'image/jpg')
+jacques.save!
+
+elsa = User.new(
   email: 'elsa@elsa.com',
   password: '000000',
   first_name: 'Elsa',
@@ -92,7 +112,11 @@ elsa = User.create!(
   role: :member,
   tribe: tribu_rose
 )
-nathalie = User.create!(
+file = URI.open('https://i.pravatar.cc/300?img=44')
+elsa.photo.attach(io: file, filename: 'elsa.jpg', content_type: 'image/jpg')
+elsa.save!
+
+nathalie = User.new(
   email: 'nathalie@nathalie.com',
   password: '000000',
   first_name: 'Nath',
@@ -100,7 +124,11 @@ nathalie = User.create!(
   role: :admin,
   tribe: tribu_bleue
 )
-nicolas = User.create!(
+file = URI.open('https://i.pravatar.cc/300?img=39')
+nathalie.photo.attach(io: file, filename: 'nathalie.jpg', content_type: 'image/jpg')
+nathalie.save!
+
+nicolas = User.new(
   email: 'nicolas@nicolas.com',
   password: '000000',
   first_name: 'Nico',
@@ -108,7 +136,11 @@ nicolas = User.create!(
   role: :member,
   tribe: tribu_bleue
 )
-jeremy = User.create!(
+file = URI.open('https://i.pravatar.cc/300?img=60')
+nicolas.photo.attach(io: file, filename: 'nicolas.jpg', content_type: 'image/jpg')
+nicolas.save!
+
+jeremy = User.new(
   email: 'jeremy@jeremy.com',
   password: '000000',
   first_name: 'Jérém',
@@ -116,6 +148,9 @@ jeremy = User.create!(
   role: :member,
   tribe: tribu_bleue
 )
+file = URI.open('https://i.pravatar.cc/300?img=52')
+jeremy.photo.attach(io: file, filename: 'jeremy.jpg', content_type: 'image/jpg')
+jeremy.save!
 
 puts "created #{User.count} users including #{User.admins.count} admins"
 

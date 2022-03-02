@@ -6,6 +6,7 @@ class House < ApplicationRecord
   has_many :spendings, through: :tribes
   has_many :bookings, dependent: :destroy
   has_many :channels, dependent: :destroy
+  has_one_attached :photo
 
   validates :name, :daily_price, :address, :city, presence: true
   validates :daily_price, numericality: { greater_than_or_equal_to: 0 }
