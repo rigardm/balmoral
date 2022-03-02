@@ -44,6 +44,15 @@ class BookingsController < ApplicationController
     redirect_to house_bookings_path(@house)
   end
 
+  # Simple_Calendar a besoin d'un "start_time" et "end_time"
+  def start_time
+    arrival
+  end
+
+  def end_time
+    departure
+  end
+
   private
 
   def set_booking
