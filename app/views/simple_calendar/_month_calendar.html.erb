@@ -5,7 +5,7 @@
     <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
   </div>
 
-  <table class="table table-striped">
+  <table class="table table-striped" >
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
@@ -14,12 +14,19 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody data-controller="select-dates" data-click="arrival" data-select-dates-target="body">
       <% date_range.each_slice(7) do |week| %>
         <tr>
-          <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-                <% passed_block.call day.day, sorted_events.fetch(day, []) %>
+          <% week.each do |date| %>
+            <%= content_tag :td,
+              class: calendar.td_classes_for(date),
+              data: {
+                action: "click->select-dates#select",
+                select_dates_target: "date",
+                date: "#{date}",
+                onclick: "arrival"
+                } do %>
+              <% passed_block.call date.day, sorted_events.fetch(date, []) %>
             <% end %>
           <% end %>
         </tr>
