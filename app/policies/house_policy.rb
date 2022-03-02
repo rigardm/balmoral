@@ -7,27 +7,21 @@ class HousePolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    user.admin?
-  end
-
   def show?
-    true
+    user_house?
   end
 
   def create?
-    user.admin?
-  end
-
-  def new?
-    create?
+    user.admin? && user_house?
   end
 
   def update?
-    user.admin?
+    create?
   end
 
-  def edit?
-    update?
+  private
+
+  def user_house?
+    user.house == record
   end
 end
