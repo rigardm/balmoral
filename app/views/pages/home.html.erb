@@ -12,18 +12,10 @@
     <%= link_to 'Liste des réservations', house_bookings_path(current_user.house) %>
 
     <div>
-      <h1>Lastest Bookings:</h1>
-      <ul>
+      <h1>Latest Bookings:</h1>
         <% @last_bookings.each do |booking| %>
-          <li>
-            Date creation: <%= booking.created_at %>
-            Arrivée: <%= booking.arrival %>
-            Départ: <%= booking.departure %>
-            Statut: <%= booking.status %>
-            Membre: <%= booking.user.first_name %>
-          </li>
+          <%= render 'shared/booking_preview', booking: booking %>
         <% end %>
-      </ul>
     </div>
     <div>
       <h1>Coming up Bookings:</h1>
@@ -39,7 +31,6 @@
         <% end %>
       </ul>
     </div>
-
     <div>
       <h1>Credits of tribes:</h1>
       <ul>

@@ -12,13 +12,20 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @booking.house = @house
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
     @booking.house = @house
     @booking.user = current_user
+    total_price = @booking.nb_days * @house.daily_price
+    @booking.total_price = total_price
+    authorize @booking
     if @booking.save
+      current_user.tribe.credits -= total_price
+      current_user.tribe.save
       redirect_to house_bookings_path(@house)
     else
       render :new
@@ -29,8 +36,14 @@ class BookingsController < ApplicationController
   end
 
   def update
+    previous_price = @booking.total_price
     @booking.update(booking_params)
+    total_price = @booking.nb_days * @house.daily_price
+    @booking.total_price = total_price
     if @booking.save
+      current_user.tribe.credits += previous_price
+      current_user.tribe.credits -= total_price
+      current_user.tribe.save
       redirect_to booking_path(@booking)
     else
       render :edit
@@ -39,7 +52,10 @@ class BookingsController < ApplicationController
 
   def destroy
     @house = @booking.house
+    previous_price = @booking.total_price
     @booking.destroy
+    current_user.tribe.credits += previous_price
+    current_user.tribe.save
     redirect_to house_bookings_path(@house)
   end
 
@@ -56,6 +72,7 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def set_house

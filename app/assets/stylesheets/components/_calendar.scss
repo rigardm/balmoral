@@ -1,6 +1,46 @@
-.new-booking {
+.simple-calendar {
+  table {
+    min-height: 50vh;
+  }
+  .today {
+    background-color: #FAF3DD;
+  }
+}
+
+.meeting {
   color: black;
   border-radius: 4px;
-  background: ;
+  background: $green;
   transition: background 0.3s ease;
+}
+
+.meeting-proposed {
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  background: $green;
+  transition: background 0.3s ease;
+}
+
+.meeting-proposed p {
+  padding: 10px;
+  margin: 0px;
+}
+
+.meeting:hover {
+  background: $green;
+  color: white;
+}
+
+.selected {
+  background: white;
+  color: white;
+}
+
+.simple-calendar td:hover {
+  background: rgba(0, 114, 0, 0.2);
+}
+
+.modal-content {
+  padding: 10px;
 }
