@@ -3,12 +3,7 @@
 <ul>
   <% @bookings.each do |booking| %>
     <li>
-      <%= booking.id %>
-      Arrivée: <%= booking.arrival %>
-      Départ: <%= booking.departure %>
-      Crédits: <%= booking.total_price %>
-      Statut: <%= booking.status %>
-      Membre: <%= booking.user.first_name %>
+      <%= render 'shared/booking_preview', booking: booking %>
       <% if policy(booking).edit? %>
         <%=
           link_to "Edit", edit_booking_path(booking)
