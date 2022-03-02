@@ -1,6 +1,5 @@
 <%= month_calendar(events: @bookings, attribute: :arrival, end_attribute: :departure) do |date, bookings| %>
   <%= date %>
-
   <% bookings.each do |booking| %>
     <div class="meeting">
       <p><%= booking.user.first_name %></p>
