@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new create index]
   end
 
+  get '/houses/:id/calendar', to: 'houses#calendar', as: :calendar
+
   resources :channels, only: :show do
     resources :messages, only: :create
   end
@@ -19,4 +21,5 @@ Rails.application.routes.draw do
   resources :tribes, except: %i[new create index] do
     resources :spendings, except: :show
   end
+
 end
