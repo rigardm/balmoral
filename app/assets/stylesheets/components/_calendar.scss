@@ -3,15 +3,92 @@
     min-height: 50vh;
   }
   .today {
-    background-color: #FAF3DD;
+    background: $balmoral_yellow;
   }
 }
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-accent-bg: transparent;
+  color: var(--bs-table-striped-color);
+}
+
+.simple-calendar th {
+  text-align: center;
+  border:none;
+}
+
+.simple-calendar td {
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+  //display:flex;
+  //justify-content: center;
+  position: relative;
+}
+
+//.simple-calendar td.has-events {
+//  background: $balmoral_yellow;
+//}
+
 
 .meeting {
   color: black;
   border-radius: 4px;
-  background: $green;
+  background: green;
   transition: background 0.3s ease;
+}
+
+.meeting-tribe-green {
+  color: black;
+  border-radius: 50%;
+  background: $tribe_green;
+  height:64px;
+  width: 64px;
+  transition: background 0.3s ease;
+  position: absolute;
+    top: 50%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.meeting-tribe-red {
+  color: black;
+  border-radius: 50%;
+  background: $tribe_red;
+  height:64px;
+  width: 64px;
+  transition: background 0.3s ease;
+  position: absolute;
+    top: 50%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.meeting-tribe-blue {
+  color: black;
+  border-radius: 50%;
+  background: $tribe_blue;
+  height:64px;
+  width: 64px;
+  transition: background 0.3s ease;
+  position: absolute;
+    top: 50%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, -50%);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
 .simple-calendar td.new-booking {
@@ -34,19 +111,12 @@
   margin: 0px;
 }
 
-.meeting:hover {
-  background: $green;
-  color: white;
-}
 
 .selected {
   background: white;
   color: white;
 }
 
-.simple-calendar td:hover {
-  background: rgba(0, 114, 0, 0.2);
-}
 
 .modal-content {
   padding: 10px;
