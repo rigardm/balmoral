@@ -5,11 +5,63 @@
     <% if policy(House).show? %>
       <p><%= link_to 'Voir ma maison', house_path(current_user.house) %></p>
     <% end %>
-    
+
     <% if policy(House).create? %>
       <p><%= link_to 'Créer une nouvelle maison', new_house_path %></p>
     <% end %>
     <%= link_to 'Liste des réservations', house_bookings_path(current_user.house) %>
+
+    <div>
+      <h1>Lastest Bookings:</h1>
+      <ul>
+        <% @last_bookings.each do |booking| %>
+          <li>
+            Date creation: <%= booking.created_at %>
+            Arrivée: <%= booking.arrival %>
+            Départ: <%= booking.departure %>
+            Statut: <%= booking.status %>
+            Membre: <%= booking.user.first_name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <h1>Coming up Bookings:</h1>
+      <ul>
+        <% @next_bookings.each do |booking| %>
+          <li>
+            Date creation: <%= booking.created_at %>
+            Arrivée: <%= booking.arrival %>
+            Départ: <%= booking.departure %>
+            Statut: <%= booking.status %>
+            Membre: <%= booking.user.first_name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div>
+      <h1>Credits of tribes:</h1>
+      <ul>
+        <% @tribes.each do |tribe| %>
+          <li>
+            Tribe's boss: <%= tribe.admin.first_name %>
+            Balance credits: <%= tribe.credits %>
+            Credits used: TODO
+            color: <%= tribe.color %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <h1>Latest messages</h1>
+      <ul>
+          <li>
+            TODO // TODO // TODO ...
+          </li>
+      </ul>
+    </div>
   <% end %>
     <%= image_tag "main_image.png" %>
 </div>
+<%= console %>
