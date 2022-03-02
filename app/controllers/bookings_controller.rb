@@ -5,7 +5,6 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = policy_scope(Booking).order(created_at: :desc)
-    # was @bookings = @house.bookings prior to pundit on bookings (see booking_policy.rb)
   end
 
   def show

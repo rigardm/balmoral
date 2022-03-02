@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :houses do
+  resources :houses, except: :index do
     resources :tribes, only: %i[new create index]
     resources :channels, only: %i[new create index]
     resources :bookings, only: %i[new create index]

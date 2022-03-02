@@ -3,18 +3,15 @@ class BookingPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.where(house: user.house)
-      # instead of scope.all in order to get the same result as
-      # @bookings = @house.bookings # --> in the bookings controller #index
-      # to be checked with PAUL
     end
   end
 
   def show?
-    true
+    user_house?
   end
 
   def create?
-    true
+    user_house?
   end
 
   def new?
@@ -22,11 +19,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def update?
-    # update is authorized if current user is EITHER:
-    # (i) the user who made the booking
-    # OR
-    # (ii) the admin of the tribe of that user
-    (user == record.user) || record.user.tribe.users.admins.include?(user)
+    user == record.user || user == record.user.tribe.admin
   end
 
   def edit?
@@ -35,5 +28,11 @@ class BookingPolicy < ApplicationPolicy
 
   def destroy?
     update?
+  end
+
+  private
+
+  def user_house?
+    user.house == record.house
   end
 end
