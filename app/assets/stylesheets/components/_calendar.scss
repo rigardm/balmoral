@@ -3,14 +3,14 @@
     min-height: 50vh;
   }
   .today {
-    background-color: #FAF3DD;
+    background-color: $balmoral_yellow;
   }
 }
 
 .meeting {
   color: black;
   border-radius: 4px;
-  background: $green;
+  background: $tribe_green;
   transition: background 0.3s ease;
 }
 
