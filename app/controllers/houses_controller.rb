@@ -2,7 +2,7 @@ class HousesController < ApplicationController
   before_action :set_house, only: %i[show edit update delete]
 
   def index
-    @house = House.all
+    @house = policy_scope(House)
   end
 
   def show
@@ -10,10 +10,12 @@ class HousesController < ApplicationController
 
   def new
     @house = House.new
+    authorize @house
   end
 
   def create
     @house = House.new(house_params)
+    authorize @house
     if @house.save
       redirect_to 'houses'
     else
@@ -42,5 +44,6 @@ class HousesController < ApplicationController
 
   def set_house
     @house = House.find(params[:id])
+    authorize @house
   end
 end
