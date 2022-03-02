@@ -1,0 +1,35 @@
+.booking-preview {
+  display: flex;
+  width: 340px;
+  height: 60px;
+  justify-items: center;
+  border-radius: 8px;
+  color: $balmoral_background;
+  padding: 6px;
+  margin-bottom: 8px;
+}
+
+.booking-preview > img {
+  margin-right: 20px;
+}
+
+.booking-preview p {
+  margin: 0 auto;
+}
+
+.booking-data {
+  flex-grow: 4;
+  height: 100%;
+}
+
+.tribe-blue {
+  background-color: $tribe_blue;
+}
+
+.tribe-red {
+  background-color: $tribe_red;
+}
+
+.tribe-green {
+  background-color: $tribe_green;
+}
