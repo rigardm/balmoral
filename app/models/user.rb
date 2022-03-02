@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   belongs_to :tribe
   delegate :house, to: :tribe
-
+  has_one_attached :photo
+  
   validates :first_name, :role, presence: true
 
   enum role: {
