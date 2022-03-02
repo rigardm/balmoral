@@ -1,9 +1,37 @@
-<h1>Booking - Show</h1>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">
+  Launch demo modal
+</button>
 
-<%= @booking.id %>
-<%= @booking.arrival %>
-<%= @booking.departure %>
-<%= @booking.total_price %>
-<%= @booking.status %>
-<%= @booking.house.name %>
-<%= @booking.user.first_name %>
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content booking-details">
+      <div class="modal-header">
+        <button>close</button>
+        <% if @booking.user = current_user %>
+          <button>edit</button>
+        <% end %>
+        <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="avatar" class="avatar-booking">
+      </div>
+      <div class="modal-body booking-info">
+        <% if @booking.user = current_user %>
+        <h2>Votre réservation</h2>
+        <% else %>
+        <h2> La réservation de <%= booking.user.first_name %> </h2>
+        <% end %>
+        <p>Du <%= @booking.arrival %></p>
+        <p>Au <%= @booking.departure %></p>
+
+        <h2>Réservation réalisée le:</h2>
+        <p><%= @booking.created_at %></p>
+
+        <h2>Réservation validée le:</h2>
+        <p><%= @booking.updated_at %></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-blue">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= console %>
