@@ -14,6 +14,13 @@
   transition: background 0.3s ease;
 }
 
+.simple-calendar td.new-booking {
+  color: black;
+  border-radius: 4px;
+  background: $balmoral_yellow;
+  transition: background 0.3s ease;
+}
+
 .meeting-proposed {
   color: white;
   text-align: center;
