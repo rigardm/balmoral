@@ -1,8 +1,15 @@
 <div class="container">
   <h1>Welcome to Balmoral ! </h1>
 
-  <% if policy(House).create? %>
-    <p><%= link_to 'Create a house', new_house_path %></p>
+  <% if user_signed_in? %>
+    <% if policy(House).show? %>
+      <p><%= link_to 'Voir ma maison', house_path(current_user.house) %></p>
+    <% end %>
+    
+    <% if policy(House).create? %>
+      <p><%= link_to 'Créer une nouvelle maison', new_house_path %></p>
+    <% end %>
+    <%= link_to 'Liste des réservations', house_bookings_path(current_user.house) %>
   <% end %>
-  <%= image_tag "main_image.png" %>
+    <%= image_tag "main_image.png" %>
 </div>

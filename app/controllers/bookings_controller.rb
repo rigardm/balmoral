@@ -4,7 +4,8 @@ class BookingsController < ApplicationController
   before_action :set_house, only: %i[index new create]
 
   def index
-    @bookings = @house.bookings
+    @bookings = policy_scope(Booking).order(created_at: :desc)
+    # was @bookings = @house.bookings prior to pundit on bookings (see booking_policy.rb)
   end
 
   def show

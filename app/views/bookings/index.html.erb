@@ -9,15 +9,27 @@
       Crédits: <%= booking.total_price %>
       Statut: <%= booking.status %>
       Membre: <%= booking.user.first_name %>
-      <%= link_to "Edit", edit_booking_path(booking) %>
-      <%= link_to "Delete",
-                  delete_booking_path(booking),
-                  method: :delete,
-                  data: { confirm: "Suppression de réservation: merci de confirmer"} %>
+      <% if policy(booking).edit? %>
+        <%=
+          link_to "Edit", edit_booking_path(booking)
+        %>
+      <% end %>
+      <% if policy(booking).destroy? %>
+        <%=
+          link_to "Delete",
+            delete_booking_path(booking),
+            method: :delete,
+            data: { confirm: "Suppression de réservation: merci de confirmer"}
+        %>
+      <% end %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to "Create booking", new_house_booking_path(@house) %>
+<% if policy(Booking).create? %>
+  <%= link_to "Create booking",
+    new_house_booking_path(@house)
+  %>
+<% end %>
 
 <%= link_to "Root", root_path %>

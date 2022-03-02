@@ -7,12 +7,12 @@ class HousePolicy < ApplicationPolicy
     end
   end
 
-  def show?
-    true
-  end
-
   def index?
     user.admin?
+  end
+
+  def show?
+    true
   end
 
   def create?
