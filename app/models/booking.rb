@@ -12,4 +12,8 @@ class Booking < ApplicationRecord
   scope :pending, -> { where(status: :pending) }
   scope :validated, -> { where(status: :validated) }
   scope :declined, -> { where(status: :declined) }
+
+  def nb_days
+    (departure - arrival).to_i + 1
+  end
 end

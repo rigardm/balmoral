@@ -1,7 +1,7 @@
 <h1>New Booking</h1>
 
 <%= simple_form_for([ @house, @booking ]) do |f| %>
-  <%= f.input :arrival %>
-  <%= f.input :departure %>
+  <%= f.input :arrival, as: :date, html5: true %>
+  <%= f.input :departure, as: :date, html5: true %>
   <%= f.submit %>
 <% end %>
