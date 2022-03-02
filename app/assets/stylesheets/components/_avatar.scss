@@ -1,7 +1,4 @@
-.avatar {
-  width: 40px;
-  border-radius: 50%;
-}
+
 .avatar-large {
   width: 56px;
   border-radius: 50%;
@@ -19,9 +16,21 @@
   border: white 1px solid;
 }
 
-.avatar-booking {
+.avatar {
   width: 47px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: $balomoral_shadow;
+}
+
+.border-tribe-blue {
+  border: 3px solid $tribe_blue;
+}
+
+.border-tribe-red {
+  border: 3px solid $tribe_red;
+}
+
+.border-tribe-green {
+  border: 3px solid $tribe_green;
 }

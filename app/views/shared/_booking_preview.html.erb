@@ -1,10 +1,12 @@
-<div class="booking-preview <%= booking.user.tribe.color %>">
-  <%= cl_image_tag(booking.user.photo.key, :class => "avatar-booking") %>
-  <div class="booking-data">
-    <p>Du <%= booking.arrival %></p>
-    <p>Au <%= booking.departure %></p>
+<%= link_to booking_path(booking) do %>
+  <div class="booking-preview <%= booking.user.tribe.color %>">
+    <%= cl_image_tag(booking.user.photo.key, :class => "avatar") %>
+    <div class="booking-data">
+      <p>Du <%= booking.arrival %></p>
+      <p>Au <%= booking.departure %></p>
+    </div>
+    <div class="chevron">
+    <h1>></h1>
+    </div>
   </div>
-  <div class="chevron">
-  <h1>></h1>
-  </div>
-</div>
+<% end %>
