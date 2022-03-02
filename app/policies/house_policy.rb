@@ -19,6 +19,10 @@ class HousePolicy < ApplicationPolicy
     create?
   end
 
+  def calendar?
+    show?
+  end
+
   private
 
   def user_house?

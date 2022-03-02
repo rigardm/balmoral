@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: %i[show edit update delete]
+  before_action :set_house, only: %i[show edit update delete calendar]
 
   def show
   end
@@ -33,6 +33,16 @@ class HousesController < ApplicationController
   def delete
     @house.destroy
   end
+
+  def calendar
+    start_date = params.fetch(:start_date, Date.today).to_date
+    # For a monthly view:
+    @bookings = @house.bookings.where(arrival: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
+
+  # Or, for a weekly view:
+   # @meetings = Meeting.where(starts_at: start_date.beginning_of_week..start_date.end_of_week)
+end
+
 
   private
 
