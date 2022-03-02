@@ -5,6 +5,9 @@ export default class extends Controller {
 
   select(event) {
     if (this.bodyTarget.dataset.click === 'arrival') {
+      this.dateTargets.forEach((date)=>{
+        date.classList.remove("new-booking");
+      });
       const arrival = event.currentTarget;
       arrival.classList.add("new-booking");
       this.bodyTarget.dataset.click = 'departure';
