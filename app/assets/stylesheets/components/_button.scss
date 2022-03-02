@@ -1,0 +1,17 @@
+.btn {
+  width: 205px;
+  height: 50px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.btn-yellow{
+  color: $balmoral_background;
+  background: $balmoral_yellow;
+}
+
+.btn-blue{
+  color: $balmoral_background;
+  background: $balmoral_blue;
+}
