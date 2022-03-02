@@ -12,7 +12,7 @@
     <%= link_to 'Liste des réservations', house_bookings_path(current_user.house) %>
 
     <div>
-      <h1>Lastest Bookings:</h1>
+      <h1>Latest Bookings:</h1>
       <ul>
         <% @last_bookings.each do |booking| %>
           <li>
@@ -64,4 +64,3 @@
   <% end %>
     <%= image_tag "main_image.png" %>
 </div>
-<%= console %>
