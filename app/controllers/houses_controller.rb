@@ -1,10 +1,6 @@
 class HousesController < ApplicationController
   before_action :set_house, only: %i[show edit update delete]
 
-  def index
-    @house = policy_scope(House)
-  end
-
   def show
   end
 
@@ -27,9 +23,11 @@ class HousesController < ApplicationController
   end
 
   def update
-    @house.update(house_params)
-
-    redirect_to house_path(@house)
+    if @house.update(house_params)
+      redirect_to house_path(@house)
+    else
+      render :edit
+    end
   end
 
   def delete

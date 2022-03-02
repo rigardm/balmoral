@@ -26,10 +26,6 @@
   <% end %>
 </ul>
 
-<% if policy(Booking).create? %>
-  <%= link_to "Create booking",
-    new_house_booking_path(@house)
-  %>
-<% end %>
+  <%= link_to "Create booking", new_house_booking_path(@house) %>
 
 <%= link_to "Root", root_path %>
