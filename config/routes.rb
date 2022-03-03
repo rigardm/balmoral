@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :houses, except: :index do
     resources :tribes, only: %i[new create index]
     resources :channels, only: %i[new create index]
-    resources :bookings, only: %i[new create index]
+    resources :bookings, only: %i[new index]
+    post '/bookings/', to: 'bookings#create', as: :create_booking
   end
 
   get '/houses/:id/calendar', to: 'houses#calendar', as: :calendar
@@ -21,5 +22,4 @@ Rails.application.routes.draw do
   resources :tribes, except: %i[new create index] do
     resources :spendings, except: :show
   end
-
 end
