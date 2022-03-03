@@ -1,25 +1,24 @@
 #book-button {
-  position: absolute;
+  position: fixed;
+  bottom: 100px;
   width: 176px;
   height: 48px;
   left: 100px;
-  top: 651px;
   box-shadow: $balomoral_shadow;
-  z-index: 1;
+  z-index: 2;
 }
 
 .modal-dialog {
   display: flex;
   justify-content: center;
   .booking-recap-modal {
+    position: fixed;
     width: 85vw;
     background-color: $balmoral_yellow;
     color: $balmoral_blue;
-    position: fixed;
     top: 50px;
     height: 500px;
     opacity: 0.9;
     box-shadow: $balomoral_shadow;
-    // padding: 20px;
   }
 }

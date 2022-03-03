@@ -1,0 +1,30 @@
+<div class="modal fade" id="bookingModal<%= booking.id %>" tabindex="-1" aria-labelledby="bookingModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content booking-details">
+      <div class="modal-header">
+        <% if booking.user == current_user %>
+          <a href="">Edit</a>
+        <% end %>
+      </div>
+      <div class="modal-header">
+      <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered-large #{booking.user.tribe.color}") %>
+      </div>
+      <div class="modal-body booking-info">
+        <% if booking.user == current_user %>
+        <h2>Votre réservation</h2>
+        <% else %>
+        <h2> La réservation de <%= booking.user.first_name %> </h2>
+        <% end %>
+        <p>Du <%= booking.arrival %> au <%= booking.departure %></p>
+        <h2>Réservation réalisée le:</h2>
+        <p><%= booking.created_at.to_date %></p>
+
+        <h2>Réservation validée le:</h2>
+        <p><%= booking.updated_at.to_date %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-blue" data-bs-dismiss="modal">FERMER</button>
+      </div>
+    </div>
+  </div>
+</div>
