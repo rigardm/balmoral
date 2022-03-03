@@ -1,9 +1,12 @@
 .header {
-  background: $balmoral_blue;
+  background: $balmoral_yellow;
   height: 12vh;
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header .navbar-collapse {
@@ -33,8 +36,8 @@
 .dropdown-menu {
   padding: 0;
   background-color: $balmoral_background;
-  min-width: none;
-  & .dropdown-action {
+  min-width: 4em;
+  & .dropdown-item {
     padding-left: 10px;
     font-size: 10px;
     color: $balmoral_dark_grey;
