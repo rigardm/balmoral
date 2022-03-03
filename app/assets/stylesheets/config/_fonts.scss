@@ -15,3 +15,24 @@ $headers-font: 'Roboto', sans-serif;
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+h1 {
+  font-family: $body-font;
+  font-weight: 500;
+  font-size: 1.2rem !important;
+  color: $balmoral_dark_grey;
+}
+
+h2 {
+  font-family: $body-font;
+  font-weight: 100;
+  font-size: 1.1rem !important;
+  color: $balmoral_dark_grey;
+}
+
+p {
+  font-family: $body-font;
+  font-weight: 100;
+  font-size: 0.9rem;
+  color: $balmoral_dark_grey;
+}

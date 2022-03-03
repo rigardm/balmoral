@@ -1,9 +1,11 @@
-<div class="item-preview <%= tribe.color %>">
-  <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered #{tribe.color}") %>
-  <div class="item-data">
-    <p>Crédits restants <%= tribe.credits %></p>
-    <p></p>
+<div class="slider-item <%= tribe.color %>">
+  <div class="top-slider">
   </div>
-  <div class="chevron">
+  <div class="slider-content">
+    <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered-large #{tribe.color}") %>
+    <div class="slider-data">
+      <p>Crédits restants <%= tribe.credits %></p>
+      <p></p>
+    </div>
   </div>
 </div>
