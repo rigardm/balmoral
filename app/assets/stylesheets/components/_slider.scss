@@ -13,7 +13,7 @@
 }
 
 .slider-item {
-  width: 65vw;
+  width: 68vw;
   background-color: #faf5f5;
   height: 160px;
   flex-direction: column;
@@ -44,7 +44,7 @@
 }
 
 .slider-item img {
-  margin: 0 20px;
+  margin: 0 10px;
 }
 
 .slider-content {
@@ -61,4 +61,13 @@
 
 .slider-user-images img {
   margin: 0 -10px;
+}
+
+.slider-user-images {
+  margin-left: 10x;
+}
+
+.slider-details {
+  width: 100%;
+  text-align: center;
 }
