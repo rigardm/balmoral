@@ -1,21 +1,29 @@
-<div class="menu-bar icons d-flex justify-content-md-around">
+<div class="bottom-bar d-flex flex-row justify-content-center">
   <% if user_signed_in? %>
       <%= link_to root_path, class: "icon-link" do %>
         <%= inline_svg_tag('Home_light.svg')%>
+        <p class="picture-caption">Accueil</p>
       <% end %>
 
       <%= link_to root_path, class: "icon-link" do %>
         <%= inline_svg_tag('Chat_light.svg')%>
+        <p class="picture-caption">Messages</p>
       <% end %>
 
 
       <%= link_to root_path, class: "icon-link" do %>
       <%= inline_svg_tag('Date_range_light.svg')%>
+      <p class="picture-caption">Calendrier</p>
       <% end %>
-
 
       <%= link_to root_path, class: "icon-link" do %>
       <%= inline_svg_tag('spendings.svg')%>
+      <p class="picture-caption">Dépenses</p>
+      <% end %>
+
+      <%= link_to root_path, class: "icon-link" do %>
+      <%= inline_svg_tag('sort.svg')%>
+      <p class="picture-caption">Autre</p>
       <% end %>
   <% end %>
 </div>

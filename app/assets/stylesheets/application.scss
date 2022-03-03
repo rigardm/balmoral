@@ -14,8 +14,8 @@
 @import "components/index";
 @import "pages/index";
 
-.container {
-  width: 375px;
+.app-container {
+  width: 100vw;
 }
 
 a {
@@ -24,4 +24,5 @@ a {
 
 body {
   background-color: $balmoral_background;
+  min-height: 80vh;
 }
