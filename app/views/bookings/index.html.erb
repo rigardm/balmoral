@@ -1,26 +1,10 @@
-<h1>Liste des bookings de la house <%= @house.name %></h1>
-
-<ul>
-  <% @bookings.each do |booking| %>
-    <li>
-      <%= render 'shared/booking_preview', booking: booking %>
-      <% if policy(booking).edit? %>
-        <%=
-          link_to "Edit", edit_booking_path(booking)
-        %>
-      <% end %>
-      <% if policy(booking).destroy? %>
-        <%=
-          link_to "Delete",
-            delete_booking_path(booking),
-            method: :delete,
-            data: { confirm: "Suppression de réservation: merci de confirmer"}
-        %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-
-  <%= link_to "Create booking", new_house_booking_path(@house) %>
-
-<%= link_to "Root", root_path %>
+<div class="container">
+  <h2>Liste des réservations pour <%= @house.name %></h2>
+      <div>
+          <% @bookings.each do |booking| %>
+            <%= render 'shared/booking_preview', booking: booking %>
+          <% end %>
+      </div>
+    <%= link_to "Create booking", new_house_booking_path(@house) %>
+    <%= link_to "Root", root_path %>
+</div>
