@@ -48,7 +48,7 @@ export default class extends Controller {
         // Departure is before arrival or it is already booked
         // So we need to reset the calendar
         arrival.classList.remove('new-booking');
-          arrival.removeChild(arrival.lastChild);
+        arrival.removeChild(arrival.lastChild);
       }
       this.bodyTarget.dataset.click = 'arrival';
     }

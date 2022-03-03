@@ -23,4 +23,11 @@
       </div>
     </div>
   </div>
+  <div style="display:none">
+  <% simple_form_for([ @house, @booking ]) do |f| %>
+  <% f.input :arrival, input_html: {:"data-select-dates-target"=> "formarrival"} %>
+  <% f.input :departure, , input_html: {:"data-select-dates-target"=> "formdeparture"} %>
+  <% f.submit %>
+<% end %>
+  </div>
 </div>
