@@ -27,6 +27,7 @@ export default class extends Controller {
         const day_display = parseInt(arrival.dataset.date.slice(-2), 10);
         arrival.insertAdjacentHTML('beforeend', `<div class="meeting-proposed">${day_display}</div>`);
         this.bodyTarget.dataset.click = 'departure';
+      }
     } else {
       const arrival = document.querySelector('.new-booking')
       const arrivalDate = arrival.dataset.date;
