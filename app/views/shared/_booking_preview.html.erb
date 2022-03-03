@@ -1,12 +1,11 @@
 <%= link_to booking_path(booking) do %>
-  <div class="booking-preview <%= booking.user.tribe.color %>">
-    <%= cl_image_tag(booking.user.photo.key, :class => "avatar") %>
-    <div class="booking-data">
-      <p>Du <%= booking.arrival %></p>
-      <p>Au <%= booking.departure %></p>
+  <div class="item-preview <%= booking.user.tribe.color %>">
+    <%= cl_image_tag(booking.user.photo.key, :class => "avatar border-#{booking.user.tribe.color}") %>
+    <div class="item-data">
+      <h5><%= current_user == booking.user ? "Vous" : "#{booking.user.first_name}" %></h5>
+      <p>Du <%= booking.arrival %> au <%= booking.departure %></p>
     </div>
     <div class="chevron">
-    <h1>></h1>
     </div>
   </div>
 <% end %>

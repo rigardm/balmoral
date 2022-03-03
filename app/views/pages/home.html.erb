@@ -1,48 +1,28 @@
 <div class="container">
-  <h1>Welcome to Balmoral ! </h1>
-
-  <% if user_signed_in? %>
-    <% if policy(House).show? %>
-      <p><%= link_to 'Voir ma maison', house_path(current_user.house) %></p>
-    <% end %>
-
-    <% if policy(House).create? %>
-      <p><%= link_to 'Créer une nouvelle maison', new_house_path %></p>
-    <% end %>
-    <%= link_to 'Liste des réservations', house_bookings_path(current_user.house) %>
-
-    <div>
-      <h1>Latest Bookings:</h1>
-        <% @last_bookings.each do |booking| %>
-          <%= render 'shared/booking_preview', booking: booking %>
-        <% end %>
-    </div>
-    <div>
-      <h1>Coming up Bookings:</h1>
-        <% @next_bookings.each do |booking| %>
-         <%= render 'shared/booking_preview', booking: booking %>
-        <% end %>
-    </div>
-    <div>
-      <h1>Credits of tribes:</h1>
-      <ul>
-        <% @tribes.each do |tribe| %>
-          <li>
-            Tribe's boss: <%= tribe.admin.first_name %>
-            Balance credits: <%= tribe.credits %>
-            Credits used: TODO
-            color: <%= tribe.color %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-    <div>
-      <h1>Latest messages</h1>
-      <ul>
-          <li>
-            TODO // TODO // TODO ...
-          </li>
-      </ul>
-    </div>
-  <% end %>
+  <div>
+    <h3>Credits des familles:</h3>
+      <% @tribes.each do |tribe| %>
+        <%= render 'shared/tribes', tribe: tribe %>
+      <% end %>
+  </div>
+  <div>
+    <h3>Dernières réservations</h3>
+      <% @last_bookings.each do |booking| %>
+        <%= render 'shared/booking_preview', booking: booking %>
+      <% end %>
+  </div>
+  <div>
+    <h3>Prochains séjours</h3>
+      <% @next_bookings.each do |booking| %>
+        <%= render 'shared/booking_preview', booking: booking %>
+      <% end %>
+  </div>
+  <div>
+    <h3>Derniers messages</h3>
+    <ul>
+        <li>
+          TODO // TODO // TODO ...
+        </li>
+    </ul>
+  </div>
 </div>
