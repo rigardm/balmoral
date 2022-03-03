@@ -1,0 +1,34 @@
+#booking-modal {
+  display: none;
+  opacity: 0.9;
+  background-color:$balmoral_light_gray;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  top:0;
+  left:0;
+}
+
+#booking-modal:target {
+  display: block;
+  // justify-content: center;
+  // align-items: center;
+  z-index: 2
+}
+
+#book-button-modal {
+  opacity: 0.95;
+  position: fixed;
+  bottom: 227px;
+  left: 90px;
+  z-index: 1;
+}
+
+#booking-modal-content {
+  background-color: $balmoral_yellow;
+  color: $balmoral_blue;
+  padding: 20px;
+  width: 350px;
+  height: 500px;
+  text-align: center;
+}

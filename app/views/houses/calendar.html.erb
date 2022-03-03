@@ -1,10 +1,23 @@
 <div class= "container">
-<%= month_calendar(events: @bookings, attribute: :arrival, end_attribute: :departure) do |date, bookings| %>
-  <%= date %>
-  <% bookings.each do |booking| %>
-   <div class="meeting-<%=booking.user.tribe.color%>">
-      <%=date%>
-    </div>
+  <%= month_calendar(events: @bookings, attribute: :arrival, end_attribute: :departure) do |date, bookings| %>
+    <%= date %>
+    <% bookings.each do |booking| %>
+      <div class="meeting-<%=booking.user.tribe.color%>">
+        <%=date%>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
+<div id="booking-modal">
+  <div id="booking-modal-content">
+    <h3>Ca sent les vacances!</h3>
+    <p>ici on insèrera l'image</p>
+    <p>votre réservation</p>
+    <p>du 02/09/2022 au 09/09/2022</p>
+    <p>Crédits nécessaires: 40</p>
+    <p>Solde après la réservation: 140 crédits</p>
+    <p>Souhaitez-vous confirmer?</p>
+    <a href="">non</a><a href="">oui</a>
+  </div>
 </div>

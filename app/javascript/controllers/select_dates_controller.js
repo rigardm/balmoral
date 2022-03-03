@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["date", "body"]
+  static targets = ["date", "body", "button"]
 
   select(event) {
     if (this.bodyTarget.dataset.click === 'arrival') {
+      this.buttonTarget.classList.add('d-none');
       this.dateTargets.forEach((date)=>{
         date.classList.remove("new-booking");
       });
@@ -22,8 +23,9 @@ export default class extends Controller {
             date.classList.add("new-booking");
           }
         });
-        this.bodyTarget.dataset.arrivalDate = arrivalDate
-        this.bodyTarget.dataset.departureDate = departureDate
+        this.bodyTarget.dataset.arrivalDate = arrivalDate;
+        this.bodyTarget.dataset.departureDate = departureDate;
+        this.buttonTarget.classList.remove('d-none');
       } else {
         // Departure is before arrival, we need to reset the calendar
         arrival.classList.remove('new-booking');
