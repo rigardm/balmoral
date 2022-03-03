@@ -44,6 +44,8 @@ export default class extends Controller {
         this.bodyTarget.dataset.arrivalDate = arrivalDate;
         this.bodyTarget.dataset.departureDate = departureDate;
         this.buttonTarget.classList.remove('d-none');
+        this.formarrivalTarget.value =  this.bodyTarget.dataset.arrivalDate;
+        this.formdepartureTarget.value = this.bodyTarget.dataset.departureDate;
       } else {
         // Departure is before arrival or it is already booked
         // So we need to reset the calendar

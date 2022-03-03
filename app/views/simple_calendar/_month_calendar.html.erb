@@ -36,7 +36,8 @@
   <a href="#booking-modal" id="book-button" class="btn btn-blue d-none" data-bs-toggle="modal" data-bs-target="#booking-modal" data-select-dates-target="button">
     Réserver
   </a>
+  <%= render 'shared/new_booking_modal' %>
 </div>
 
-<%= render 'shared/new_booking_modal' %>
-<%= render 'form_booking', house: @house %>
+
+<%#= render 'form_booking', house: @house %>
