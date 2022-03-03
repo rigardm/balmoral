@@ -1,0 +1,51 @@
+.item-preview {
+  display: flex;
+  width: 90vw;
+  height: 60px;
+  align-items: center;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  color: $balmoral_dark_grey;
+  box-shadow: $balomoral_shadow;
+  background-color: rgb(250, 245, 245);
+  border: 1px solid;
+  &.tribe-green {
+    border-color: $tribe_green;
+    .chevron {
+      background-color: $tribe_green;
+    }
+  }
+  &.tribe-red {
+    border-color: $tribe_red;
+    .chevron {
+      background-color: $tribe_red;
+    }
+  }
+  &.tribe-blue {
+    border-color: $tribe_blue;
+    .chevron {
+      background-color: $tribe_blue;
+    }
+  }
+}
+
+.item-preview > img {
+  margin: 0 15px;
+}
+
+.item-data p h5 {
+  margin: 0 auto;
+}
+
+.chevron {
+  width: 25px;
+  height: 100%;
+}
+
+.item-data {
+  flex-grow: 4;
+  height: 90%;
+  text-align: left;
+  justify-content: center;
+}
