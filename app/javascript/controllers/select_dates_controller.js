@@ -9,7 +9,6 @@ export default class extends Controller {
     today.insertAdjacentHTML('beforeend', `<div class="day-today">${day_display}</div>`);
   }
 
-
   select(event) {
     if (this.bodyTarget.dataset.click === 'arrival') {
       // the user has selected an arrival date
