@@ -1,3 +1,5 @@
+
+
 <div class= "container">
   <%= month_calendar(events: @bookings, attribute: :arrival, end_attribute: :departure) do |date, bookings| %>
     <%= date %>
@@ -9,15 +11,29 @@
   <% end %>
 </div>
 
-<div id="booking-modal">
-  <div id="booking-modal-content">
-    <h3>Ca sent les vacances!</h3>
-    <p>ici on insèrera l'image</p>
-    <p>votre réservation</p>
-    <p>du 02/09/2022 au 09/09/2022</p>
-    <p>Crédits nécessaires: 40</p>
-    <p>Solde après la réservation: 140 crédits</p>
-    <p>Souhaitez-vous confirmer?</p>
-    <a href="">non</a><a href="">oui</a>
+<div class="modal fade" id="booking-modal" tabindex="-1" aria-labelledby="booking-modal-label" aria-hidden="true">
+  <div class="modal-dialog d-flex justify-content-center">
+    <div class="modal-content booking-recap-modal">
+      <div class="modal-header">
+        <h2>Ca sent les vacances!</h2>
+        <%= inline_svg_tag('g12.svg')%>
+      </div>
+      <div class="modal-body booking-info">
+        <p m-0>votre réservation du 02/09/2022 au 09/09/2022</p>
+        <p m-0>Crédits nécessaires: 40</p>
+        <p m-0>Solde après la réservation: 140 crédits</p>
+        <p m-0>Souhaitez-vous confirmer?</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div class="d-flex w-25 justify-content-between">
+          <%= link_to root_path, class: "icon-link", data: { dismiss: "modal" } do %>
+            <%= inline_svg_tag('Dell_light.svg')%>
+          <% end %>
+          <%= link_to root_path, class: "icon-link", data: { dismiss: "modal" } do %>
+            <%= inline_svg_tag('Check_ring_light.svg')%>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
