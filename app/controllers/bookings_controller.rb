@@ -26,7 +26,7 @@ class BookingsController < ApplicationController
     if @booking.save
       current_user.tribe.credits -= total_price
       current_user.tribe.save
-      redirect_to house_bookings_path(@house)
+      redirect_to calendar_path(@house)
     else
       render :new
     end
