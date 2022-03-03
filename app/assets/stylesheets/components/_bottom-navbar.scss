@@ -1,0 +1,20 @@
+.bottom-bar {
+  background-color: white;
+  width: 375px;
+  height: 12vh;
+  position: sticky;
+  bottom: 0;
+}
+
+.icon-link {
+  color: $balmoral_yellow;
+  margin: auto;
+  text-align: center;
+}
+
+.picture-caption {
+  font-size: 9px;
+  font-weight: 400;
+  color: $balmoral_dark_grey;
+  margin-bottom: 0;
+}
