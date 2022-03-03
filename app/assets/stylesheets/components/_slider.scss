@@ -8,6 +8,10 @@
   overflow-y: hidden;
 }
 
+.slider-container::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
 .slider-item {
   width: 65vw;
   background-color: #faf5f5;
@@ -53,4 +57,8 @@
   height: 15px;
   width: 100%;
   margin: 0;
+}
+
+.slider-user-images img {
+  margin: 0 -10px;
 }
