@@ -1,11 +1,10 @@
-<%= link_to booking_path(booking) do %>
-  <div class="item-preview <%= booking.user.tribe.color %>">
-    <%= cl_image_tag(booking.user.photo.key, :class => "avatar border-#{booking.user.tribe.color}") %>
-    <div class="item-data">
-      <h5><%= current_user == booking.user ? "Vous" : "#{booking.user.first_name}" %></h5>
-      <p>Du <%= booking.arrival %> au <%= booking.departure %></p>
-    </div>
-    <div class="chevron">
-    </div>
+<div class="item-preview <%= booking.user.tribe.color %>" data-bs-toggle="modal" data-bs-target="#bookingModal<%= booking.id %>">
+  <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered #{booking.user.tribe.color}") %>
+  <div class="item-data">
+    <h5><%= current_user == booking.user ? "Vous" : "#{booking.user.first_name}" %></h5>
+    <p>Du <%= booking.arrival %> au <%= booking.departure %></p>
   </div>
-<% end %>
+  <div class="chevron">
+  </div>
+</div>
+<%= render 'shared/booking_details_modal', booking: booking %>
