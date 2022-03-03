@@ -1,12 +1,42 @@
-.navbar-lewagon {
-  justify-content: space-between;
+.header {
   background: $balmoral_blue;
+  height: 12vh;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.navbar-lewagon .navbar-collapse {
+.header .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.header .logo img {
   width: 40px;
+}
+
+.user {
+  margin-bottom: 0;
+  color: $balmoral_light_gray;
+}
+
+#avatarButton {
+  background-color: transparent;
+  border: none;
+  width: auto;
+  padding: 0;
+}
+
+.dropdown-toggle::after{
+  display: none;
+}
+
+.dropdown-menu {
+  padding: 0;
+  background-color: $balmoral_background;
+  min-width: none;
+  & .dropdown-action {
+    padding-left: 10px;
+    font-size: 10px;
+    color: $balmoral_dark_grey;
+  }
 }
