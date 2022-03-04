@@ -4,8 +4,9 @@
           <%= inline_svg_tag('Date_range_light.svg') %>
           </span>
           <span class="icon-link">
-            <%= link_to bookings_path(@house) %>
+            <%= link_to house_bookings_path(@house)  do%>
             <%= inline_svg_tag('sort.svg') %></a>
+            <%end%>
           </span>
   </div>
   <div class="calendar-container">

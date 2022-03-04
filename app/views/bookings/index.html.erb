@@ -1,10 +1,18 @@
 <div class="container">
+  <div class="header-buttons d-flex justify-content-center">
+          <span class="icon-link">
+            <%= link_to calendar_path(@house)  do%>
+            <%= inline_svg_tag('Date_range_light.svg') %>
+             <%end%>
+            </span>
+            <span class="icon-link" style= "opacity:0.4">
+              <%= inline_svg_tag('sort.svg') %>
+            </span>
+    </div>
   <h2>Liste des réservations pour <%= @house.name %></h2>
       <div>
           <% @bookings.each do |booking| %>
             <%= render 'shared/booking_preview', booking: booking %>
           <% end %>
       </div>
-    <%= link_to "Create booking", new_house_booking_path(@house) %>
-    <%= link_to "Root", root_path %>
 </div>
