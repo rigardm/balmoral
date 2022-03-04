@@ -1,10 +1,11 @@
 .booking-details {
-  width: 100vw;
-  height: 100vh;
+  width: 80vw;
+  height: 75vh;
   align-items: center;
   background-color: $balmoral_background;
-}
-
-.modal-header {
-  padding-top: 40px;
+  border-radius: 8px;
+  & h2 {
+    margin-top: 8px;
+    margin-bottom: 2px;
+  }
 }
