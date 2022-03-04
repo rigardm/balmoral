@@ -2,12 +2,12 @@
     <h1> <%= @house.name %> </h1>
 </div>
 
+
 <% if user_signed_in? %>
 <div class="container pb-0">
   <div class="text-start">
     <h1>Crédits des familles:</h1>
   </div>
-
 </div>
 <div class="slider-container">
   <div class="slider">
@@ -16,6 +16,7 @@
     <% end %>
   </div>
 </div>
+
 <div class="container">
   <div class="text-start mb-4">
     <h1>Prochains séjours</h1>
