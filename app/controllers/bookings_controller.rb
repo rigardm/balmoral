@@ -57,7 +57,7 @@ class BookingsController < ApplicationController
     @booking.destroy
     current_user.tribe.credits += previous_price
     current_user.tribe.save
-    redirect_to house_bookings_path(@house)
+    redirect_to root_path
   end
 
   # Simple_Calendar a besoin d'un "start_time" et "end_time"
