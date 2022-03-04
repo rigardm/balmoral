@@ -39,13 +39,13 @@ class BookingsController < ApplicationController
   def update
     previous_price = @booking.total_price
     @booking.update(booking_params)
-    total_price = @booking.nb_days * @house.daily_price
+    total_price = @booking.nb_days * @booking.house.daily_price
     @booking.total_price = total_price
     if @booking.save
       current_user.tribe.credits += previous_price
       current_user.tribe.credits -= total_price
       current_user.tribe.save
-      redirect_to booking_path(@booking)
+      redirect_to root_path
     else
       render :edit
     end
