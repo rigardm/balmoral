@@ -22,11 +22,12 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     total_price = @booking.nb_days * @house.daily_price
     @booking.total_price = total_price
+    @booking.status = "validated" if current_user.admin?
     authorize @booking
     if @booking.save
       current_user.tribe.credits -= total_price
       current_user.tribe.save
-      redirect_to house_bookings_path(@house)
+      redirect_to calendar_path(@house)
     else
       render :new
     end
