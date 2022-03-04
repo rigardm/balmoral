@@ -14,13 +14,15 @@
   justify-content: center;
   .booking-recap-modal {
     position: fixed;
-    width: 85vw;
+    width: 80vw;
     opacity: 1;
-    border-radius: 20px;
-    background-color: $balmoral_yellow;
-    color: $balmoral_blue;
+    border-radius: 8px;
+    background-color: $balmoral_background;
+    color: $balmoral_dark_grey;
     top: 100px;
-    height: 450px;
-    box-shadow: $balomoral_shadow;
+    height: 70vh;
+  }
+  & p {
+    margin: 0;
   }
 }

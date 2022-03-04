@@ -17,12 +17,12 @@
         <h2> La réservation de <%= booking.user.first_name %> </h2>
         <% end %>
           <div class="booking-recap-optional" data-rename-booking-target="currentinfo">
-            <p>Du <%= booking.arrival %> au <%= booking.departure %></p>
+            <p>Du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></p>
             <h2>Réservation réalisée le:</h2>
-            <p><%= booking.created_at.to_date %></p>
+            <p><%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
 
             <h2>Réservation validée le:</h2>
-            <p><%= booking.updated_at.to_date %></p>
+            <p><%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
           </div>
           <div class="booking-edit-optional d-none"  data-rename-booking-target="displayform">
             <%= simple_form_for([booking ], html: { data: { rename_booking_target:"form" } }) do |f| %>
