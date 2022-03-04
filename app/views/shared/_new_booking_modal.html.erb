@@ -10,15 +10,23 @@
         <p m-0>Crédits nécessaires: 40</p>
         <p m-0>Solde après la réservation: 140 crédits</p>
         <p m-0>Souhaitez-vous confirmer?</p>
+                  <div style="display:none">
+            <%= simple_form_for([ @house, @booking ]) do |f| %>
+            <%= f.input :arrival, as: :date, html5: true, input_html: {:"data-select-dates-target"=> "formarrival"} %>
+            <%= f.input :departure, as: :date, html5: true, input_html: {:"data-select-dates-target"=> "formdeparture"} %>
+            <%= f.submit %>
+            <% end %>
+            </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <div class="d-flex w-25 justify-content-between">
           <%= link_to calendar_path(@house), class: "icon-link", data: { dismiss: "modal" } do %>
             <%= inline_svg_tag('Dell_light.svg')%>
           <% end %>
-          <%= link_to house_create_booking_path(@house), class: "icon-link" do %>
-            <%= inline_svg_tag('Check_ring_light.svg')%>
-          <% end %>
+
+          <%#= link_to house_create_booking_path(@house), class: "icon-link" do %>
+            <%#= #inline_svg_tag('Check_ring_light.svg')%>
+          <%# end %>
         </div>
       </div>
     </div>

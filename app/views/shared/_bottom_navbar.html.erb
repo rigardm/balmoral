@@ -11,7 +11,7 @@
       <% end %>
 
 
-      <%= link_to root_path, class: "icon-link" do %>
+      <%= link_to calendar_path(current_user.house), class: "icon-link" do %>
       <%= inline_svg_tag('Date_range_light.svg')%>
       <p class="picture-caption">Calendrier</p>
       <% end %>
