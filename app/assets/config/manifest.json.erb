@@ -37,13 +37,11 @@
    "type": "image\/png",
    "density": "4.0"
   }
- ]
-}
-
-{
+ ],
+  "display": "standalone",
+  "orientation": "portrait",
   "background_color": "white",
   "description": "Balmoral offre une solution facile et transparente de gérer une maison de famille.",
-  "display": "fullscreen",
   "name": "Balmoral",
   "icons": [
     <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
