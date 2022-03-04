@@ -37,6 +37,11 @@
       <div class="a-different-footer d-none d-flex justify-content-center" data-rename-booking-target="displayfooter">
           <%= inline_svg_tag('Dell_light.svg', data: { action: "click->rename-booking#clear", :"bs-dismiss"=> "modal"}) %>
           <span class="icon-link">
+            <%= link_to delete_booking_path do%>
+            <%= inline_svg_tag('trashcan.svg') %></a>
+            <%end%>
+          </span>
+          <span class="icon-link">
             <%= inline_svg_tag('Check_ring_light.svg', data: { action: "click->rename-booking#submit", :"bs-dismiss"=> "modal"}) %>
           </span>
       </div>
