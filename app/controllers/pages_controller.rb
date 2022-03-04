@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       @house = current_user.house
       @last_bookings = policy_scope(Booking).order(created_at: :desc).limit(3)
       @next_bookings = policy_scope(Booking).order(arrival: :asc).where('arrival > ?', DateTime.now).limit(3)
-      @tribes = @house.tribes
+      @tribes = @house.tribes.order(created_at: :asc)
     end
   end
 end

@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   before_action :set_house, only: %i[index new create]
 
   def index
-    @bookings = policy_scope(Booking).order(created_at: :desc)
+    @bookings = policy_scope(Booking).order(arrival: :asc)
   end
 
   def show
