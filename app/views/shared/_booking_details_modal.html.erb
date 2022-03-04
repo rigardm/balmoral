@@ -15,12 +15,12 @@
         <% else %>
         <h2> La réservation de <%= booking.user.first_name %> </h2>
         <% end %>
-        <p>Du <%= booking.arrival %> au <%= booking.departure %></p>
+        <p>Du <b><%= booking.arrival.strftime('%d/%m/%y') %></b> au <b><%= booking.departure.strftime('%d/%m/%y')%></b> </p>
         <h2>Réservation réalisée le:</h2>
-        <p><%= booking.created_at.to_date %></p>
+        <p><%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
 
         <h2>Réservation validée le:</h2>
-        <p><%= booking.updated_at.to_date %></p>
+        <p><%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-blue" data-bs-dismiss="modal">FERMER</button>

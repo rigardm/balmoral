@@ -2,7 +2,7 @@ class TribesController < ApplicationController
   before_action :set_house, only: %i[index new create]
 
   def index
-    @tribes = Tribe.all
+    @tribes = Tribe.all # pense-bête: Tribe.where.not(airbnb)
   end
 
   def show

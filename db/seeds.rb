@@ -163,22 +163,25 @@ Booking.create!(
   house: chaumiere,
   user: nicolas
 )
+
 Booking.create!(
-  arrival: arrival = Date.new(2022, 4, 16),
-  departure: departure = Date.new(2022, 4, 23),
-  total_price: (departure - arrival) * chaumiere.daily_price,
-  status: :validated,
-  house: chaumiere,
-  user: elsa
-)
-Booking.create!(
-  arrival: arrival = Date.new(2022, 5, 7),
-  departure: departure = Date.new(2022, 5, 8),
-  total_price: (departure - arrival) * chaumiere.daily_price,
-  status: :pending,
-  house: chaumiere,
-  user: laure
-)
+    arrival: arrival = Date.new(2022, 4, 16),
+    departure: departure = Date.new(2022, 4, 23),
+    total_price: (departure - arrival) * chaumiere.daily_price,
+    status: :validated,
+    house: chaumiere,
+    user: elsa
+  )
+
+  Booking.create!(
+    arrival: arrival = Date.new(2022, 5, 7),
+    departure: departure = Date.new(2022, 5, 8),
+    total_price: (departure - arrival) * chaumiere.daily_price,
+    status: :pending,
+    house: chaumiere,
+    user: laure
+  )
+
 Booking.create!(
   arrival: arrival = Date.new(2022, 5, 26),
   departure: departure = Date.new(2022, 5, 29),
@@ -203,6 +206,7 @@ Booking.create!(
   house: chaumiere,
   user: jeremy
 )
+
 puts "created #{Booking.count} #{'booking'.pluralize(Booking.count)}"
 
 puts "6 out of 8: SEED SPENDINGS"

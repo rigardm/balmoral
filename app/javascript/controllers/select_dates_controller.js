@@ -55,31 +55,24 @@ export default class extends Controller {
         const html = `
           <div class="row">
             <div class="col-12">
-              <h3>Votre réservation</h3>
+              <h1>Votre réservation</h1>
             </div>
           </div>
           <div class="row">
-            <div class="col-2">
-              Du
-            </div>
-            <div class="col-10 text-start">
-              ${arr}
+            <div class="col-12 text-start">
+              <h2>Dates</h2>
+              <p>Du <b>${arr}</b></p>
             </div>
           </div>
           <div class="row">
-            <div class="col-2">
-              Au
-            </div>
-            <div class="col-10 text-start">
-              ${dep}
+            <div class="col-12 text-start">
+              <p>Au <b>${dep}</b></p>
             </div>
           </div>
           <div class="row">
-            <div class="col-2">
-              <i class="fas fa-key"></i>
-            </div>
-            <div class="col-10 text-start">
-              ${totalPrice} (résa)
+            <div class="col-12 text-start mt-2">
+              <h2>Crédits</h2>
+              <p>Pour cette réservation : <b>${totalPrice}</b> crédits</p>
             </div>
           </div>
         `;
