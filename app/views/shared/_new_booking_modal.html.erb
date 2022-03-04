@@ -1,13 +1,13 @@
 <div class="modal fade" id="booking-modal" tabindex="-1" aria-labelledby="booking-modal-label" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="booking-recap-modal pt-3">
-      <div class="d-flex justify-content-center">
+    <div class="modal-content booking-recap-modal">
+      <div class="modal-header d-flex justify-content-center">
         <%= inline_svg_tag('g12.svg')%>
       </div>
-      <div class="modal-body booking-info pb-0" data-select-dates-target="modalInfo">
+      <div class="modal-body booking-info" data-select-dates-target="modalInfo">
         <div class="row">
-          <div class="col-10 text-start">
-              <p>Votre solde : <b><%= current_user.tribe.credits %></b> crédits</p>
+          <div class="col-12 text-start">
+              <p>Votre solde actuel : <b><%= current_user.tribe.credits %></b> crédits</p>
           </div>
         </div>
         <div>
@@ -17,7 +17,7 @@
           <% end %>
         </div>
       </div>
-      <div class="d-flex justify-content-center">
+      <div class="modal-footer d-flex justify-content-center">
         <div class="d-flex w-50 justify-content-between">
           <%= link_to calendar_path(@house), class: "icon-link", data: { dismiss: "modal" } do %>
             <%= inline_svg_tag('Dell_light.svg')%>
