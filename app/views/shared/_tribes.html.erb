@@ -3,9 +3,18 @@
   </div>
   <div class="slider-content">
     <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered-large #{tribe.color}") %>
-    <div class="slider-data">
-      <p>Crédits restants <%= tribe.credits %></p>
-      <p></p>
+    <div class="slider-details">
+      <div>
+        <h2><%= current_user.tribe == tribe ? "Votre famille": "Famille \"#{tribe.admin.first_name}\"" %></h2>
+        <p>Crédits restants <%= tribe.credits %></p>
+      </div>
+      <div class="slider-user-images">
+        <% tribe.users.each do |user| %>
+          <% if !user.admin? %>
+            <%= cl_image_tag(user.photo.key, :class => "avatar-bordered #{tribe.color}") %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

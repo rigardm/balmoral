@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["date", "body", "button"]
+  static targets = ["date", "body", "button", "arrival", "departure", "form", "modalInfo"]
+  static values = { dailyPrice: Number }
 
   connect() {
     const today = document.querySelector('[class*="today"]');
@@ -11,7 +12,7 @@ export default class extends Controller {
 
   select(event) {
     if (this.bodyTarget.dataset.click === 'arrival') {
-      // the user has selected an arrival date
+      // the user may have selected an arrival date
       this.buttonTarget.classList.add('d-none');
       this.dateTargets.forEach((date)=>{
         date.classList.remove("new-booking");
@@ -28,6 +29,7 @@ export default class extends Controller {
         this.bodyTarget.dataset.click = 'departure';
       }
     } else {
+      // the user may have selected a departure date
       const arrival = document.querySelector('.new-booking')
       const arrivalDate = arrival.dataset.date;
       const departureDate = event.currentTarget.dataset.date;
@@ -37,15 +39,51 @@ export default class extends Controller {
         this.dateTargets.forEach((date)=>{
           if ((date.dataset.date>arrivalDate)&&(date.dataset.date<=departureDate)) {
             date.classList.add("new-booking");
-           const day_display = parseInt(date.dataset.date.slice(-2), 10);
-           date.insertAdjacentHTML('beforeend', `<div class="meeting-proposed">${day_display}</div>`);
+            const day_display = parseInt(date.dataset.date.slice(-2), 10);
+            date.insertAdjacentHTML('beforeend', `<div class="meeting-proposed">${day_display}</div>`);
           }
         });
-        this.bodyTarget.dataset.arrivalDate = arrivalDate;
-        this.bodyTarget.dataset.departureDate = departureDate;
         this.buttonTarget.classList.remove('d-none');
-        this.formarrivalTarget.value =  this.bodyTarget.dataset.arrivalDate;
-        this.formdepartureTarget.value = this.bodyTarget.dataset.departureDate;
+        this.arrivalTarget.value = arrivalDate;
+        this.departureTarget.value = departureDate;
+        // insert HTML in the modal info:
+        const arrDate = new Date(arrivalDate);
+        const depDate = new Date(departureDate);
+        const arr = arrDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
+        const dep = depDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
+        const totalPrice = ((depDate - arrDate) / (60000 * 60 * 24) + 1) * this.dailyPriceValue;
+        const html = `
+          <div class="row">
+            <div class="col-12">
+              <h3>Votre réservation</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              Du
+            </div>
+            <div class="col-10 text-start">
+              ${arr}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              Au
+            </div>
+            <div class="col-10 text-start">
+              ${dep}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <i class="fas fa-key"></i>
+            </div>
+            <div class="col-10 text-start">
+              ${totalPrice} (résa)
+            </div>
+          </div>
+        `;
+        this.modalInfoTarget.insertAdjacentHTML('afterbegin', html);
       } else {
         // Departure is before arrival or it is already booked
         // So we need to reset the calendar
@@ -67,4 +105,8 @@ export default class extends Controller {
     });
     return notBooked;
   });
+
+  submit() {
+    this.formTarget.submit();
+  }
 }
