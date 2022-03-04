@@ -1,9 +1,10 @@
 <div class="modal fade" id="bookingModal<%= booking.id %>" tabindex="-1" aria-labelledby="bookingModal" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" data-controller = "rename-booking">
     <div class="modal-content booking-details">
       <div class="modal-header">
         <% if booking.user == current_user %>
-          <a href="">Edit</a>
+          <%#= inline_svg_tag('Check_ring_light.svg', data: { action: "click->rename-booking#form"})%>
+          <p data-action = "click->rename-booking#form">Edit</p>
         <% end %>
       </div>
       <div class="modal-header">
@@ -15,15 +16,29 @@
         <% else %>
         <h2> La réservation de <%= booking.user.first_name %> </h2>
         <% end %>
-        <p>Du <%= booking.arrival %> au <%= booking.departure %></p>
-        <h2>Réservation réalisée le:</h2>
-        <p><%= booking.created_at.to_date %></p>
+          <div class="booking-recap-optional" data-rename-booking-target="currentinfo">
+            <p>Du <%= booking.arrival %> au <%= booking.departure %></p>
+            <h2>Réservation réalisée le:</h2>
+            <p><%= booking.created_at.to_date %></p>
 
-        <h2>Réservation validée le:</h2>
-        <p><%= booking.updated_at.to_date %></p>
+            <h2>Réservation validée le:</h2>
+            <p><%= booking.updated_at.to_date %></p>
+          </div>
+          <div class="booking-edit-optional d-none"  data-rename-booking-target="displayform">
+            <%= simple_form_for([booking ], html: { data: { rename_booking_target:"form" } }) do |f| %>
+              <%= f.input :arrival, as: :date, html5: true, label: false%>
+              <%= f.input :departure, as: :date, html5: true, label: false%>
+            <% end %>
+          </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" data-rename-booking-target="currentfooter">
         <button type="button" class="btn btn-blue" data-bs-dismiss="modal">FERMER</button>
+      </div>
+      <div class="a-different-footer d-none d-flex justify-content-center" data-rename-booking-target="displayfooter">
+          <%= inline_svg_tag('Dell_light.svg', data: { action: "click->rename-booking#clear", :"bs-dismiss"=> "modal"}) %>
+          <span class="icon-link">
+            <%= inline_svg_tag('Check_ring_light.svg', data: { action: "click->rename-booking#submit", :"bs-dismiss"=> "modal"}) %>
+          </span>
       </div>
     </div>
   </div>
