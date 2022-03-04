@@ -1,28 +1,34 @@
 <div class="container">
-  <div>
-    <h3>Credits des familles:</h3>
-      <% @tribes.each do |tribe| %>
-        <%= render 'shared/tribes', tribe: tribe %>
-      <% end %>
-  </div>
-  <div>
-    <h3>Dernières réservations</h3>
-      <% @last_bookings.each do |booking| %>
-        <%= render 'shared/booking_preview', booking: booking %>
-      <% end %>
-  </div>
-  <div>
-    <h3>Prochains séjours</h3>
-      <% @next_bookings.each do |booking| %>
-        <%= render 'shared/booking_preview', booking: booking %>
-      <% end %>
-  </div>
-  <div>
-    <h3>Derniers messages</h3>
-    <ul>
-        <li>
-          TODO // TODO // TODO ...
-        </li>
-    </ul>
-  </div>
+  <% if user_signed_in? %>
+    <div class="text-start mb-4">
+      <h1>Crédits des familles:</h1>
+      <div class="slider-container">
+        <div class="slider">
+          <% @tribes.each do |tribe| %>
+            <%= render 'shared/tribes', tribe: tribe %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="text-start mb-4">
+      <h1>Prochains séjours</h1>
+        <% @next_bookings.each do |booking| %>
+          <%= render 'shared/booking_preview', booking: booking %>
+        <% end %>
+    </div>
+    <div class="text-start mb-4">
+    <div class="text-start mb-4">
+      <h1>Dernières réservations</h1>
+        <% @last_bookings.each do |booking| %>
+          <%= render 'shared/booking_preview', booking: booking %>
+        <% end %>
+    </div>
+      <h1>Derniers messages</h1>
+      <ul>
+          <li>
+            TODO // TODO // TODO ...
+          </li>
+      </ul>
+    </div>
+  <% end %>
 </div>

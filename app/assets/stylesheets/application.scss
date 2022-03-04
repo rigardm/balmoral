@@ -1,6 +1,6 @@
 // Graphical variables
-@import "config/fonts";
 @import "config/colors";
+@import "config/fonts";
 @import "config/bootstrap_variables";
 @import "config/shadows";
 
@@ -16,6 +16,7 @@
 
 .app-container {
   width: 100vw;
+  background-color: $balmoral_background;
 }
 
 a {
@@ -23,6 +24,6 @@ a {
 }
 
 body {
-  background-color: $balmoral_background;
+  background-color: $balmoral_yellow;
   min-height: 80vh;
 }

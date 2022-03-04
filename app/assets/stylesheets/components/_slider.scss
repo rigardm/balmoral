@@ -1,0 +1,73 @@
+.slider {
+  display: flex;
+  flex-direction: row;
+}
+
+.slider-container {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.slider-container::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+.slider-item {
+  width: 68vw;
+  background-color: #faf5f5;
+  height: 160px;
+  flex-direction: column;
+  flex-shrink: 0;
+  border: 1px solid;
+  border-radius: 8px;
+  margin-right: 20px;
+  overflow: hidden;
+  box-shadow: $balomoral_shadow;
+  &.tribe-green {
+    border-color: $tribe_green;
+    .top-slider {
+      background-color: $tribe_green;
+    }
+  }
+  &.tribe-red {
+    border-color: $tribe_red;
+    .top-slider {
+      background-color: $tribe_red;
+    }
+  }
+  &.tribe-blue {
+    border-color: $tribe_blue;
+    .top-slider {
+      background-color: $tribe_blue;
+    }
+  }
+}
+
+.slider-item img {
+  margin: 0 10px;
+}
+
+.slider-content {
+  display: flex;
+  align-items: center;
+  height: 90%;
+}
+
+.top-slider {
+  height: 15px;
+  width: 100%;
+  margin: 0;
+}
+
+.slider-user-images img {
+  margin: 0 -10px;
+}
+
+.slider-user-images {
+  margin-left: 10x;
+}
+
+.slider-details {
+  width: 100%;
+  text-align: center;
+}

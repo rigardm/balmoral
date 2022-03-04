@@ -4,10 +4,10 @@
       <%= image_tag "logo.png" %>
     <% end %>
   </div>
-  <div class="right-side">
+  <div class="right-side mb-1">
     <% if user_signed_in? %>
       <div class="dropdown">
-        <button class="dropdown-toggle" type="button" id="avatarButton" data-bs-toggle="dropdown" aria-expanded="false"><%= cl_image_tag(current_user.photo.key, :class => "avatar dropdown-toggle border-#{current_user.tribe.color}") %>
+        <button class="dropdown-toggle" type="button" id="avatarButton" data-bs-toggle="dropdown" aria-expanded="false"><%= cl_image_tag(current_user.photo.key, :class => "avatar-bordered dropdown-toggle #{current_user.tribe.color}") %>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <a class="dropdown-item" href="#">Book</a>
