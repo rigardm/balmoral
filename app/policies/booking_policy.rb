@@ -30,6 +30,10 @@ class BookingPolicy < ApplicationPolicy
     update?
   end
 
+  def find_booking?
+    show?
+  end
+
   private
 
   def user_house?

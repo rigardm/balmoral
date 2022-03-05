@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
+  get '/bookings/find', to: 'bookings#find_booking', as: :find_booking
   resources :bookings, only: %i[show edit update]
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
 

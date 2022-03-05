@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["date", "body", "button", "arrival", "departure", "form", "modalInfo"]
+  static targets = ["date", "body", "button", "arrival", "departure", "form", "modalInfo", "bookingPreview", "previewButton"]
   static values = { dailyPrice: Number }
 
   connect() {
@@ -27,6 +27,24 @@ export default class extends Controller {
         const day_display = parseInt(arrival.dataset.date.slice(-2), 10);
         arrival.insertAdjacentHTML('beforeend', `<div class="meeting-proposed">${day_display}</div>`);
         this.bodyTarget.dataset.click = 'departure';
+      } else {
+        // the user has clicked on an existing booking
+        // retrieve the récupérer l'id du booking correspondant:
+        const bookingId = event.target.dataset.bookingId;
+        // fetcher
+        const url = `/bookings/find?id=${bookingId}`
+        fetch(url, {
+          headers: {
+            "Accept": "application/json"
+          }
+        })
+        .then(response => response.json())
+        .then((data) => {
+          // insert booking_preview partial with booking inside preview modal
+          this.bookingPreviewTarget.innerHTML = data.html;
+        });
+        // afficher la modale
+        this.previewButtonTarget.click();
       }
     } else {
       // the user may have selected a departure date
