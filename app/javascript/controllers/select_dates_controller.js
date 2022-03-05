@@ -14,7 +14,10 @@ export default class extends Controller {
     "newBookingModal",
     "newBookingOverlay"
   ]
-  static values = { dailyPrice: Number }
+  static values = {
+    dailyPrice: Number,
+    tribeCreditBalance: Number
+   }
 
   connect() {
     const today = document.querySelector('[class*="today"]');
@@ -26,12 +29,12 @@ export default class extends Controller {
     if (this.bodyTarget.dataset.click === 'arrival') {
       // the user may have selected an arrival date
       this.bookButtonTarget.classList.add('d-none');
+      this.modalInfoTarget.innerHTML = "";
       this.dateTargets.forEach((date)=>{
         date.classList.remove("new-booking");
         if (date.lastChild.className === "meeting-proposed") {
           date.removeChild(date.lastChild);
         };
-        //.forEach(element => element.remove);
       });
       const arrival = event.currentTarget;
       if (!arrival.classList.contains("has-events")) {
@@ -82,6 +85,7 @@ export default class extends Controller {
         const arr = arrDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
         const dep = depDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
         const totalPrice = ((depDate - arrDate) / (60000 * 60 * 24) + 1) * this.dailyPriceValue;
+        const creditBalance = this.tribeCreditBalanceValue;
         const html = `
         <div class="row">
         <div class="col-12">
@@ -103,6 +107,11 @@ export default class extends Controller {
         <div class="col-12 text-start mt-2">
         <h2>Crédits</h2>
         <p>Pour cette réservation : <b>${totalPrice}</b> crédits</p>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-12 text-start">
+        <p>Votre solde actuel : <b>${creditBalance}</b> crédits</p>
         </div>
         </div>
         `;
