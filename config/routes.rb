@@ -11,11 +11,13 @@ Rails.application.routes.draw do
   end
 
   get '/houses/:id/calendar', to: 'houses#calendar', as: :calendar
+  get '/houses/:id/sandbox', to: 'houses#sandbox', as: :sandbox
 
   resources :channels, only: :show do
     resources :messages, only: :create
   end
 
+  get '/bookings/find', to: 'bookings#find_booking', as: :find_booking
   resources :bookings, only: %i[show edit update]
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
 

@@ -1,6 +1,4 @@
-<div class="simple-calendar" data-controller="select-dates"
-  data-select-dates-daily-price-value="<%= @house.daily_price %>">
-
+<div class="simple-calendar" data-controller="select-dates" data-select-dates-daily-price-value="<%= @house.daily_price %>" data-select-dates-tribe-credit-balance-value="<%= current_user.tribe.credits %>">
   <div class="calendar-heading">
     <%= link_to t('simple_calendar.previous', default: '<'), calendar.url_for_previous_view %>
     <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
@@ -35,8 +33,27 @@
       <% end %>
     </tbody>
   </table>
-  <a href="#booking-modal" id="book-button" class="btn btn-blue d-none" data-bs-toggle="modal" data-bs-target="#booking-modal" data-select-dates-target="button">
+
+  <a href="" id="book-button" class="btn btn-blue d-none" data-select-dates-target="bookButton" data-action="click->select-dates#newBookingModalShow">
     <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;RESERVER
   </a>
-  <%= render 'shared/new_booking_modal' %>
+
+  <div class="container">
+    <div class="simple-booking-overlay d-none" data-select-dates-target="newBookingOverlay">
+      <%= render 'shared/simple_new_booking_modal' %>
+    </div>
+  </div>
+
+  <a href="" id="booking-preview-button" class="btn btn-blue d-none" data-bs-toggle="modal" data-bs-target="#booking-preview-modal" data-select-dates-target="previewButton">
+  </a>
+
+  <div class="modal fade" id="booking-preview-modal" tabindex="-1" aria-labelledby="booking-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" data-select-dates-target="bookingPreview">
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

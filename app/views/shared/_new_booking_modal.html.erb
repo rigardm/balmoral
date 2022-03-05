@@ -5,17 +5,6 @@
         <%= inline_svg_tag('g12.svg')%>
       </div>
       <div class="modal-body booking-info" data-select-dates-target="modalInfo">
-        <div class="row">
-          <div class="col-12 text-start">
-              <p>Votre solde actuel : <b><%= current_user.tribe.credits %></b> crédits</p>
-          </div>
-        </div>
-        <div>
-          <%= simple_form_for([ @house, @booking ], html: { data: { select_dates_target:"form" } }) do |f| %>
-          <%= f.input :arrival, as: :date, html5: true, label: false, input_html: {:"data-select-dates-target"=> "arrival", :"class"=>"d-none"} %>
-          <%= f.input :departure, as: :date, html5: true, label: false, input_html: {:"data-select-dates-target"=> "departure", :"class"=>"d-none"} %>
-          <% end %>
-        </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <div class="d-flex w-50 justify-content-between">

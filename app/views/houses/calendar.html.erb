@@ -1,20 +1,20 @@
 <div class= "container">
   <div class="header-buttons d-flex justify-content-center">
-         <span class="icon-link" style= "opacity:0.4">
-          <%= inline_svg_tag('Date_range_light.svg') %>
-          </span>
-          <span class="icon-link">
-            <%= link_to house_bookings_path(@house)  do%>
-            <%= inline_svg_tag('sort.svg') %></a>
-            <%end%>
-          </span>
+    <span class="icon-link" style= "opacity:0.4">
+      <%= inline_svg_tag('Date_range_light.svg') %>
+    </span>
+    <span class="icon-link">
+      <%= link_to house_bookings_path(@house) do %>
+        <%= inline_svg_tag('sort.svg') %></a>
+      <%end%>
+    </span>
   </div>
   <div class="calendar-container">
       <%= month_calendar(events: @bookings, attribute: :arrival, end_attribute: :departure) do |date, bookings| %>
         <%= date %>
         <% bookings.each do |booking| %>
-          <div class="meeting-<%=booking.user.tribe.color%>">
-            <%=date%>
+          <div class="meeting-<%= booking.user.tribe.color %>" data-booking-id="<%= booking.id %>">
+            <%= date %>
           </div>
         <% end %>
       <% end %>

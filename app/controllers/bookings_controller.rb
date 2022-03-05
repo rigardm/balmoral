@@ -69,6 +69,18 @@ class BookingsController < ApplicationController
     departure
   end
 
+  def find_booking
+    respond_to do |format|
+      format.json do
+        html = render_to_string(
+          partial: "shared/booking_preview",
+          locals: { booking: @booking }, layout: false, formats: [:html]
+        )
+        render json: { html: html }
+      end
+    end
+  end
+
   private
 
   def set_booking

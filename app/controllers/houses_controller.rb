@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: %i[show edit update delete calendar]
+  before_action :set_house, except: %i[new create]
 
   def show
   end
@@ -41,6 +41,11 @@ class HousesController < ApplicationController
     @booking = Booking.new
     # Or, for a weekly view:
     # @meetings = Meeting.where(starts_at: start_date.beginning_of_week..start_date.end_of_week)
+  end
+
+  def sandbox
+    @bookings = @house.bookings
+    @booking = Booking.new
   end
 
   private
