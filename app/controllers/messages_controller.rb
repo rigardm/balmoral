@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
 
   def index
-    @messages = Message.all
+    @messages = policy_scope(Message).order(arrival: :asc)
   end
 
   def new
