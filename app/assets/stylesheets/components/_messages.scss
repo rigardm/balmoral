@@ -1,0 +1,42 @@
+.message-board {
+display: flex;
+flex-direction: column;
+position: relative;
+background-color: $balmoral_background;
+}
+.message-box-user {
+text-align: right;
+align-self:flex-end;
+max-width: 70vw;
+border-radius: 8px;
+background-color: white;
+margin-top: 4vh;
+}
+
+.message-box {
+text-align: left;
+max-width: 70vw;
+border-radius: 8px;
+background-color: white;
+margin-top: 4vh;
+}
+
+.message-author-tribe-green {
+font-weight: bold;
+color: $tribe_green;
+}
+
+.message-author-tribe-blue {
+  font-weight: bold;
+  color: $tribe_blue;
+  }
+
+.message-author-tribe-red {
+    font-weight: bold;
+    color: $tribe_red;
+    }
+
+.message-content {
+color: $balmoral_dark_grey;
+font-weight: lighter;
+}

@@ -1,10 +1,10 @@
 class MessagesController < ApplicationController
-  before_action :set_channel, only: %i[index new create]
-
+  before_action :set_channel
+  before_action :set_house
 
 
   def index
-    @messages = policy_scope(Message).order(arrival: :asc)
+    @messages = policy_scope(Message).order(created_at: :asc)
   end
 
   def new

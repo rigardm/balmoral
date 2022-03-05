@@ -1,4 +1,4 @@
-class BookingPolicy < ApplicationPolicy
+class MessagePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       # by default: give access to all houses for the index
