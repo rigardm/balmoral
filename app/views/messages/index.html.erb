@@ -1,0 +1,11 @@
+<div class="container">
+  <h2> <%= @house.name %> : <%=@channel.name%></h2>
+        <div>
+            <% @messages.each do |message| %>
+              <div class="message-box">
+                <div class = "message-author"><%= message.user.name %> : </div>
+                <div class="message-content"><%=message.content%></div>
+              </div>
+            <% end %>
+       </div>
+</div>
