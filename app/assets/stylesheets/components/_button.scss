@@ -15,3 +15,14 @@
   color: $balmoral_background;
   background: $balmoral_blue;
 }
+
+#book-button {
+  position: fixed;
+  width: 50%;
+  left: 50%;
+  margin-left: -25%;
+  bottom: 13vh;
+  height: 48px;
+  box-shadow: $balomoral_shadow;
+  z-index: 2;
+  }

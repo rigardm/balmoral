@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   get '/houses/:id/calendar', to: 'houses#calendar', as: :calendar
+  get '/houses/:id/sandbox', to: 'houses#sandbox', as: :sandbox
 
   resources :channels, only: :show do
     resources :messages, only: :create

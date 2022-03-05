@@ -1,26 +1,33 @@
-#book-button {
+.simple-booking-overlay{
   position: fixed;
-  width: 50%;
-  left: 50%;
-  margin-left: -25%;
-  bottom: 13vh;
-  height: 48px;
-  box-shadow: $balomoral_shadow;
-  z-index: 2;
-  }
-
-.modal-dialog {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $balmoral_dark_grey_with_opacity;
+  z-index: 200;
   display: flex;
   justify-content: center;
-  .booking-recap-modal {
-    position: fixed;
-    width: 80vw;
-    opacity: 1;
+}
+
+.simple-booking {
+  position: absolute;
+  top: 14vh;
+  .simple-booking-modal-header, .simple-booking-modal-footer{
+    display: flex;
+    justify-content: center;
+  }
+  .simple-booking-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid $balmoral_dark_grey;
     border-radius: 8px;
     background-color: $balmoral_background;
     color: $balmoral_dark_grey;
-    top: 100px;
-    height: 80vh;
+    height: 70vh;
+    width: 80vw;
+    padding: 20px;
   }
   & p {
     margin: 0;

@@ -33,10 +33,16 @@
       <% end %>
     </tbody>
   </table>
-  <a href="#booking-modal" id="book-button" class="btn btn-blue d-none" data-bs-toggle="modal" data-bs-target="#booking-modal" data-select-dates-target="button">
+
+  <a href="" id="book-button" class="btn btn-blue d-none" data-select-dates-target="bookButton" data-action="click->select-dates#newBookingModalShow">
     <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;RESERVER
   </a>
-  <%= render 'shared/new_booking_modal' %>
+
+  <div class="container">
+    <div class="simple-booking-overlay d-none" data-select-dates-target="newBookingOverlay">
+      <%= render 'shared/simple_new_booking_modal' %>
+    </div>
+  </div>
 
   <a href="" id="booking-preview-button" class="btn btn-blue d-none" data-bs-toggle="modal" data-bs-target="#booking-preview-modal" data-select-dates-target="previewButton">
   </a>

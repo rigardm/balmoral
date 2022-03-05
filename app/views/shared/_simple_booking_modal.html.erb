@@ -1,0 +1,22 @@
+<div id="bookingModal<%= booking.id %>">
+  <div class="simple-booking-details">
+    <div class="booking-header">
+      <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered-large #{booking.user.tribe.color}") %>
+    </div>
+    <div class="booking-info">
+      <% if booking.user == current_user %>
+      <h2>Votre réservation</h2>
+      <% else %>
+      <h2> La réservation de <%= booking.user.first_name %> </h2>
+      <% end %>
+      <p>Du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></p>
+      <h2>Réservation réalisée le:</h2>
+      <p><%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
+      <h2>Réservation validée le:</h2>
+      <p><%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+    </div>
+    <div class="booking-modal-footer">
+      <button type="button" id="close-button" class="btn btn-blue">FERMER</button>
+    </div>
+  </div>
+</div>
