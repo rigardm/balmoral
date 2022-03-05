@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   before_action :set_house, only: %i[index new create]
 
   def index
-    @bookings = policy_scope(Booking).order(created_at: :desc)
+    @bookings = policy_scope(Booking).order(arrival: :asc)
   end
 
   def show
@@ -39,13 +39,13 @@ class BookingsController < ApplicationController
   def update
     previous_price = @booking.total_price
     @booking.update(booking_params)
-    total_price = @booking.nb_days * @house.daily_price
+    total_price = @booking.nb_days * @booking.house.daily_price
     @booking.total_price = total_price
     if @booking.save
       current_user.tribe.credits += previous_price
       current_user.tribe.credits -= total_price
       current_user.tribe.save
-      redirect_to booking_path(@booking)
+      redirect_to root_path
     else
       render :edit
     end
@@ -57,7 +57,7 @@ class BookingsController < ApplicationController
     @booking.destroy
     current_user.tribe.credits += previous_price
     current_user.tribe.save
-    redirect_to house_bookings_path(@house)
+    redirect_to root_path
   end
 
   # Simple_Calendar a besoin d'un "start_time" et "end_time"

@@ -1,0 +1,19 @@
+.sign-in {
+  background-color: white!important;
+  min-height: 100vh;
+  padding: 20px 30px;
+  text-align: center;
+}
+
+.sign-in-content {
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+}
+
+.sign-in-links {
+  margin: 20px;
+  & a {
+    color: $balmoral_blue;
+  }
+}
