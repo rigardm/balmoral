@@ -17,15 +17,17 @@
 
   <div class="container">
     <div class="text-start mb-4">
-      <h1>Prochains séjours</h1>
+      <h1>Les prochains séjours</h1>
       <% @next_bookings.each do |booking| %>
-        <%= render 'shared/booking_preview', booking: booking %>
+        <%#= render 'shared/booking_preview', booking: booking %>
+        <%= render 'shared/simple_booking_preview', booking: booking %>
       <% end %>
     </div>
+
     <div class="text-start mb-4">
-      <h1>Dernières réservations</h1>
-        <% @last_bookings.each do |booking| %>
-          <%= render 'shared/booking_preview', booking: booking %>
+      <h1>Vos réservations</h1>
+        <% @your_bookings.each do |booking| %>
+          <%= render 'shared/simple_booking_preview', booking: booking %>
         <% end %>
       </div>
     </div>

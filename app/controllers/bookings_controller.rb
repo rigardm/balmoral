@@ -73,7 +73,7 @@ class BookingsController < ApplicationController
     respond_to do |format|
       format.json do
         html = render_to_string(
-          partial: "shared/booking_preview",
+          partial: "shared/simple_booking_modal",
           locals: { booking: @booking }, layout: false, formats: [:html]
         )
         render json: { html: html }
