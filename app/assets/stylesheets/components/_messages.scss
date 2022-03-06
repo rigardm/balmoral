@@ -43,7 +43,10 @@ font-weight: lighter;
 
 .message-input {
   display:flex;
+  align-items: center;
   justify-content: space-between;
+  position: fixed;
+  bottom: 56.4px;
 }
 
 .message-input textarea {
@@ -51,14 +54,21 @@ font-weight: lighter;
     font-style: italic;
     min-height: 1em;
     max-height: 2em;
-    width: 70vw;
+    width: 80vw;
     border-radius: 8px;
   }
 
   .message-input button {
     border: none;
-    background-color: $balmoral_background;
-    height: 12px;
-    width: 12px;
+    background-color: transparent;
+    height: 32px;
+    width: 32px;
+    position: fixed;
+    bottom: 62px;
 
   }
+
+.message-input button svg {
+  width: 32px;
+  height: 32px;
+}
