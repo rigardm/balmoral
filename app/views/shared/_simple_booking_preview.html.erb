@@ -7,7 +7,14 @@
   <div class="item-preview <%= booking.user.tribe.color %>" data-action="click->booking-modal#openBookingModal" data-booking-modal-target="openBookingButton">
     <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered #{booking.user.tribe.color}") %>
     <div class="item-data">
-      <h2><%= current_user == booking.user ? "Vous" : "#{booking.user.first_name}" %></h2>
+      <div class="d-flex">
+        <h2><%= current_user == booking.user ? "Vous" : "#{booking.user.first_name}" %></h2>
+        <% if booking.pending? %>
+          <p><em>- En attente de validation</em></p>
+        <% elsif booking.declined? %>
+          <p><em>- Refusé</em></p>
+        <% end %>
+      </div>
       <p>Du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></p>
     </div>
     <div class="chevron">
