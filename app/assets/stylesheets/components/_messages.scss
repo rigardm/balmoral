@@ -40,3 +40,25 @@ color: $tribe_green;
 color: $balmoral_dark_grey;
 font-weight: lighter;
 }
+
+.message-input {
+  display:flex;
+  justify-content: space-between;
+}
+
+.message-input textarea {
+    font-weight: lighter;
+    font-style: italic;
+    min-height: 1em;
+    max-height: 2em;
+    width: 70vw;
+    border-radius: 8px;
+  }
+
+  .message-input button {
+    border: none;
+    background-color: $balmoral_background;
+    height: 12px;
+    width: 12px;
+
+  }

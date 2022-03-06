@@ -31,4 +31,13 @@
               <%end%>
             <% end %>
        </div>
+       <div class= "message-input">
+        <%= simple_form_for([ @house, @channel, @message], html: {class: 'form-inline'} ) do |f| %>
+          <%= f.input_field :content, label: false, placeholder:"Participez à la conversation"%>
+          <%#= f.button :submit, class:'btn btn-secondary' do%>
+           <button type="submit">
+                 <%= inline_svg_tag('Check_ring_light.svg')%>
+            </button>
+        <% end %>
+      </div>
 </div>
