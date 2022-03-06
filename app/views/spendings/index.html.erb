@@ -1,6 +1,6 @@
 <div class="container">
-  <h2>liste des dépenses</h2>
+  <h2>Liste des dépenses</h2>
   <% @spendings.each do |spending| %>
-    <p><%= spending.name %> | <%= spending.amount %> euros | Payé par: <%= spending.tribe.admin.first_name %></p>
+    <%= render 'shared/spending_preview', spending: spending %>
   <% end %>
 </div>

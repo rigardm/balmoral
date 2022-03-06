@@ -48,3 +48,15 @@
   text-align: left;
   justify-content: center;
 }
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.second {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
