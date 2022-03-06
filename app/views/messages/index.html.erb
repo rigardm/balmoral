@@ -3,19 +3,21 @@
         <div class = "message-board">
             <% @messages.each do |message| %>
               <% if message == @messages.last %>
-                <a id = "last">
                   <% if message.user == current_user %>
                     <div class="message-box-user">
+                      <a id = "last">
                       <div class = "message-author-<%= message.user.tribe.color %>">Vous : </div>
                       <div class="message-content"><%=message.content%></div>
+                      </a>
                     </div>
                   <%else%>
                     <div class="message-box">
+                       <a id = "last">
                       <div class = "message-author-<%= message.user.tribe.color %>"><%= message.user.first_name %> : </div>
                       <div class="message-content"><%=message.content%></div>
+                      </a>
                     </div>
                   <%end%>
-                </a>
               <%else%>
                 <% if message.user == current_user %>
                   <div class="message-box-user">
