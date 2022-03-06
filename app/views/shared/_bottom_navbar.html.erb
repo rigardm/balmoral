@@ -16,7 +16,7 @@
       <p class="picture-caption">Calendrier</p>
       <% end %>
 
-      <%= link_to root_path, class: "icon-link" do %>
+      <%= link_to tribe_spendings_path(current_user.tribe), class: "icon-link" do %>
       <%= inline_svg_tag('spendings.svg')%>
       <p class="picture-caption">Dépenses</p>
       <% end %>
