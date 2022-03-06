@@ -18,7 +18,8 @@ class MessagesController < ApplicationController
       authorize @message
       @message.channel = @channel
       @message.user = current_user
-        redirect_to house_channel_messages_path(@house, @channel, :anchor => "last")
+      @message.save
+      redirect_to house_channel_messages_path(@house, @channel, :anchor => "last")
   end
 
   private
