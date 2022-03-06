@@ -27,6 +27,7 @@ export default class extends Controller {
 
   select(event) {
     if (this.bodyTarget.dataset.click === 'arrival') {
+      // this is the first click on the calendar
       // the user may have selected an arrival date
       this.bookButtonTarget.classList.add('d-none');
       this.modalInfoTarget.innerHTML = "";
@@ -38,13 +39,14 @@ export default class extends Controller {
       });
       const arrival = event.currentTarget;
       if (!arrival.classList.contains("has-events")) {
+        // the user has not clicked on a booking
         arrival.classList.add("new-booking");
         const day_display = parseInt(arrival.dataset.date.slice(-2), 10);
         arrival.insertAdjacentHTML('beforeend', `<div class="meeting-proposed">${day_display}</div>`);
         this.bodyTarget.dataset.click = 'departure';
       } else {
         // the user has clicked on an existing booking
-        // retrieve the récupérer l'id du booking correspondant:
+        // retrieve the corresponding booking id
         const bookingId = event.target.dataset.bookingId;
         // fetch booking_details_modal partial
         const url = `/bookings/find?id=${bookingId}`
@@ -58,7 +60,7 @@ export default class extends Controller {
           // insert booking_details_modal partial with booking inside preview modal
           this.bookingPreviewTarget.innerHTML = data.html;
         });
-        // afficher la modale
+        // display the modal
         this.previewButtonTarget.click();
       }
     } else {
@@ -86,35 +88,8 @@ export default class extends Controller {
         const dep = depDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
         const totalPrice = ((depDate - arrDate) / (60000 * 60 * 24) + 1) * this.dailyPriceValue;
         const creditBalance = this.tribeCreditBalanceValue;
-        const html = `
-        <div class="row">
-        <div class="col-12">
-        <h1>Votre réservation</h1>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-12 text-start">
-        <h2>Dates</h2>
-        <p>Du <b>${arr}</b></p>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-12 text-start">
-        <p>Au <b>${dep}</b></p>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-12 text-start mt-2">
-        <h2>Crédits</h2>
-        <p>Pour cette réservation : <b>${totalPrice}</b> crédits</p>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-12 text-start">
-        <p>Votre solde actuel : <b>${creditBalance}</b> crédits</p>
-        </div>
-        </div>
-        `;
+        const html = this.#fillBookingModal(arr, dep, totalPrice, creditBalance);
+        console.log(html);
         this.modalInfoTarget.insertAdjacentHTML('afterbegin', html);
       } else {
         // Departure is before arrival or it is already booked
@@ -154,4 +129,36 @@ export default class extends Controller {
     window.location.reload();
   }
 
+  #fillBookingModal(arr, dep, totalPrice, creditBalance) {
+    const bookingInfoHtml = `
+    <div class="row">
+    <div class="col-12">
+    <h1>Votre réservation</h1>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-12 text-start">
+    <h2>Dates</h2>
+    <p>Du <b>${arr}</b></p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-12 text-start">
+    <p>Au <b>${dep}</b></p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-12 text-start mt-2">
+    <h2>Crédits</h2>
+    <p>Pour cette réservation : <b>${totalPrice}</b> crédits</p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-12 text-start">
+    <p>Votre solde actuel : <b>${creditBalance}</b> crédits</p>
+    </div>
+    </div>
+    `;
+    return bookingInfoHtml
+  }
 }

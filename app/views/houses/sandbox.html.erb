@@ -1,36 +1,19 @@
-<!-- Simple pop-up dialog box, containing a form -->
-<div class="container">
-  <div class="simple-booking-overlay d-none" id="booking-overlay">
-    <div id="booking-modal" class='simple-booking d-none'>
-      <%= render 'shared/simple_booking_modal', booking: @bookings.first %>
+<!-- we already have a preview. Clicking on it makes the simple_booking_modal appear -->
+<div class="container" data-controller="booking-modal">
+  <div class="simple-booking-overlay d-none" data-booking-modal-target="bookingOverlay">
+    <div class='simple-booking d-none' data-booking-modal-target="bookingModal">
+      <%= render 'shared/simple_booking_modal', booking: current_user.bookings.first %>
     </div>
   </div>
-  <button id="view-booking">view booking</button>
+  <%= render 'shared/simple_booking_preview', booking: current_user.bookings.first %>
 </div>
 
-<%# -------------------------------------------------- %>
-<%# -------------------------------------------------- %>
-<%# JAVASCRIPT BELOW %>
-<script>
-    (function() {
-      let viewBookingButton = document.getElementById('view-booking');
-      let closeButton = document.getElementById('close-button');
-      let bookingModal = document.getElementById('booking-modal');
-      let bookingOverlay = document.getElementById('booking-overlay');
 
-      // View booking button opens a modal bookingModal
-      viewBookingButton.addEventListener('click', function() {
-        bookingModal.classList.remove('d-none');
-        bookingOverlay.classList.remove('d-none');
-        viewBookingButton.classList.add('d-none');
-      });
-
-      // Close button closes the bookingModal box
-      closeButton.addEventListener('click', function() {
-        bookingModal.classList.add('d-none');
-        bookingOverlay.classList.add('d-none');
-        viewBookingButton.classList.remove('d-none');
-      });
-
-    })();
-  </script>
+<div class="container" data-controller="booking-preview-modal">
+  <button data-action="click->booking-preview-modal#openBookingPreviewModal" data-preview-booking-modal-target="openBookingPreviewButton">MONTRER LA PREVIEW DU BOOKING</button>
+  <div class="simple-booking-overlay d-none" data-booking-preview-modal-target="bookingPreviewOverlay">
+    <div class='simple-booking-preview d-none' data-booking-preview-modal-target="bookingPreviewModal">
+      <%= render 'shared/simple_booking_preview', booking: current_user.bookings.first %>
+    </div>
+  </div>
+</div>
