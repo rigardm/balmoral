@@ -6,35 +6,30 @@
   margin-bottom: 8px;
   overflow: hidden;
   color: $balmoral_dark_grey;
-  box-shadow: $balomoral_shadow;
-  background-color: $balmoral_background;
-  border: 1px solid;
+  // border: 1px solid $balmoral_light_gray;
+  background: linear-gradient(-90deg, #80808012, transparent);
   &.tribe-green {
-    border-color: $tribe_green;
     .chevron {
       background-color: $tribe_green;
     }
   }
   &.tribe-red {
-    border-color: $tribe_red;
     .chevron {
       background-color: $tribe_red;
     }
   }
   &.tribe-blue {
-    border-color: $tribe_blue;
     .chevron {
       background-color: $tribe_blue;
     }
+  }
+  & p {
+    margin: 0;
   }
 }
 
 .item-preview > img {
   margin: 0 15px;
-}
-
-.item-data p h5 {
-  margin: 0 auto;
 }
 
 .chevron {
