@@ -1,22 +1,42 @@
 <div id="bookingModal<%= booking.id %>">
-  <div class="simple-booking-details">
-    <div class="booking-header">
+  <div class="simple-booking-details" data-controller="rename-booking" data-booking-modal-target="reset" >
+    <i id="close-modal" class="fas fa-chevron-circle-left" data-action="click->booking-modal#closeBookingModal"></i>
+    <div class="simple-booking-header">
       <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered-large #{booking.user.tribe.color}") %>
     </div>
-    <div class="booking-info">
+    <div class="simple-booking-info">
       <% if booking.user == current_user %>
-      <h2>Votre réservation</h2>
+        <h2>Votre réservation</h2>
       <% else %>
-      <h2> La réservation de <%= booking.user.first_name %> </h2>
+        <h2> La réservation de <%= booking.user.first_name %> </h2>
       <% end %>
-      <p>Du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></p>
-      <h2>Réservation réalisée le:</h2>
-      <p><%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
-      <h2>Réservation validée le:</h2>
-      <p><%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+      <div data-rename-booking-target="currentInfo">
+        <p>Du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></p>
+        <h2>Réservation réalisée le:</h2>
+        <p><%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
+        <h2>Réservation validée le:</h2>
+        <p><%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+      </div>
+      <div class="d-none" data-rename-booking-target="displayForm">
+        <%= simple_form_for([booking], html: { data: { rename_booking_target: "form" } }) do |f| %>
+          <%= f.input :arrival, as: :date, html5: true, label: false%>
+          <%= f.input :departure, as: :date, html5: true, label: false%>
+        <% end %>
+      </div>
     </div>
-    <div class="booking-modal-footer">
-      <button type="button" id="close-button" class="btn btn-blue">FERMER</button>
+    <div class="simple-booking-modal-footer" data-rename-booking-target="currentFooter">
+      <% if booking.user == current_user %>
+        <i class="fas fa-edit" data-action = "click->rename-booking#form"></i>
+      <% end %>
+      </div>
+    <div class="simple-booking-modal-footer d-none" data-rename-booking-target="displayFooter">
+      <div class="d-flex w-75 justify-content-between">
+        <%= link_to delete_booking_path(booking), method: :delete, data: { confirm: "Oh, Dear! Plus de vacances ??" } do %>
+          <%= inline_svg_tag('trashcan.svg') %></a>
+        <% end %>
+        <%= inline_svg_tag('Dell_light.svg', data: { action: "click->rename-booking#clear" }) %>
+        <%= inline_svg_tag('Check_ring_light.svg', data: { action: "click->rename-booking#submit" }) %>
+      </div>
     </div>
   </div>
 </div>

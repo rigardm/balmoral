@@ -1,27 +1,28 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["displayform", "currentinfo", "currentfooter","displayfooter","form"]
+  static targets = ["displayForm", "currentInfo", "currentFooter", "displayFooter", "form"]
 
   form(event) {
-  this.currentinfoTarget.classList.add("d-none");
-  this.displayformTarget.classList.remove("d-none");
-  this.currentfooterTarget.classList.add("d-none");
-  this.displayfooterTarget.classList.remove("d-none");
+    this.currentInfoTarget.classList.add("d-none");
+    this.displayFormTarget.classList.remove("d-none");
+    this.currentFooterTarget.classList.add("d-none");
+    this.displayFooterTarget.classList.remove("d-none");
   }
 
   submit() {
+    console.log('carotte')
     this.formTarget.submit();
-    this.currentinfoTarget.classList.remove("d-none");
-    this.displayformTarget.classList.add("d-none");
-    this.currentfooterTarget.classList.remove("d-none");
-    this.displayfooterTarget.classList.add("d-none");
+    this.currentInfoTarget.classList.remove("d-none");
+    this.displayFormTarget.classList.add("d-none");
+    this.currentFooterTarget.classList.remove("d-none");
+    this.displayFooterTarget.classList.add("d-none");
   }
 
   clear() {
-    this.currentinfoTarget.classList.remove("d-none");
-    this.displayformTarget.classList.add("d-none");
-    this.currentfooterTarget.classList.remove("d-none");
-    this.displayfooterTarget.classList.add("d-none");
+    this.currentInfoTarget.classList.remove("d-none");
+    this.displayFormTarget.classList.add("d-none");
+    this.currentFooterTarget.classList.remove("d-none");
+    this.displayFooterTarget.classList.add("d-none");
   }
 }

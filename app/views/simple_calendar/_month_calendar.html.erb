@@ -34,26 +34,39 @@
     </tbody>
   </table>
 
+  <!-- button to display the new booking modal -->
   <a href="" id="book-button" class="btn btn-blue d-none" data-select-dates-target="bookButton" data-action="click->select-dates#newBookingModalShow">
     <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;RESERVER
   </a>
 
+  <!-- new booking modal -->
   <div class="container">
     <div class="simple-booking-overlay d-none" data-select-dates-target="newBookingOverlay">
       <%= render 'shared/simple_new_booking_modal' %>
     </div>
   </div>
 
-  <a href="" id="booking-preview-button" class="btn btn-blue d-none" data-bs-toggle="modal" data-bs-target="#booking-preview-modal" data-select-dates-target="previewButton">
-  </a>
-
-  <div class="modal fade" id="booking-preview-modal" tabindex="-1" aria-labelledby="booking-modal-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body" data-select-dates-target="bookingPreview">
-        </div>
+  <!-- existing booking modal -->
+  <div class="container" data-controller="booking-modal" data-select-dates-target="existingBookingContainer">
+    <div class="simple-booking-overlay d-none" data-booking-modal-target="bookingOverlay">
+      <div class='simple-booking d-none' data-select-dates-target="existingBookingModal", data-booking-modal-target="bookingModal">
       </div>
     </div>
   </div>
+
+  <!-- button to get the booking preview => it should be useless if we directly show the existing booking modal -->
+  <!-- <a href="" id="booking-preview-button" class="btn btn-blue d-none" data-bs-toggle="modal" data-bs-target="#booking-preview-modal" data-select-dates-target="previewButton">
+  </a> -->
+
+  <!-- booking preview modal-->
+  <!-- not necessary anymore if we decide to skip showing the preview and to directly show the modal
+  <div class="modal fade" id="booking-preview-modal" tabindex="-1" aria-labelledby="booking-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" data-select-dates-target="bookingModal">
+        </div>
+      </div>
+    </div>
+  </div> -->
 
 </div>
