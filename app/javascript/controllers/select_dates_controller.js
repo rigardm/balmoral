@@ -9,8 +9,9 @@ export default class extends Controller {
     "departure",
     "form",
     "modalInfo",
-    "bookingPreview",
-    "previewButton",
+    "existingBookingModal",
+    "existingBookingContainer",
+    // "previewButton",
     "newBookingModal",
     "newBookingOverlay"
   ]
@@ -57,11 +58,12 @@ export default class extends Controller {
         })
         .then(response => response.json())
         .then((data) => {
-          // insert booking_details_modal partial with booking inside preview modal
-          this.bookingPreviewTarget.innerHTML = data.html;
+          // insert simple_booking_modal with booking into the booking_modal empty div
+          this.existingBookingModalTarget.innerHTML = data.html;
         });
         // display the modal
-        this.previewButtonTarget.click();
+        const bookingModalController = this.application.getControllerForElementAndIdentifier(this.existingBookingContainerTarget, 'booking-modal');
+        bookingModalController.openBookingModal();
       }
     } else {
       // the user may have selected a departure date
