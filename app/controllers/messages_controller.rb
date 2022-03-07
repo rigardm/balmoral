@@ -2,12 +2,6 @@ class MessagesController < ApplicationController
   before_action :set_channel
   before_action :set_house
 
-
-  def index
-    @messages = policy_scope(Message).order(created_at: :asc)
-    @message = Message.new
-  end
-
   def new
     @message = Message.new
     authorize @message
@@ -19,7 +13,7 @@ class MessagesController < ApplicationController
       @message.channel = @channel
       @message.user = current_user
       @message.save
-      redirect_to house_channel_messages_path(@house, @channel, :anchor => "last")
+      redirect_to house_channel_path(@house, @channel, :anchor => "last")
   end
 
   private
