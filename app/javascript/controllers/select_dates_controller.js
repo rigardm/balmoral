@@ -140,7 +140,6 @@ export default class extends Controller {
     </div>
     <div class="row">
     <div class="col-12 text-start">
-    <h2>Dates</h2>
     <p>Du <b>${arr}</b></p>
     </div>
     </div>
@@ -149,15 +148,13 @@ export default class extends Controller {
     <p>Au <b>${dep}</b></p>
     </div>
     </div>
-    <div class="row">
-    <div class="col-12 text-start mt-2">
-    <h2>Crédits</h2>
-    <p>Pour cette réservation : <b>${totalPrice}</b> crédits</p>
+    <div class="d-flex flex-colum justify-content-between">
+    <div class="d-flex align-items-center">
+    <p class="credit-balance d-flex justify-content-center align-items-center">${totalPrice}</p>
+    <p>Crédits requis </p>
     </div>
-    </div>
-    <div class="row">
-    <div class="col-12 text-start">
-    <p>Votre solde actuel : <b>${creditBalance}</b> crédits</p>
+    <div class="d-flex flex-column align-items-center">
+    <p><em>(Solde disponible : ${creditBalance})<em></p>
     </div>
     </div>
     `;
