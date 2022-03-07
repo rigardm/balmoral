@@ -1,8 +1,14 @@
 <div class="simple-calendar" data-controller="select-dates" data-select-dates-daily-price-value="<%= @house.daily_price %>" data-select-dates-tribe-credit-balance-value="<%= current_user.tribe.credits %>">
   <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: '<'), calendar.url_for_previous_view %>
     <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-    <%= link_to t('simple_calendar.next', default: '>'), calendar.url_for_next_view %>
+    <span>
+      <%= link_to calendar.url_for_previous_view do%>
+        <i class="fas fa-chevron-up"></i>
+      <%end%>
+      <%= link_to calendar.url_for_next_view do%>
+        <i class="fas fa-chevron-down"></i>
+      <%end%>
+    </span>
   </div>
 
   <table class="table table-striped">
