@@ -1,2 +1,17 @@
-<h1>Channels#show</h1>
-<p>Find me in app/views/channels/show.html.erb</p>
+<div class="container" data-controller="channel-subscription" data-channel-subscription-channel-id-value="<%= @channel.id %>">
+  <h2> <%= @house.name %> : <%=@channel.name.capitalize%></h2>
+        <div class = "message-board" data-channel-subscription-target="messages">
+            <% @channel.messages.each do |message| %>
+            <%= render 'shared/message', message: message %>
+            <% end %>
+       </div>
+       <div class= "message-input">
+        <%= simple_form_for([ @house, @channel, @message], remote: true,   html: {data: {channel_subscription_target: "form"}, class: "form-inline"}) do |f| %>
+          <%= f.input_field :content, label: false, placeholder:"Participez à la conversation"%>
+          <%#= f.button :submit, class:'btn btn-secondary' do%>
+           <button type="submit">
+                 <%= inline_svg_tag('Check_ring_light.svg')%>
+            </button>
+        <% end %>
+      </div>
+</div>
