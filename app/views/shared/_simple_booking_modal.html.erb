@@ -28,6 +28,18 @@
       <% if booking.user == current_user %>
         <i class="fas fa-edit" data-action = "click->rename-booking#form"></i>
       <% end %>
+      <% if current_user.admin? && booking.user.tribe == current_user.tribe && booking.pending? %>
+        <div class="d-flex w-50 justify-content-between">
+          <%= link_to admin_decline_booking_path(booking), method: :patch do %>
+            <%= inline_svg_tag('Dell_light.svg', data: { action: "click->rename-booking#clear" }) %>
+            <p>Refuser</p>
+          <% end %>
+          <%= link_to admin_validate_booking_path(booking), method: :patch do %>
+            <%= inline_svg_tag('Check_ring_light.svg') %>
+            <p>Valider</p>
+          <% end %>
+        </div>
+      <% end %>
       </div>
     <div class="simple-booking-modal-footer d-none" data-rename-booking-target="displayFooter">
       <div class="d-flex w-75 justify-content-between">

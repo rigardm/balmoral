@@ -28,23 +28,36 @@ class BookingsController < ApplicationController
     end
   end
 
+  def admin_denial
+    if @booking.pending?
+      @tribe = @booking.user.tribe
+      @booking.declined!
+      @tribe.credits += @booking.total_price
+      @tribe.save
+    end
+    redirect_to root_path
+  end
+
   def admin_validation
-    return unless @booking.pending?
-
-    @tribe = @booking.user.tribe
-    return unless @tribe.credits >= @booking.total_price
-
-    @booking.validated!
-    @tribe.credits -= @booking.total_price
-    @tribe.save
+    if @booking.pending?
+      @tribe = @booking.user.tribe
+      if @tribe.credits >= @booking.total_price
+        @booking.validated!
+        @tribe.credits -= @booking.total_price
+        @tribe.save
+      end
+    end
+    redirect_to root_path
   end
 
   def edit
   end
 
   def update
+    # @booking.
     previous_price = @booking.total_price
     @booking.update(booking_params)
+    @booking.pending!
     if @booking.save
       @tribe = current_user.tribe
       @tribe.credits += previous_price if @booking.validated?
