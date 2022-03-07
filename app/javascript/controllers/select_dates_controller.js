@@ -11,7 +11,6 @@ export default class extends Controller {
     "modalInfo",
     "existingBookingModal",
     "existingBookingContainer",
-    // "previewButton",
     "newBookingModal",
     "newBookingOverlay"
   ]
@@ -28,7 +27,7 @@ export default class extends Controller {
 
   select(event) {
     if (this.bodyTarget.dataset.click === 'arrival') {
-      // this is the first click on the calendar
+      // this is the FIRST click on the calendar
       // the user may have selected an arrival date
       this.bookButtonTarget.classList.add('d-none');
       this.modalInfoTarget.innerHTML = "";
@@ -66,33 +65,42 @@ export default class extends Controller {
         bookingModalController.openBookingModal();
       }
     } else {
-      // the user may have selected a departure date
+      // this is the SECOND click. The user may have selected a departure date
       const arrival = document.querySelector('.new-booking')
       const arrivalDate = arrival.dataset.date;
       const departureDate = event.currentTarget.dataset.date;
       if ((departureDate >= arrivalDate)&&(this.#notAlreadyBooked(arrivalDate, departureDate))) {
         // Departure is after arrival and the period is not already booked
-        // So we can proceed with the booking
-        this.dateTargets.forEach((date)=>{
-          if ((date.dataset.date>arrivalDate)&&(date.dataset.date<=departureDate)) {
-            date.classList.add("new-booking");
-            const day_display = parseInt(date.dataset.date.slice(-2), 10);
-            date.insertAdjacentHTML('beforeend', `<div class="meeting-proposed">${day_display}</div>`);
-          }
-        });
-        this.bookButtonTarget.classList.remove('d-none');
-        this.arrivalTarget.value = arrivalDate;
-        this.departureTarget.value = departureDate;
-        // insert HTML in the modal info:
+        // HERE: now we need to check if credits are sufficient for the booking.
         const arrDate = new Date(arrivalDate);
         const depDate = new Date(departureDate);
         const arr = arrDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
         const dep = depDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
         const totalPrice = ((depDate - arrDate) / (60000 * 60 * 24) + 1) * this.dailyPriceValue;
         const creditBalance = this.tribeCreditBalanceValue;
-        const html = this.#fillBookingModal(arr, dep, totalPrice, creditBalance);
-        console.log(html);
-        this.modalInfoTarget.insertAdjacentHTML('afterbegin', html);
+        if (creditBalance >= totalPrice) {
+          // credits are sufficient to book - so we can proceed with the booking in 4 steps
+          // 1. highlight dates in the booking
+          this.dateTargets.forEach((date)=>{
+            if ((date.dataset.date>arrivalDate)&&(date.dataset.date<=departureDate)) {
+              date.classList.add("new-booking");
+              const day_display = parseInt(date.dataset.date.slice(-2), 10);
+              date.insertAdjacentHTML('beforeend', `<div class="meeting-proposed">${day_display}</div>`);
+            }
+          });
+          // 2. show the book button ("RESERVER"). If user click on the button, the new booking modal will show
+          this.bookButtonTarget.classList.remove('d-none');
+          // 3. fill in the invisible form contained in the new booking modal to create the booking
+          this.arrivalTarget.value = arrivalDate;
+          this.departureTarget.value = departureDate;
+          // 4. insert HTML in the new booking modal as a new booking recap
+          const html = this.#fillBookingModal(arr, dep, totalPrice, creditBalance);
+          console.log(html);
+          this.modalInfoTarget.insertAdjacentHTML('afterbegin', html);
+        } else {
+          // HERE: credits are not sufficient enough. We should reset the form and send a flash notice. TO BE DONE!
+          arrival.classList.remove('new-booking');
+          arrival.removeChild(arrival.lastChild);}
       } else {
         // Departure is before arrival or it is already booked
         // So we need to reset the calendar

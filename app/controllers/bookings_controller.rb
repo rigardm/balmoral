@@ -29,24 +29,12 @@ class BookingsController < ApplicationController
   end
 
   def admin_denial
-    if @booking.pending?
-      @tribe = @booking.user.tribe
-      @booking.declined!
-      @tribe.credits += @booking.total_price
-      @tribe.save
-    end
+    @booking.declined! if @booking.pending?
     redirect_to root_path
   end
 
   def admin_validation
-    if @booking.pending?
-      @tribe = @booking.user.tribe
-      if @tribe.credits >= @booking.total_price
-        @booking.validated!
-        @tribe.credits -= @booking.total_price
-        @tribe.save
-      end
-    end
+    @booking.validated! if @booking.pending?
     redirect_to root_path
   end
 
@@ -54,11 +42,7 @@ class BookingsController < ApplicationController
   end
 
   def update
-    # @tribe = current_user.tribe
     if @booking.update(booking_params)
-      # @booking.pending!
-      # @tribe.credits += previous_price if @booking.validated?
-      # @tribe.save
       redirect_to root_path
     else
       render :edit
@@ -66,12 +50,7 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @house = @booking.house
-    @tribe = @booking.user.tribe
-    previous_price = @booking.total_price
     @booking.destroy
-    @tribe.credits += previous_price if @booking.validated?
-    @tribe.save
     redirect_to root_path
   end
 
