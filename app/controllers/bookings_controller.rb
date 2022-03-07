@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
-      redirect_to calendar_path(@house)
+      redirect_to calendar_path(@house, params: { start_date: @booking.arrival.to_s })
     else
       render :new
     end
