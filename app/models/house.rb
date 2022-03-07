@@ -10,4 +10,17 @@ class House < ApplicationRecord
 
   validates :name, :daily_price, :address, :city, presence: true
   validates :daily_price, numericality: { greater_than_or_equal_to: 0 }
+
+  def spending_per_tribe
+    result = {}
+    tribes.each do |tribe|
+      result[tribe] = {
+        corrected_amount: spendings.where(tribe: tribe).sum(&:amount) - (spendings.sum(&:amount) * tribe.shareholding),
+        gross_amount: spendings.where(tribe: tribe).sum(&:amount),
+        total_spendings: spendings.sum(&:amount),
+        vw: (spendings.where(tribe: tribe).sum(&:amount) - (spendings.sum(&:amount) * tribe.shareholding)) / spendings.sum(&:amount) * 200,
+      }
+    end
+    result
+  end
 end
