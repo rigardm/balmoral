@@ -159,53 +159,58 @@ Booking.create!(
   arrival: arrival = Date.new(2022, 3, 12),
   departure: departure = Date.new(2022, 3, 13),
   total_price: (departure - arrival) * chaumiere.daily_price,
-  status: :validated,
   house: chaumiere,
   user: nicolas
-)
+).validated!
+nicolas.tribe.credits -= Booking.last.total_price
 
 Booking.create!(
-    arrival: arrival = Date.new(2022, 4, 16),
-    departure: departure = Date.new(2022, 4, 23),
-    total_price: (departure - arrival) * chaumiere.daily_price,
-    status: :validated,
-    house: chaumiere,
-    user: elsa
-  )
+  arrival: arrival = Date.new(2022, 4, 16),
+  departure: departure = Date.new(2022, 4, 23),
+  total_price: (departure - arrival) * chaumiere.daily_price,
+  house: chaumiere,
+  user: elsa
+).validated!
+elsa.tribe.credits -= Booking.last.total_price
 
-  Booking.create!(
-    arrival: arrival = Date.new(2022, 5, 7),
-    departure: departure = Date.new(2022, 5, 8),
-    total_price: (departure - arrival) * chaumiere.daily_price,
-    status: :pending,
-    house: chaumiere,
-    user: laure
-  )
+Booking.create!(
+  arrival: arrival = Date.new(2022, 5, 7),
+  departure: departure = Date.new(2022, 5, 8),
+  total_price: (departure - arrival) * chaumiere.daily_price,
+  house: chaumiere,
+  user: laure
+)
 
 Booking.create!(
   arrival: arrival = Date.new(2022, 5, 26),
   departure: departure = Date.new(2022, 5, 29),
   total_price: (departure - arrival) * chaumiere.daily_price,
-  status: :validated,
   house: chaumiere,
   user: jeremy
-)
+).validated!
+jeremy.tribe.credits -= Booking.last.total_price
+
 Booking.create!(
   arrival: arrival = Date.new(2022, 6, 11),
   departure: departure = Date.new(2022, 6, 18),
   total_price: (departure - arrival) * chaumiere.daily_price,
-  status: :validated,
   house: chaumiere,
   user: nathalie
-)
+).validated!
+# as Nathalie is admin, her tribe credits have been updated by #create! method
+
 Booking.create!(
   arrival: arrival = Date.new(2022, 7, 2),
   departure: departure = Date.new(2022, 7, 3),
   total_price: (departure - arrival) * chaumiere.daily_price,
-  status: :pending,
   house: chaumiere,
   user: jeremy
 )
+
+# make sure credit balances are up-to-date and stored in
+michel.tribe.save
+jacques.tribe.save
+nathalie.tribe.save
 
 puts "created #{Booking.count} #{'booking'.pluralize(Booking.count)}"
 
@@ -240,7 +245,7 @@ Spending.create!(
   category: 'Travaux',
   date: Date.new(2022, 1, 31),
   details: 'Chaudière HS. Remplacement obligatoire. Nouveau modèle avec thermostat variable.',
-  tribe: tribu_bleue
+  tribe: tribu_rose
 )
 Spending.create!(
   amount: 96,
@@ -301,7 +306,7 @@ puts "created #{Channel.count} #{'channel'.pluralize(Channel.count)}"
 
 puts "8 out of 8: SEED MESSAGES"
 Message.create!(
-  content: "Salut la familia! La chaudière était kaput, j'ai du la faire remplacer. Ca douille un peu: 3500 balles!",
+  content: "Salut la familia👋! La chaudière était kaput, j'ai du la faire remplacer. Ca douille un peu: 3500 balles!😖",
   user: jacques,
   channel: general
 )
@@ -316,7 +321,7 @@ Message.create!(
   channel: general
 )
 Message.create!(
-  content: "Le jardinier a planté 3 nouveaux érables du côté de la palissade.",
+  content: "Le jardinier a planté 3 nouveaux pins du côté de la palissade.🌲🌲🌲",
   user: nathalie,
   channel: general
 )
@@ -326,7 +331,7 @@ Message.create!(
   channel: general
 )
 Message.create!(
-  content: "Bon anniv Nico!!! (de la part de TOUTES les cousines)",
+  content: "Bon anniv Nico!!! (de la part de TOUTES les cousines)😘🎂🎉🎁",
   user: elsa,
   channel: general
 )
@@ -341,12 +346,12 @@ Message.create!(
   channel: general
 )
 Message.create!(
-  content: "Dans ton casier",
+  content: "Dans ton casier 🙄",
   user: oscar,
   channel: general
 )
 Message.create!(
-  content: "@Laure: il y a un stage de tir à l'arc au Croquan pendant les vacances de Pâques",
+  content: "@Laure: il y a un stage de tir à l'arc 🏹 au Croquan pendant les vacances de Pâques",
   user: nicolas,
   channel: general
 )

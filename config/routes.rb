@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get '/bookings/find', to: 'bookings#find_booking', as: :find_booking
   resources :bookings, only: %i[show edit update]
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
-  patch '/bookings/:id', to: 'bookings#admin_validation', as: :admin_validation_booking
+  patch '/bookings/:id/validate', to: 'bookings#admin_validation', as: :admin_validate_booking
+  patch '/bookings/:id/decline', to: 'bookings#admin_denial', as: :admin_decline_booking
 
   resources :tribes, except: %i[new create index] do
     resources :spendings, except: :show
