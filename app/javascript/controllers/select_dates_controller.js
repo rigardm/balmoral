@@ -49,7 +49,7 @@ export default class extends Controller {
         // the user has clicked on an existing booking
         // retrieve the corresponding booking id
         const bookingId = event.target.dataset.bookingId;
-        // fetch booking_details_modal partial
+        // fetch simple_booking_modal partial
         const url = `/bookings/find?id=${bookingId}`
         fetch(url, {
           headers: {
