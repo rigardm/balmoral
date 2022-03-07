@@ -54,14 +54,11 @@ class BookingsController < ApplicationController
   end
 
   def update
-    # @booking.
-    previous_price = @booking.total_price
-    @booking.update(booking_params)
-    @booking.pending!
-    if @booking.save
-      @tribe = current_user.tribe
-      @tribe.credits += previous_price if @booking.validated?
-      @tribe.save
+    # @tribe = current_user.tribe
+    if @booking.update(booking_params)
+      # @booking.pending!
+      # @tribe.credits += previous_price if @booking.validated?
+      # @tribe.save
       redirect_to root_path
     else
       render :edit
