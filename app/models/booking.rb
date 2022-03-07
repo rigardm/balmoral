@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :house
   belongs_to :user
+  delegate :tribe, to: :user
 
   validates :arrival, :departure, :status, presence: true
 
