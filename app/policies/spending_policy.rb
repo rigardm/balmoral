@@ -6,17 +6,7 @@ class SpendingPolicy < ApplicationPolicy
     end
   end
 
-  def show?
-    user_house?
-  end
-
-  def index
-    user.tribe.admin? && user_house?
-  end
-
-  private
-
-  def user_house?
-    user.house == record.house
+  def balances?
+    user.admin?
   end
 end

@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Equilibre des dépenses : <%= @total_spendings %></h1>
+  <% @house.tribes.each do |tribe| %>
+    <div class="text-start">
+      <p><%= tribe.admin.first_name %></p>
+    </div>
+    <div class="d-flex histogram" style="width:100%">
+      <% if @tribes_datas[tribe][:vw].positive? %>
+        <div style="width:10%">
+          <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered #{tribe.color}") %>
+        </div>
+        <div style="width:45%" class="d-flex justify-content-end">
+          <div style="background-color:blue;width:0vw"></div>
+        </div>
+        <div style="width:45%" class="d-flex justify-content-start">
+          <div class="histo-bar <%= tribe.color %>" style="width:<%= @tribes_datas[tribe][:vw] %>%"><p><%= @tribes_datas[tribe][:corrected_amount].round %> €</p></div>
+        </div>
+      <% else %>
+        <div style="width:10%">
+          <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered #{tribe.color}") %>
+        </div>
+        <div style="width:45%" class="d-flex justify-content-end">
+          <div class="histo-bar <%= tribe.color %>" style="width:<%= -@tribes_datas[tribe][:vw] %>%"><p><%= @tribes_datas[tribe][:corrected_amount].round %> €</p></div>
+        </div>
+        <div style="width:45%" class="d-flex justify-content-start">
+          <div style="background-color:blue;width:0vw"></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

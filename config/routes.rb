@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
     resources :bookings, only: %i[new index]
     post '/bookings/', to: 'bookings#create', as: :create_booking
+    resources :spendings, except: :show
+    get '/spendings/balances', to: 'spendings#balances', as: :balances
   end
 
   get '/houses/:id/calendar', to: 'houses#calendar', as: :calendar
@@ -22,7 +24,6 @@ Rails.application.routes.draw do
   patch '/bookings/:id/validate', to: 'bookings#admin_validation', as: :admin_validate_booking
   patch '/bookings/:id/decline', to: 'bookings#admin_denial', as: :admin_decline_booking
 
-  resources :tribes, except: %i[new create index] do
-    resources :spendings, except: :show
-  end
+
+  resources :tribes, except: %i[new create index]
 end

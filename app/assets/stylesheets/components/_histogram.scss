@@ -1,0 +1,31 @@
+.histo-bar {
+  color: $balmoral_background;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 30px;
+  text-align: center;
+  align-items: center;
+  &.tribe-red {
+    background-color: $tribe_red;
+  }
+  &.tribe-blue {
+    background-color: $tribe_blue;
+  }
+  &.tribe-green {
+    background-color: $tribe_green;
+  }
+}
+
+.histo-bar p {
+  color: $balmoral_background;
+  font-weight: 300;
+  margin: 0;
+}
+
+.histogram {
+  height: 50px;
+  border-radius: 8px;
+  background: linear-gradient(-90deg, #80808012, transparent);
+  align-items: center;
+  margin-bottom: 20px;
+}

@@ -1,5 +1,14 @@
 <div class="container">
-  <h2>Liste des dépenses</h2>
+  <div class="header-buttons d-flex justify-content-center mb-4">
+    <span class="icon-link" style= "opacity:0.4">
+      <h2>Liste des dépenses</h2>
+    </span>
+    <span class="icon-link">
+      <%= link_to house_balances_path(@house) do %>
+        <h2>Balance des dépenses</h2>
+      <%end%>
+    </span>
+  </div>
   <% @spendings.each do |spending| %>
     <%= render 'shared/spending_preview', spending: spending %>
   <% end %>
