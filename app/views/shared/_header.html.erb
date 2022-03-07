@@ -5,15 +5,15 @@
     <% end %>
   </div>
 
-  <div class="opacity-0">
-    <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-  </div>
-
   <div class="mb-1">
     <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <%= cl_image_tag(current_user.photo.key, :class => "avatar-bordered #{current_user.tribe.color}") %>
-        <% end %>
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" id="avatarButton" data-bs-toggle="dropdown" aria-expanded="false"><%= cl_image_tag(current_user.photo.key, :class => "avatar-bordered dropdown-toggle #{current_user.tribe.color}") %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+        </ul>
+      </div>
     <% else %>
         <%= link_to "Login", new_user_session_path, class: "nav-link" %>
     <% end %>
