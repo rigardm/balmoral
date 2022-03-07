@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new index]
     post '/bookings/', to: 'bookings#create', as: :create_booking
     resources :spendings, except: :show
+    get '/spendings/balances', to: 'spendings#balances', as: :balances
   end
 
   get '/houses/:id/calendar', to: 'houses#calendar', as: :calendar
@@ -21,7 +22,6 @@ Rails.application.routes.draw do
   resources :bookings, only: %i[show edit update]
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
 
-  get '/houses/:id/spendings/balances', to: 'spendings#balances', as: :balances
 
   resources :tribes, except: %i[new create index]
 end

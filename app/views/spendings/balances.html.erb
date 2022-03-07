@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Total des dépenses : <%= @total_spendings %></h1>
+  <% @spendings_tribes.each do |tribe, amount| %>
+    <p><%= tribe.admin.first_name %> : <%= amount %> euros</p>
+    <p>valeur corrigée : <%= amount - @total_spendings * tribe.shareholding %></p>
+    <div style="background-color:blue;width:<%= (amount - @total_spendings * tribe.shareholding) / @total_spendings * 50 %>vw;height:40px">
+    </div>
+  <% end %>
+
+</div>
