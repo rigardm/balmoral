@@ -1,16 +1,11 @@
 .header {
   background: $balmoral_yellow;
-  height: 9vh;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  height: 7vh;
+  align-items: flex-start;
+  padding: 10px;
+  padding-top: 1px;
   position: sticky;
-  top: 0;
   z-index: 100;
-}
-
-.header .navbar-collapse {
-  flex-grow: 0;
 }
 
 .header .logo img {
@@ -39,7 +34,7 @@
   min-width: 4em;
   & .dropdown-item {
     padding-left: 10px;
-    font-size: 10px;
+    font-size: 8px;
     color: $balmoral_dark_grey;
   }
 }

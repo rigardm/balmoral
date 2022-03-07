@@ -1,4 +1,4 @@
-<div class="bottom-bar d-flex flex-row justify-content-center">
+<div class="bottom-bar d-flex flex-row justify-content-center px-3">
   <% if user_signed_in? %>
       <%= link_to root_path, class: "icon-link" do %>
         <%= inline_svg_tag('Home_light.svg')%>
@@ -19,11 +19,6 @@
       <%= link_to tribe_spendings_path(current_user.tribe), class: "icon-link" do %>
       <%= inline_svg_tag('spendings.svg')%>
       <p class="picture-caption">Dépenses</p>
-      <% end %>
-
-      <%= link_to root_path, class: "icon-link" do %>
-      <%= inline_svg_tag('sort.svg')%>
-      <p class="picture-caption">Autre</p>
       <% end %>
   <% end %>
 </div>
