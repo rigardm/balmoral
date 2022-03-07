@@ -2,10 +2,10 @@
   <div class="calendar-heading">
     <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
     <span>
-      <%= link_to calendar.url_for_previous_view do%>
+      <%= link_to calendar.url_for_previous_view, {:"data-swipe-target" => "previousbutton"} do%>
         <i class="fas fa-chevron-up"></i>
       <%end%>
-      <%= link_to calendar.url_for_next_view do%>
+      <%= link_to calendar.url_for_next_view, {:"data-swipe-target" => "nextbutton"} do%>
         <i class="fas fa-chevron-down"></i>
       <%end%>
     </span>
