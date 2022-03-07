@@ -2,7 +2,7 @@ class SpendingPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.where(tribe: user.tribe)
+      scope.joins(:tribe).where(tribe: { house: user.house })
     end
   end
 
@@ -19,5 +19,4 @@ class SpendingPolicy < ApplicationPolicy
   def user_house?
     user.house == record.house
   end
-
 end
