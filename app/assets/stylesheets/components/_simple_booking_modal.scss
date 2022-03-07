@@ -25,6 +25,7 @@
   .simple-booking-details {
     display: flex;
     flex-direction: column;
+    height: 400px;
     justify-content: space-between;
     border: 1px solid $balmoral_dark_grey;
     border-radius: 8px;
@@ -36,6 +37,7 @@
   }
   & p {
     margin: 0;
+    font-size: 16px;
   }
 }
 
@@ -62,4 +64,22 @@
   position: absolute;
   top: 50vh;
   width: 90vw;
+}
+
+.simple-booking-info {
+
+  & .booking-illustration {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+.booking-icones {
+  font-size: 25px;
+  color: $balmoral_icons;
+}
+
+.admin-icones {
+  color: $balmoral_yellow;
+  font-size: 30px;
 }

@@ -1,6 +1,6 @@
 <div id="bookingModal<%= booking.id %>">
   <div class="simple-booking-details" data-controller="rename-booking" data-booking-modal-target="reset" >
-    <i id="close-modal" class="fas fa-chevron-circle-left" data-action="click->booking-modal#closeBookingModal"></i>
+    <i id="close-modal" class="fas fa-chevron-circle-left admin-icones" data-action="click->booking-modal#closeBookingModal"></i>
     <div class="simple-booking-header">
       <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered-large #{booking.user.tribe.color}") %>
     </div>
@@ -10,12 +10,30 @@
       <% else %>
         <h2> La réservation de <%= booking.user.first_name %> </h2>
       <% end %>
+
       <div data-rename-booking-target="currentInfo">
-        <p>Du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></p>
-        <h2>Réservation réalisée le:</h2>
-        <p><%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
-        <h2>Réservation validée le:</h2>
-        <p><%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+        <h2>du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></h2>
+        <div class="booking-illustration">
+          <%= inline_svg_tag('calendar.svg')%>
+        </div>
+        <div class="d-flex justify-content-evenly mt-5">
+          <div>
+            <h2><i class="fas fa-calendar-day booking-icones"></i></h2>
+            <p>Réalisée le <%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
+          </div>
+          <div>
+          <% if booking.validated? %>
+            <h2><i class="far fa-calendar-check booking-icones"></i></h2>
+            <p>Validée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+          <% elsif booking.pending? %>
+            <h2><i class="fas fa-hourglass-half booking-icones"></i></h2>
+            <p><em>En attente de validation</em></p>
+          <% elsif booking.refused? %>
+            <h2><i class="fas fa-calendar-times booking-icones"></i></h2>
+            <p>Refusée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+          <% end %>
+          </div>
+        </div>
       </div>
       <div class="d-none" data-rename-booking-target="displayForm">
         <%= simple_form_for([booking], html: { data: { rename_booking_target: "form" } }) do |f| %>
@@ -24,9 +42,10 @@
         <% end %>
       </div>
     </div>
+
     <div class="simple-booking-modal-footer" data-rename-booking-target="currentFooter">
       <% if booking.user == current_user %>
-        <i class="fas fa-edit" data-action = "click->rename-booking#form"></i>
+        <i class="fas fa-edit admin-icones" data-action = "click->rename-booking#form"></i>
       <% end %>
       <% if current_user.admin? && booking.user.tribe == current_user.tribe && booking.pending? %>
         <div class="d-flex w-50 justify-content-between">
