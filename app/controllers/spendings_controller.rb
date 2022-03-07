@@ -2,7 +2,7 @@ class SpendingsController < ApplicationController
 
   def index
     @house = current_user.house
-    @spendings = policy_scope(Spending).order(created_at: :asc)
+    @spendings = policy_scope(Spending).order(date: :desc)
   end
 
   def balances
