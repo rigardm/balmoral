@@ -20,17 +20,23 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.house = @house
     @booking.user = current_user
-    # total_price = @booking.nb_days * @house.daily_price
-    # @booking.total_price = total_price
-    # @booking.status = "validated" if current_user.admin?
     authorize @booking
     if @booking.save
-      # @booking.user.tribe.credits -= total_price
-      # @booking.user.tribe.save
       redirect_to calendar_path(@house)
     else
       render :new
     end
+  end
+
+  def admin_validation
+    return unless @booking.pending?
+
+    @tribe = @booking.user.tribe
+    return unless @tribe.credits >= @booking.total_price
+
+    @booking.validated!
+    @tribe.credits -= @booking.total_price
+    @tribe.save
   end
 
   def edit
@@ -39,12 +45,10 @@ class BookingsController < ApplicationController
   def update
     previous_price = @booking.total_price
     @booking.update(booking_params)
-    total_price = @booking.nb_days * @booking.house.daily_price
-    @booking.total_price = total_price
     if @booking.save
-      current_user.tribe.credits += previous_price
-      current_user.tribe.credits -= total_price
-      current_user.tribe.save
+      @tribe = current_user.tribe
+      @tribe.credits += previous_price if @booking.validated?
+      @tribe.save
       redirect_to root_path
     else
       render :edit
@@ -53,10 +57,11 @@ class BookingsController < ApplicationController
 
   def destroy
     @house = @booking.house
+    @tribe = @booking.user.tribe
     previous_price = @booking.total_price
     @booking.destroy
-    current_user.tribe.credits += previous_price
-    current_user.tribe.save
+    @tribe.credits += previous_price if @booking.validated?
+    @tribe.save
     redirect_to root_path
   end
 

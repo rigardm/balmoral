@@ -13,13 +13,22 @@ class Booking < ApplicationRecord
   scope :validated, -> { where(status: :validated) }
   scope :declined, -> { where(status: :declined) }
 
-  before_save :booking_adjust
+  before_create :booking_adjust
+  before_save :booking_price_calculate
 
   def booking_adjust
-    self.total_price = nb_days * house.daily_price
-    self.status = "validated" if user.admin?
+    booking_price_calculate
+    return unless user.admin?
+
+    return unless user.tribe.credits >= total_price
+
+    self.status = "validated"
     user.tribe.credits -= total_price
     user.tribe.save
+  end
+
+  def booking_price_calculate
+    self.total_price = nb_days * house.daily_price
   end
 
   def nb_days
