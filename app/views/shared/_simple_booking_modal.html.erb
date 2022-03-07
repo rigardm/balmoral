@@ -28,6 +28,11 @@
       <% if booking.user == current_user %>
         <i class="fas fa-edit" data-action = "click->rename-booking#form"></i>
       <% end %>
+      <% if current_user.admin? && booking.user.tribe == current_user.tribe && booking.pending? %>
+        <%= link_to admin_validation_booking_path(booking), class: "btn btn-blue" do %>
+          <i class="fas fa-check-circle"></i>&nbsp;&nbsp;VALIDER
+        <% end %>
+      <% end %>
       </div>
     <div class="simple-booking-modal-footer d-none" data-rename-booking-target="displayFooter">
       <div class="d-flex w-75 justify-content-between">
