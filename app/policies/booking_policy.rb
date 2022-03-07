@@ -34,6 +34,10 @@ class BookingPolicy < ApplicationPolicy
     show?
   end
 
+  def admin_validation?
+    user == record.user.tribe.admin
+  end
+
   private
 
   def user_house?

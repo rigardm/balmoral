@@ -3,6 +3,7 @@ display: flex;
 flex-direction: column;
 position: relative;
 background-color: $balmoral_background;
+padding-bottom: 8vh;
 }
 .message-box-user {
 text-align: right;
@@ -45,10 +46,12 @@ font-weight: lighter;
   justify-content: space-between;
   position: fixed;
   bottom: 0;
-  padding-bottom: 12vh;
+  padding-bottom: 13vh;
+  background-color: $balmoral_background;
+  width: 100vw;
 }
 
-.form {
+ .message-input form {
   display:flex;
   align-items: center;
 }
