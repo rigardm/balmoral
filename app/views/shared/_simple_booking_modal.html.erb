@@ -12,7 +12,7 @@
       <% end %>
 
       <div data-rename-booking-target="currentInfo">
-        <p>Du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></p>
+        <h2>du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></h2>
         <div class="booking-illustration">
           <%= inline_svg_tag('calendar.svg')%>
         </div>
@@ -24,13 +24,13 @@
           <div>
           <% if booking.validated? %>
             <h2><i class="far fa-calendar-check booking-icones"></i></h2>
-            <p>Réservation confirmée</p>
+            <p>Validée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
           <% elsif booking.pending? %>
             <h2><i class="fas fa-hourglass-half booking-icones"></i></h2>
-            <p>En attente de confirmation</p>
+            <p><em>En attente de validation</em></p>
           <% elsif booking.refused? %>
             <h2><i class="fas fa-calendar-times booking-icones"></i></h2>
-            <p>Réservation refusée</p>
+            <p>Refusée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
           <% end %>
           </div>
         </div>
