@@ -1,9 +1,18 @@
 <div class="container">
-  <h1>Equilibre des dépenses : <%= @total_spendings %></h1>
+  <div class="header-buttons d-flex justify-content-center mb-4">
+    <span class="icon-link">
+      <%= link_to house_spendings_path(@house) do %>
+        <%= inline_svg_tag('sort.svg') %>
+      <%end%>
+    </span>
+    <span class="icon-link" style= "opacity:0.4">
+      <%= link_to house_balances_path(@house) do %>
+        <%= inline_svg_tag('balance.svg') %>
+      <%end%>
+    </span>
+  </div>
+  <h1>Equilibre des dépenses :</h1>
   <% @house.tribes.each do |tribe| %>
-    <div class="text-start">
-      <p><%= tribe.admin.first_name %></p>
-    </div>
     <div class="d-flex histogram" style="width:100%">
       <% if @tribes_datas[tribe][:vw].positive? %>
         <div style="width:10%">
