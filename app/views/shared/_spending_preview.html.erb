@@ -1,0 +1,14 @@
+<div class="item-preview <%= spending.tribe.color %>">
+  <div class="item-data">
+    <div class="main">
+      <h2><%= spending.name %></h2>
+      <h2><%= spending.amount %> Euros</h2>
+    </div>
+    <div class="second">
+      <p>Payé par <%= current_user == spending.tribe.admin ? "Vous" : "#{spending.tribe.admin.first_name}" %></p>
+      <p>le <%= spending.created_at.strftime('%d/%m/%y') %></p>
+    </div>
+  </div>
+  <div class="chevron">
+  </div>
+</div>

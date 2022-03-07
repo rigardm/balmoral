@@ -1,0 +1,6 @@
+<div class="container">
+  <h2>Liste des dépenses</h2>
+  <% @spendings.each do |spending| %>
+    <%= render 'shared/spending_preview', spending: spending %>
+  <% end %>
+</div>
