@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :houses, except: :index do
     resources :tribes, only: %i[new create index]
     resources :channels, only: %i[new create index show] do
-      resources :messages, only: %i[new create index]
+      resources :messages, only: %i[create]
     end
     resources :bookings, only: %i[new index]
     post '/bookings/', to: 'bookings#create', as: :create_booking

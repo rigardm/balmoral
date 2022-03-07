@@ -12,8 +12,15 @@ class MessagesController < ApplicationController
       authorize @message
       @message.channel = @channel
       @message.user = current_user
-      @message.save
-      redirect_to house_channel_path(@house, @channel, :anchor => "last")
+      if @message.save
+        ChannelChannel.broadcast_to(
+          @channel,
+          render_to_string(partial: "shared/message", locals: {message: @message})
+        )
+        head :ok
+      else
+        redirect_to house_channel_path(@house, @channel, :anchor => "last")
+      end
   end
 
   private

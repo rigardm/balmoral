@@ -1,40 +1,12 @@
-<div class="container">
+<div class="container" data-controller="channel-subscription" data-channel-subscription-channel-id-value="<%= @channel.id %>">
   <h2> <%= @house.name %> : <%=@channel.name.capitalize%></h2>
-        <div class = "message-board">
+        <div class = "message-board" data-channel-subscription-target="messages">
             <% @channel.messages.each do |message| %>
-              <% if message == @channel.messages.last %>
-                  <% if message.user == current_user %>
-                    <div class="message-box-user">
-                      <a id = "last">
-                      <div class = "message-author-<%= message.user.tribe.color %>">Vous : </div>
-                      <div class="message-content"><%=message.content%></div>
-                      </a>
-                    </div>
-                  <%else%>
-                    <div class="message-box">
-                       <a id = "last">
-                      <div class = "message-author-<%= message.user.tribe.color %>"><%= message.user.first_name %> : </div>
-                      <div class="message-content"><%=message.content%></div>
-                      </a>
-                    </div>
-                  <%end%>
-              <%else%>
-                <% if message.user == current_user %>
-                  <div class="message-box-user">
-                    <div class = "message-author-<%= message.user.tribe.color %>">Vous : </div>
-                    <div class="message-content"><%=message.content%></div>
-                  </div>
-                <%else%>
-                  <div class="message-box">
-                    <div class = "message-author-<%= message.user.tribe.color %>"><%= message.user.first_name %> : </div>
-                    <div class="message-content"><%=message.content%></div>
-                  </div>
-                <%end%>
-              <%end%>
+            <%= render 'shared/message', message: message %>
             <% end %>
        </div>
        <div class= "message-input">
-        <%= simple_form_for([ @house, @channel, @message], html: {class: 'form-inline'} ) do |f| %>
+        <%= simple_form_for([ @house, @channel, @message], remote: true,   html: {data: {channel_subscription_target: "form"}, class: "form-inline"}) do |f| %>
           <%= f.input_field :content, label: false, placeholder:"Participez à la conversation"%>
           <%#= f.button :submit, class:'btn btn-secondary' do%>
            <button type="submit">
