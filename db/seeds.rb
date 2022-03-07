@@ -240,8 +240,8 @@ Spending.create!(
   tribe: tribu_bleue
 )
 Spending.create!(
-  amount: 3500,
-  name: "Remplacement chaudière",
+  amount: 1880,
+  name: "Chaudière",
   category: 'Travaux',
   date: Date.new(2022, 1, 31),
   details: 'Chaudière HS. Remplacement obligatoire. Nouveau modèle avec thermostat variable.',
