@@ -9,10 +9,6 @@
   z-index: 100;
 }
 
-.header .navbar-collapse {
-  flex-grow: 0;
-}
-
 .header .logo img {
   width: 40px;
 }
@@ -27,19 +23,4 @@
   border: none;
   width: auto;
   padding: 0;
-}
-
-.dropdown-toggle::after{
-  display: none;
-}
-
-.dropdown-menu {
-  padding: 0;
-  background-color: $balmoral_background;
-  min-width: 4em;
-  & .dropdown-item {
-    padding-left: 10px;
-    font-size: 10px;
-    color: $balmoral_dark_grey;
-  }
 }
