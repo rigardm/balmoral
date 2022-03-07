@@ -42,11 +42,15 @@ font-weight: lighter;
 }
 
 .message-input {
-  display:flex;
-  align-items: center;
   justify-content: space-between;
   position: fixed;
-  bottom: 56.4px;
+  bottom: 0;
+  padding-bottom: 12vh;
+}
+
+.form {
+  display:flex;
+  align-items: center;
 }
 
 .message-input textarea {
@@ -63,8 +67,7 @@ font-weight: lighter;
     background-color: transparent;
     height: 32px;
     width: 32px;
-    position: fixed;
-    bottom: 62px;
+  ;
 
   }
 
