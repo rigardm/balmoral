@@ -25,21 +25,21 @@ puts "created #{House.count} #{'house'.pluralize(House.count)}"
 
 puts "3 out of 9: SEED TRIBES"
 tribu_verte = Tribe.create!(
-  credits: 250,
+  credits: House::CREDIT_BASE * 0.25,
   color: "tribe-green",
   shareholding: 0.25,
   house: chaumiere,
   colorhexa: "#2CC7AF"
 )
 tribu_rose = Tribe.create!(
-  credits: 250,
+  credits: House::CREDIT_BASE * 0.25,
   color: "tribe-red",
   shareholding: 0.25,
   house: chaumiere,
   colorhexa: "#FA672A"
 )
 tribu_bleue = Tribe.create!(
-  credits: 500,
+  credits: House::CREDIT_BASE * 0.50,
   color: "tribe-blue",
   shareholding: 0.50,
   house: chaumiere,
