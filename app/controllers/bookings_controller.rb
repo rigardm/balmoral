@@ -97,6 +97,6 @@ end
     authorize @message
     @channel = @house.channels.last
     @message.channel = @channel
-    @message.user = User.find(11)
+    @message.user = User.find_by(last_name: 'System-Bot')
     @message.save
   end
