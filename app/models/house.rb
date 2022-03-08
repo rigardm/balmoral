@@ -15,6 +15,7 @@ class House < ApplicationRecord
     result = {}
     tribes.each do |tribe|
       result[tribe.admin.first_name] = spendings.where(tribe: tribe).sum(&:amount)
+      result[:colors] = result[:colors] ? result[:colors] << tribe.colorhexa : [tribe.colorhexa]
     end
     result
   end

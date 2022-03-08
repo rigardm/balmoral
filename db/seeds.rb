@@ -27,19 +27,22 @@ tribu_verte = Tribe.create!(
   credits: 250,
   color: "tribe-green",
   shareholding: 0.25,
-  house: chaumiere
+  house: chaumiere,
+  colorhexa: "#2CC7AF"
 )
 tribu_rose = Tribe.create!(
   credits: 250,
   color: "tribe-red",
   shareholding: 0.25,
-  house: chaumiere
+  house: chaumiere,
+  colorhexa: "#FA672A"
 )
 tribu_bleue = Tribe.create!(
   credits: 500,
   color: "tribe-blue",
   shareholding: 0.50,
-  house: chaumiere
+  house: chaumiere,
+  colorhexa: "#6D62D0"
 )
 puts "created #{Tribe.count} #{'tribe'.pluralize(Tribe.count)}"
 
