@@ -5,7 +5,7 @@ class Booking < ApplicationRecord
   delegate :tribe, to: :user
 
   before_create :create_booking_check
-  after_create :validated_status_for_admin
+  after_create :validated_status_for_admins_and_platforms
   before_update :update_booking_check
   before_destroy :destroy_booking_check
 
@@ -33,8 +33,8 @@ class Booking < ApplicationRecord
     user.present?
   end
 
-  def validated_status_for_admin
-    update_column(:status, "validated") if user.admin?
+  def validated_status_for_admins_and_platforms
+    update_column(:status, "validated") if (user? && user.admin?) || platform?
   end
 
   def create_booking_check
@@ -80,6 +80,7 @@ class Booking < ApplicationRecord
   end
 
   def destroy_booking_check
+    return unless user?
     return unless validated?
 
     user.tribe.credits += total_price

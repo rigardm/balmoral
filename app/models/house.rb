@@ -1,4 +1,6 @@
 class House < ApplicationRecord
+  CREDIT_BASE = 1000
+
   has_many :tribes, dependent: :destroy
   has_many :users, through: :tribes
   has_many :admins, -> { where(role: :admin) }, through: :tribes, source: :users
