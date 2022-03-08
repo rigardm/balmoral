@@ -33,9 +33,9 @@ connect() {
 
   _dosomething(swipemove) {
     if (swipemove == "swipe down") {
-      this.nextbuttonTarget.click();
-    } else if (swipemove == "swipe up") {
       this.previousbuttonTarget.click();
+    } else if (swipemove == "swipe up") {
+      this.nextbuttonTarget.click();
     }
   }
 }
