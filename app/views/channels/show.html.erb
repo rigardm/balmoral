@@ -7,10 +7,10 @@
        </div>
        <div class= "message-input">
         <%= simple_form_for([ @house, @channel, @message], remote: true,   html: {data: {channel_subscription_target: "form"}, class: "form-inline"}) do |f| %>
-          <%= f.input_field :content, label: false, placeholder:"Participez à la conversation"%>
+          <%= f.input_field :content, label: false, placeholder:"Participez à la conversation, old fellow!"%>
           <%#= f.button :submit, class:'btn btn-secondary' do%>
            <button type="submit">
-                 <%= inline_svg_tag('check_validated.svg')%>
+                 <%= inline_svg_tag('rocket.svg')%>
             </button>
         <% end %>
       </div>
