@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="25px" viewBox="0 0 38 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>home</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Vivid.JS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Vivid-Icons" transform="translate(-42.000000, -254.000000)">
+            <g id="Icons" transform="translate(37.000000, 169.000000)">
+                <g id="home" transform="translate(0.000000, 78.000000)">
+                    <g transform="translate(5.000000, 7.000000)" id="Shape">
+                        <polygon fill="#FBC24C" points="0 19 19 0 38 19 33 19 33 35 5 35 5 19"></polygon>
+                        <polygon fill="#FFFFFF" points="14 35 14 21 24 21 24 35"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
