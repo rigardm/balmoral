@@ -1,14 +1,14 @@
 <div id="new-booking-modal" class="simple-booking d-none" data-select-dates-target="newBookingModal">
   <div class="simple-booking-details">
-    <div class="booking-modal-header d-flex justify-content-center">
-      <%= inline_svg_tag('checking_boxes.svg')%>
+    <div class="booking-info d-flex flex-column" data-select-dates-target="modalInfo">
     </div>
-    <div class="booking-info" data-select-dates-target="modalInfo">
-    </div>
+
+    <%= inline_svg_tag('booking_new.svg') %>
+
     <div class="simple-booking-modal-footer">
       <div class="d-flex w-50 justify-content-between">
-        <%= inline_svg_tag('Dell_light.svg', data: { action: "click->select-dates#cancel" }) %>
-        <%= inline_svg_tag('Check_ring_light.svg', data: { action: "click->select-dates#submit" }) %>
+        <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->select-dates#cancel" }) %>
+        <%= inline_svg_tag('check_validated.svg', data: { action: "click->select-dates#submit" }) %>
       </div>
     </div>
   </div>
