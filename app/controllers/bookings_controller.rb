@@ -38,7 +38,7 @@ class BookingsController < ApplicationController
 
   def admin_validation
     @booking.validated! if @booking.pending?
-    # flash[:notice] = "Réservation validée" if @booking.validated?
+    flash[:notice] = "Réservation validée" if @booking.validated?
     redirect_to root_path
   end
 
@@ -48,7 +48,7 @@ class BookingsController < ApplicationController
   def update
     @house = @booking.house
     if @booking.update(booking_params)
-      # flash[:notice] = "Réservation mise à jour"
+      flash[:notice] = "Réservation mise à jour"
       redirect_to root_path
     else
       flash[:notice] = "Crédits insuffisants pour modifier la réservation"

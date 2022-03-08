@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="d-none" data-rename-booking-target="displayForm">
-        <%= simple_form_for(booking,:url => update_booking_path(booking), method: :patch ,html: { data: { rename_booking_target: "form" } }) do |f| %>
+        <%= simple_form_for(booking,:url => update_booking_path(booking) ,html: { data: { rename_booking_target: "form" } }) do |f| %>
           <%= f.input :arrival, as: :date, html5: true, label: false%>
           <%= f.input :departure, as: :date, html5: true, label: false%>
         <% end %>

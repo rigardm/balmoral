@@ -33,7 +33,10 @@ class Booking < ApplicationRecord
   end
 
   def update_booking_check
-    if pending? || declined?
+    if declined? && (arrival_changed? || departure_changed?)
+      credits_must_be_sufficient
+      update_column(:status, "pending") if credits_are_sufficient?
+    elsif pending?
       # booking is either pending and dates have changed
       credits_must_be_sufficient
     elsif total_price_changed?
