@@ -116,7 +116,7 @@ fr:
       new:
         sign_in: Connexion
       signed_in: Hello! Juste à l'heure pour le thé!.
-      signed_out: Good Luck!
+      signed_out: Goodbye and Good Luck!
     shared:
       links:
         back: Retour
