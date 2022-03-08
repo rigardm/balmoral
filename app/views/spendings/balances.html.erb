@@ -13,7 +13,7 @@
   </div>
   <div class="pb-5">
     <h1>Dépenses de chacun :</h1>
-    <%= pie_chart(@spendings_per_tribe, donut: true, colors: ["#6D62D0", "#FA672A", "#2CC7AF"], suffix: " €", round: 2, zeros: false, discrete: true, thousands: " ") %>
+    <%= pie_chart(@spendings_per_tribe.except(:colors), donut: true, colors: @spendings_per_tribe[:colors], suffix: " €", round: 2, zeros: false, discrete: true, thousands: " ") %>
   </div>
   <div>
     <h1>Equilibre des dépenses :</h1>
