@@ -11,30 +11,12 @@
       <%end%>
     </span>
   </div>
-  <h1>Equilibre des dépenses :</h1>
-  <% @house.tribes.each do |tribe| %>
-    <div class="d-flex histogram" style="width:100%">
-      <% if @tribes_datas[tribe][:vw].positive? %>
-        <div style="width:10%">
-          <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered #{tribe.color}") %>
-        </div>
-        <div style="width:45%" class="d-flex justify-content-end">
-          <div style="background-color:blue;width:0vw"></div>
-        </div>
-        <div style="width:45%" class="d-flex justify-content-start">
-          <div class="histo-bar <%= tribe.color %>" style="width:<%= @tribes_datas[tribe][:vw] %>%"><p><%= @tribes_datas[tribe][:corrected_amount].round %> €</p></div>
-        </div>
-      <% else %>
-        <div style="width:10%">
-          <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered #{tribe.color}") %>
-        </div>
-        <div style="width:45%" class="d-flex justify-content-end">
-          <div class="histo-bar <%= tribe.color %>" style="width:<%= -@tribes_datas[tribe][:vw] %>%"><p><%= @tribes_datas[tribe][:corrected_amount].round %> €</p></div>
-        </div>
-        <div style="width:45%" class="d-flex justify-content-start">
-          <div style="background-color:blue;width:0vw"></div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="pb-5">
+    <h1>Dépenses de chacun :</h1>
+    <%= pie_chart(@spendings_per_tribe, donut: true, colors: ["#6D62D0", "#FA672A", "#2CC7AF"], suffix: " €", round: 2, zeros: false, discrete: true, thousands: " ") %>
+  </div>
+  <div>
+    <h1>Equilibre des dépenses :</h1>
+    <%= bar_chart(@balance_per_tribe, suffix: " €", colors: ["#ed4e60", "#50BFA5"], round: 2, zeros: true, discrete: true, thousands: " ", points: false) %>
+  </div>
 </div>

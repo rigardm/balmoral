@@ -14,12 +14,15 @@ class House < ApplicationRecord
   def spending_per_tribe
     result = {}
     tribes.each do |tribe|
-      result[tribe] = {
-        corrected_amount: spendings.where(tribe: tribe).sum(&:amount) - (spendings.sum(&:amount) * tribe.shareholding),
-        gross_amount: spendings.where(tribe: tribe).sum(&:amount),
-        total_spendings: spendings.sum(&:amount),
-        vw: (spendings.where(tribe: tribe).sum(&:amount) - (spendings.sum(&:amount) * tribe.shareholding)) / spendings.sum(&:amount) * 200,
-      }
+      result[tribe.admin.first_name] = spendings.where(tribe: tribe).sum(&:amount)
+    end
+    result
+  end
+
+  def balance_per_tribe
+    result = {}
+    tribes.each do |tribe|
+      result[tribe.admin.first_name] = spendings.where(tribe: tribe).sum(&:amount) - (spendings.sum(&:amount) * tribe.shareholding)
     end
     result
   end
