@@ -5,7 +5,7 @@
     <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered-large #{tribe.color}") %>
     <div class="slider-details">
       <div>
-        <h2><%= current_user.tribe == tribe ? "Votre famille": "Famille \"#{tribe.admin.first_name}\"" %></h2>
+        <h2><%= current_user.tribe == tribe ? "Votre tribu": "Tribu \"#{tribe.admin.first_name}\"" %></h2>
         <p>Crédits restants <%= tribe.credits %></p>
       </div>
       <div class="slider-user-images">
