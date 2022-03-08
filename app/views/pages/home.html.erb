@@ -28,9 +28,8 @@
     <div class="text-start mb-4">
       <h1>Les prochains séjours à <%= current_user.house.name %></h1>
       <% @next_bookings.each do |booking| %>
-        <%#= render 'shared/booking_preview', booking: booking %>
         <%= render 'shared/simple_booking_preview', booking: booking %>
-      <% end %> 
+      <% end %>
     </div>
 
     <div class="text-start mb-4">

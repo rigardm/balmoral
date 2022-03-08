@@ -23,10 +23,6 @@ class HousePolicy < ApplicationPolicy
     show?
   end
 
-  def sandbox?
-    user_house?
-  end
-
   private
 
   def user_house?
