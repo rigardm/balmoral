@@ -22,6 +22,8 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
+      flash[:notice] = "Votre réservation est créée et en attente de validation" if @booking.pending?
+      flash[:notice] = "Votre réservation est validée" if @booking.validated?
       redirect_to calendar_path(@house, params: { start_date: @booking.arrival.to_s })
     else
       render :new
@@ -30,11 +32,13 @@ class BookingsController < ApplicationController
 
   def admin_denial
     @booking.declined! if @booking.pending?
+    flash[:notice] = "Réservation refusée" if @booking.declined?
     redirect_to root_path
   end
 
   def admin_validation
     @booking.validated! if @booking.pending?
+    flash[:notice] = "Réservation validée" if @booking.validated?
     redirect_to root_path
   end
 
@@ -42,25 +46,19 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @house = @booking.house
     if @booking.update(booking_params)
+      flash[:notice] = "Réservation mise à jour"
       redirect_to root_path
     else
-      render :edit
+      flash[:notice] = "Crédits insuffisants pour modifier la réservation"
+      redirect_to calendar_path(@house, params: { start_date: @booking.arrival.to_s })
     end
   end
 
   def destroy
-    @booking.destroy
+    flash[:notice] = "Réservation supprimée" if @booking.destroy
     redirect_to root_path
-  end
-
-  # Simple_Calendar a besoin d'un "start_time" et "end_time"
-  def start_time
-    arrival
-  end
-
-  def end_time
-    departure
   end
 
   def find_booking

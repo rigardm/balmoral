@@ -11,7 +11,6 @@ export default class extends Controller {
   }
 
   submit() {
-    console.log('carotte')
     this.formTarget.submit();
     this.currentInfoTarget.classList.remove("d-none");
     this.displayFormTarget.classList.add("d-none");

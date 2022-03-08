@@ -1,6 +1,9 @@
 .alert {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 1000;
+top: 33px;
+width: 84%;
+z-index: 1000;
+position: fixed;
+right: 50%;
+transform: translate(50%, 0);
+padding: 1rem;
 }
