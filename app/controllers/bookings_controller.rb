@@ -22,8 +22,9 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
-      flash[:notice] = "Votre réservation est créée et en attente de validation" if @booking.pending?
-      flash[:notice] = "Votre réservation est validée" if @booking.validated?
+      send_message("By Jove!! #{current_user.first_name} a réservé du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')}!!")
+      flash[:notice] = "By Jove!! <br> Votre réservation est créée et en attente de validation" if @booking.pending?
+      flash[:notice] = "Hurrah!! <br> Votre réservation est validée" if @booking.validated?
       redirect_to calendar_path(@house, params: { start_date: @booking.arrival.to_s })
     else
       render :new
@@ -32,13 +33,15 @@ class BookingsController < ApplicationController
 
   def admin_denial
     @booking.declined! if @booking.pending?
-    flash[:notice] = "Réservation refusée" if @booking.declined?
+    send_message("Damned!! la réservation de #{@booking.first_name} du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')} a été refusée par #{@booking.user.tribe.admin.first_name}!!")
+    flash[:notice] = "Damned!! <br> cette réservation a été refusée" if @booking.declined?
     redirect_to root_path
   end
 
   def admin_validation
     @booking.validated! if @booking.pending?
-    flash[:notice] = "Réservation validée" if @booking.validated?
+    send_message("Heavens!! la réservation de #{@booking.first_name} du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')} a été validée par #{@booking.user.tribe.admin.first_name}!!")
+    flash[:notice] = "Heavens!! <br> la réservation a été validée" if @booking.validated?
     redirect_to root_path
   end
 
@@ -48,16 +51,16 @@ class BookingsController < ApplicationController
   def update
     @house = @booking.house
     if @booking.update(booking_params)
-      flash[:notice] = "Réservation mise à jour"
+      flash[:notice] = "All Right! <br> Réservation mise à jour"
       redirect_to root_path
     else
-      flash[:notice] = "Crédits insuffisants pour modifier la réservation"
+      flash[:notice] = "Hell!! <br> Pas assez de crédits pour modifier la réservation"
       redirect_to calendar_path(@house, params: { start_date: @booking.arrival.to_s })
     end
   end
 
   def destroy
-    flash[:notice] = "Réservation supprimée" if @booking.destroy
+    flash[:notice] = "Farewell..." if @booking.destroy
     redirect_to root_path
   end
 
@@ -88,3 +91,12 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:arrival, :departure)
   end
 end
+
+  def send_message(content)
+    @message = Message.new(content: content)
+    authorize @message
+    @channel = @house.channels.last
+    @message.channel = @channel
+    @message.user = User.find(11)
+    @message.save
+  end

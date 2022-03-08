@@ -10,7 +10,7 @@
   <div class="slider-container">
     <div class="slider">
       <% @tribes.each do |tribe| %>
-        <%= render 'shared/tribes', tribe: tribe %>
+          <%= render 'shared/tribes', tribe: tribe unless tribe.color == "system"%>
       <% end %>
     </div>
   </div>
