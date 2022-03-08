@@ -6,20 +6,33 @@ background-color: $balmoral_background;
 padding-bottom: 8vh;
 }
 .message-box-user {
-text-align: right;
+text-align: left;
 align-self:flex-end;
 max-width: 70vw;
 border-radius: 8px;
 background-color: white;
+box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 margin-top: 4vh;
 padding: 1vh;
 }
+
+.message-box-system {
+  text-align: left;
+  align-self: left;
+  max-width: 70vw;
+  border-radius: 8px;
+  background-color: $balmoral_background;
+ 
+  margin-top: 4vh;
+  padding: 1vh;
+  }
 
 .message-box {
 text-align: left;
 max-width: 70vw;
 border-radius: 8px;
 background-color: white;
+box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 margin-top: 4vh;
 padding: 1vh;
 }
@@ -41,7 +54,7 @@ color: $tribe_green;
 
 .message-author-system {
     font-weight: bold;
-    color: $blue;
+    color: $balmoral_yellow;
     }
 
 .message-time {
