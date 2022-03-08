@@ -15,5 +15,3 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
-
-//= require Chart.min
