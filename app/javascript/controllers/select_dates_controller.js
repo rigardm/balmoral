@@ -141,29 +141,18 @@ export default class extends Controller {
 
   #fillBookingModal(arr, dep, totalPrice, creditBalance) {
     const bookingInfoHtml = `
-    <div class="row">
-    <div class="col-12">
-    <h1>Votre réservation</h1>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-12 text-start">
+    <div class="text-center px-3 py-1">
+    <div>
     <p>Du <b>${arr}</b></p>
     </div>
-    </div>
-    <div class="row">
-    <div class="col-12 text-start">
+    <div>
     <p>Au <b>${dep}</b></p>
     </div>
     </div>
-    <div class="d-flex flex-colum justify-content-between">
-    <div class="d-flex align-items-center">
-    <p class="credit-balance d-flex justify-content-center align-items-center">${totalPrice}</p>
-    <p>Crédits requis </p>
-    </div>
-    <div class="d-flex flex-column align-items-center">
-    <p><em>(Solde disponible : ${creditBalance})<em></p>
-    </div>
+    <div class=" px-3 py-1">
+    <p class="credit-balance text-start">${totalPrice} crédits requis</p>
+    <p class="credit-balance text-start">${creditBalance} crédits disponibles</p>
+    <p class="credit-balance text-start">${creditBalance} crédits restants</p>
     </div>
     `;
     return bookingInfoHtml

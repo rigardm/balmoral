@@ -6,15 +6,18 @@
     </div>
     <div class="simple-booking-info">
       <% if booking.user == current_user %>
-        <h2>Votre réservation</h2>
+        <h2 class="text-center px-3 py-1">Votre réservation</h2>
       <% else %>
-        <h2> La réservation de <%= booking.user.first_name %> </h2>
+        <h2 class="text-center px-3 py-1"> La réservation de <%= booking.user.first_name %> </h2>
       <% end %>
 
       <div data-rename-booking-target="currentInfo">
-        <h2>du <%= booking.arrival.strftime('%d/%m/%y') %> au <%= booking.departure.strftime('%d/%m/%y') %></h2>
-        <div class="booking-illustration">
-          <%= inline_svg_tag('calendar.svg')%>
+        <div class="px-3 py-1">
+          <p>du <strong><%= I18n.l(booking.arrival, format: '%A %d %B') %></strong></p>
+          <p> au <strong><%=  I18n.l(booking.departure, format: '%A %d %B') %></strong></p>
+          <div class="booking-illustration">
+            <%= inline_svg_tag('calendar-illustration.svg')%>
+          </div>
         </div>
         <div class="d-flex justify-content-evenly mt-5">
           <div>
