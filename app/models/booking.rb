@@ -80,6 +80,7 @@ class Booking < ApplicationRecord
   end
 
   def destroy_booking_check
+    return unless user?
     return unless validated?
 
     user.tribe.credits += total_price

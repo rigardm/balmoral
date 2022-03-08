@@ -23,6 +23,11 @@
       background-color: $tribe_blue;
     }
   }
+  &.platform {
+    .chevron {
+      background-color: $platform;
+    }
+  }
   & p {
     margin: 0;
   }

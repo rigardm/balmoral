@@ -160,6 +160,22 @@
   color: white;
 }
 
+.meeting-platform {
+  border-radius: 50%;
+  background: $platform;
+  height:48px;
+  width: 48px;
+  transition: background 0.3s ease;
+  position: absolute;
+    top: 50%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, -50%);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
 .modal-content {
   padding: 10px;
 }

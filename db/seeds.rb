@@ -159,12 +159,20 @@ jeremy.save!
 puts "created #{User.count} users including #{User.admins.count} admins"
 
 puts "5 out of 9: SEED PLATFORMS"
-airbnb = Platform.create!(
+airbnb = Platform.new(
   name: "Airbnb"
 )
-abritel = Platform.create!(
+file = URI.open('app/assets/images/airbnb.jpg')
+airbnb.photo.attach(io: file, filename: 'airbnb', content_type: 'image/jpg')
+airbnb.save!
+
+abritel = Platform.new(
   name: "Abritel"
 )
+file = URI.open('app/assets/images/abritel2.png')
+abritel.photo.attach(io: file, filename: 'abritel', content_type: 'image/jpg')
+abritel.save!
+
 puts "created #{Platform.count} platforms"
 
 puts "6 out of 9: SEED BOOKINGS"
