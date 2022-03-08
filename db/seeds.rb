@@ -10,6 +10,7 @@ puts "START SEEDING..."
 
 puts "1 out of 9: DESTROY ALL RECORDS"
 House.destroy_all
+Platform.destroy_all
 
 puts "2 out of 9: SEED HOUSE"
 chaumiere = House.create!(
