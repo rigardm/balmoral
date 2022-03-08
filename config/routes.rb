@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   get '/houses/:id/calendar', to: 'houses#calendar', as: :calendar
 
   get '/bookings/find', to: 'bookings#find_booking', as: :find_booking
-  resources :bookings, only: %i[show edit update]
+  resources :bookings, only: %i[show edit]
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
+  patch '/bookings/:id', to: 'bookings#update', as: :update_booking
   patch '/bookings/:id/validate', to: 'bookings#admin_validation', as: :admin_validate_booking
   patch '/bookings/:id/decline', to: 'bookings#admin_denial', as: :admin_decline_booking
 

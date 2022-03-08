@@ -7,7 +7,8 @@ class SpendingsController < ApplicationController
 
   def balances
     @house = current_user.house
-    @tribes_datas = @house.spending_per_tribe
+    @balance_per_tribe = @house.balance_per_tribe
+    @spendings_per_tribe = @house.spending_per_tribe
 
     authorize :spending, :balances?
   end
