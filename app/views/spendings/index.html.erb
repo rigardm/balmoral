@@ -11,8 +11,17 @@
       <%end%>
     </span>
   </div>
-  <% @spendings.each do |spending| %>
-    <%= render 'shared/spending_preview', spending: spending %>
-  <% end %>
+  <div data-controller="spendings-filter">
+    <div class="filter-tab">
+      <h2>filtrer ></h2>
+      <% current_user.house.tribes.each do |tribe| %>
+        <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered #{tribe.color}", :'data-action'=> "click->spendings-filter#selectTribe") %>
+      <% end %>
+      <p class="m-0" data-action= "click->spendings-filter#showAll">Tous</p>
+    </div>
+    <% @spendings.each do |spending| %>
+      <%= render 'shared/spending_preview', spending: spending %>
+    <% end %>
+  </div>
 </div>
 <%= render 'shared/add_spending' %>
