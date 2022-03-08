@@ -41,9 +41,29 @@ tribu_bleue = Tribe.create!(
   shareholding: 0.50,
   house: chaumiere
 )
+
+tribu_systeme = Tribe.create!(
+  credits: 0,
+  color: "system",
+  shareholding: 0,
+  house: chaumiere
+)
 puts "created #{Tribe.count} #{'tribe'.pluralize(Tribe.count)}"
 
 puts "4 out of 8: SEED USERS"
+
+babeth = User.new(
+  email: 'babeth@babeth.com',
+  password: '000000',
+  first_name: 'Babeth II (Balmoral)',
+  last_name: 'System-Bot',
+  role: :admin,
+  tribe: tribu_systeme
+)
+file = File.open('app/assets/images/avatar_happy.png')
+babeth.photo.attach(io: file, filename: 'babeth.jpg', content_type: 'image/jpg')
+babeth.save!
+
 michel = User.new(
   email: 'michel@michel.com',
   password: '000000',

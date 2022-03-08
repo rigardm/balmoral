@@ -12,6 +12,7 @@ max-width: 70vw;
 border-radius: 8px;
 background-color: white;
 margin-top: 4vh;
+padding: 1vh;
 }
 
 .message-box {
@@ -20,6 +21,7 @@ max-width: 70vw;
 border-radius: 8px;
 background-color: white;
 margin-top: 4vh;
+padding: 1vh;
 }
 
 .message-author-tribe-green {
@@ -36,6 +38,18 @@ color: $tribe_green;
     font-weight: bold;
     color: $tribe_red;
     }
+
+.message-author-system {
+    font-weight: bold;
+    color: $blue;
+    }
+
+.message-time {
+  font-weight: 200;
+  font-size : 0.8em;
+  font-style: italic ;
+  color: $balmoral_dark_grey;
+}
 
 .message-content {
 color: $balmoral_dark_grey;

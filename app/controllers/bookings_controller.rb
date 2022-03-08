@@ -22,6 +22,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
+      send_message("By Jove!! #{current_user.first_name} a réservé du #{@booking.arrival} au #{@booking.departure}!!")
       redirect_to calendar_path(@house, params: { start_date: @booking.arrival.to_s })
     else
       render :new
@@ -30,11 +31,13 @@ class BookingsController < ApplicationController
 
   def admin_denial
     @booking.declined! if @booking.pending?
+    send_message("Damned!! la réservation de #{@booking.first_name} du #{@booking.arrival} au #{@booking.departure} a été refusée par #{@booking.user.tribe.admin.first_name}!!")
     redirect_to root_path
   end
 
   def admin_validation
     @booking.validated! if @booking.pending?
+    send_message("Heavens!! la réservation de #{@booking.first_name} du #{@booking.arrival} au #{@booking.departure} a été validée par #{@booking.user.tribe.admin.first_name}!!")
     redirect_to root_path
   end
 
@@ -90,3 +93,12 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:arrival, :departure)
   end
 end
+
+  def send_message(content)
+    @message = Message.new(content: content)
+    authorize @message
+    @channel = @house.channels.last
+    @message.channel = @channel
+    @message.user = User.find(1)
+    @message.save
+  end
