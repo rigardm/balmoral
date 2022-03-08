@@ -8,10 +8,10 @@
 
 puts "START SEEDING..."
 
-puts "1 out of 8: DESTROY ALL RECORDS"
+puts "1 out of 9: DESTROY ALL RECORDS"
 House.destroy_all
 
-puts "2 out of 8: SEED HOUSE"
+puts "2 out of 9: SEED HOUSE"
 chaumiere = House.create!(
   name: "La Chaumière",
   daily_price: "5",
@@ -22,7 +22,7 @@ chaumiere = House.create!(
 
 puts "created #{House.count} #{'house'.pluralize(House.count)}"
 
-puts "3 out of 8: SEED TRIBES"
+puts "3 out of 9: SEED TRIBES"
 tribu_verte = Tribe.create!(
   credits: 250,
   color: "tribe-green",
@@ -46,7 +46,7 @@ tribu_bleue = Tribe.create!(
 )
 puts "created #{Tribe.count} #{'tribe'.pluralize(Tribe.count)}"
 
-puts "4 out of 8: SEED USERS"
+puts "4 out of 9: SEED USERS"
 michel = User.new(
   email: 'michel@michel.com',
   password: '000000',
@@ -157,7 +157,16 @@ jeremy.save!
 
 puts "created #{User.count} users including #{User.admins.count} admins"
 
-puts "5 out of 8: SEED BOOKINGS"
+puts "5 out of 9: SEED PLATFORMS"
+airbnb = Platform.create!(
+  name: "Airbnb"
+)
+abritel = Platform.create!(
+  name: "Abritel"
+)
+puts "created #{Platform.count} platforms"
+
+puts "6 out of 9: SEED BOOKINGS"
 Booking.create!(
   arrival: arrival = Date.new(2022, 3, 12),
   departure: departure = Date.new(2022, 3, 13),
@@ -210,6 +219,41 @@ Booking.create!(
   user: jeremy
 )
 
+Booking.create!(
+  arrival: Date.new(2022, 3, 19),
+  departure: Date.new(2022, 3, 26),
+  house: chaumiere,
+  platform: airbnb
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 4, 1),
+  departure: Date.new(2022, 4, 3),
+  house: chaumiere,
+  platform: abritel
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 4, 9),
+  departure: Date.new(2022, 4, 10),
+  house: chaumiere,
+  platform: airbnb
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 7, 14),
+  departure: Date.new(2022, 7, 17),
+  house: chaumiere,
+  platform: abritel
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 7, 30),
+  departure: Date.new(2022, 8, 13),
+  house: chaumiere,
+  platform: airbnb
+)
+
 # make sure credit balances are up-to-date and stored in
 michel.tribe.save
 jacques.tribe.save
@@ -217,7 +261,7 @@ nathalie.tribe.save
 
 puts "created #{Booking.count} #{'booking'.pluralize(Booking.count)}"
 
-puts "6 out of 8: SEED SPENDINGS"
+puts "7 out of 9: SEED SPENDINGS"
 Spending.create!(
   amount: 96,
   name: "Femme de ménage",
@@ -300,14 +344,14 @@ Spending.create!(
 )
 puts "created #{Spending.count} #{'spending'.pluralize(Spending.count)}"
 
-puts "7 out of 8: SEED CHANNELS"
+puts "8 out of 9: SEED CHANNELS"
 general = Channel.create!(
   name: "general",
   house: chaumiere
 )
 puts "created #{Channel.count} #{'channel'.pluralize(Channel.count)}"
 
-puts "8 out of 8: SEED MESSAGES"
+puts "9 out of 9: SEED MESSAGES"
 Message.create!(
   content: "Salut la familia👋! La chaudière était kaput, j'ai du la faire remplacer. Ca douille un peu: 3500 balles!😖",
   user: jacques,
