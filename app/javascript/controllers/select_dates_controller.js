@@ -98,7 +98,8 @@ export default class extends Controller {
           console.log(html);
           this.modalInfoTarget.insertAdjacentHTML('afterbegin', html);
         } else {
-          // HERE: credits are not sufficient enough. We should reset the form and send a flash notice. TO BE DONE!
+          // HERE: credits are not sufficient enough.
+          window.alert("Crédits insuffisants. Choisissez de nouvelles dates.")
           arrival.classList.remove('new-booking');
           arrival.removeChild(arrival.lastChild);}
       } else {
