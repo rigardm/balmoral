@@ -18,18 +18,18 @@
         </div>
         <div class="d-flex justify-content-evenly mt-5">
           <div>
-            <h2><i class="fas fa-calendar-day booking-icones"></i></h2>
+            <h2><%= inline_svg_tag('booking_home.svg') %></h2>
             <p>Réalisée le <%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
           </div>
           <div>
           <% if booking.validated? %>
-            <h2><i class="far fa-calendar-check booking-icones"></i></h2>
+            <h2> <%= inline_svg_tag('booking_validated.svg') %> </h2>
             <p>Validée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
           <% elsif booking.pending? %>
-            <h2><i class="fas fa-hourglass-half booking-icones"></i></h2>
+            <h2><%= inline_svg_tag('booking_pending.svg') %></h2>
             <p><em>En attente de validation</em></p>
           <% elsif booking.declined? %>
-            <h2><i class="fas fa-calendar-times booking-icones"></i></h2>
+            <h2><%= inline_svg_tag('booking_refused.svg') %></h2>
             <p>Refusée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
           <% end %>
           </div>
@@ -50,11 +50,11 @@
       <% if current_user.admin? && booking.user.tribe == current_user.tribe && booking.pending? %>
         <div class="d-flex w-50 justify-content-between">
           <%= link_to admin_decline_booking_path(booking), method: :patch do %>
-            <%= inline_svg_tag('Dell_light.svg', data: { action: "click->rename-booking#clear" }) %>
+            <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->rename-booking#clear" }) %>
             <p>Refuser</p>
           <% end %>
           <%= link_to admin_validate_booking_path(booking), method: :patch do %>
-            <%= inline_svg_tag('Check_ring_light.svg') %>
+            <%= inline_svg_tag('check_validated.svg') %>
             <p>Valider</p>
           <% end %>
         </div>
@@ -65,8 +65,8 @@
         <%= link_to delete_booking_path(booking), method: :delete, data: { confirm: "Oh, Dear! Plus de vacances ??" } do %>
           <%= inline_svg_tag('trashcan.svg') %></a>
         <% end %>
-        <%= inline_svg_tag('Dell_light.svg', data: { action: "click->rename-booking#clear" }) %>
-        <%= inline_svg_tag('Check_ring_light.svg', data: { action: "click->rename-booking#submit" }) %>
+        <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->rename-booking#clear" }) %>
+        <%= inline_svg_tag('check_validated.svg', data: { action: "click->rename-booking#submit" }) %>
       </div>
     </div>
   </div>
