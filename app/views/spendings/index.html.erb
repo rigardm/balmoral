@@ -13,7 +13,7 @@
   </div>
   <div data-controller="spendings-filter">
     <div class="filter-tab">
-      <h2>filtrer ></h2>
+      <h2>filtrer</h2>
       <% current_user.house.tribes.each do |tribe| %>
         <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered #{tribe.color}", :'data-action'=> "click->spendings-filter#selectTribe") %>
       <% end %>
@@ -24,4 +24,18 @@
     <% end %>
   </div>
 </div>
-<%= render 'shared/add_spending' %>
+
+<!-- button to display the new spending modal -->
+  <div class="new-spending" data-controller="new-spending-modal">
+    <div id="spending-button" data-new-spending-modal-target="spendingButton" data-action="click->new-spending-modal#show">
+      <%= render 'shared/add_spending' %>
+    </div>
+
+    <!-- new spending modal -->
+    <div class="container">
+      <div class="new-spending-overlay d-none" data-new-spending-modal-target="newSpendingOverlay">
+        <%= render 'shared/new_spending_modal' %>
+      </div>
+    </div>
+
+  </div>
