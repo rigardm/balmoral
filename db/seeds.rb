@@ -197,37 +197,17 @@ puts "created #{Platform.count} platforms"
 
 puts "6 out of 9: SEED BOOKINGS"
 Booking.create!(
-  arrival: arrival = Date.new(2022, 3, 12),
-  departure: departure = Date.new(2022, 3, 13),
-  total_price: (departure - arrival) * chaumiere.daily_price,
+  arrival: Date.new(2022, 2, 5),
+  departure: Date.new(2022, 2, 11),
   house: chaumiere,
-  user: nicolas,
+  user: oscar,
   status: "validated"
 )
-nicolas.tribe.credits -= Booking.last.total_price
+oscar.tribe.credits -= Booking.last.total_price
 
 Booking.create!(
-  arrival: arrival = Date.new(2022, 4, 16),
-  departure: departure = Date.new(2022, 4, 23),
-  total_price: (departure - arrival) * chaumiere.daily_price,
-  house: chaumiere,
-  user: elsa,
-  status: "validated"
-)
-elsa.tribe.credits -= Booking.last.total_price
-
-Booking.create!(
-  arrival: arrival = Date.new(2022, 5, 7),
-  departure: departure = Date.new(2022, 5, 8),
-  total_price: (departure - arrival) * chaumiere.daily_price,
-  house: chaumiere,
-  user: laure
-)
-
-Booking.create!(
-  arrival: arrival = Date.new(2022, 5, 26),
-  departure: departure = Date.new(2022, 5, 29),
-  total_price: (departure - arrival) * chaumiere.daily_price,
+  arrival: Date.new(2022, 2, 12),
+  departure: Date.new(2022, 2, 13),
   house: chaumiere,
   user: jeremy,
   status: "validated"
@@ -235,57 +215,142 @@ Booking.create!(
 jeremy.tribe.credits -= Booking.last.total_price
 
 Booking.create!(
-  arrival: arrival = Date.new(2022, 6, 11),
-  departure: departure = Date.new(2022, 6, 18),
-  total_price: (departure - arrival) * chaumiere.daily_price,
+  arrival: Date.new(2022, 2, 25),
+  departure: Date.new(2022, 2, 27),
   house: chaumiere,
-  user: nathalie,
+  platform: abritel,
   status: "validated"
 )
-# as Nathalie is admin, her tribe credits have been updated by #create! method
 
 Booking.create!(
-  arrival: arrival = Date.new(2022, 7, 2),
-  departure: departure = Date.new(2022, 7, 3),
-  total_price: (departure - arrival) * chaumiere.daily_price,
+  arrival: Date.new(2022, 3, 4),
+  departure: Date.new(2022, 3, 6),
+  house: chaumiere,
+  user: elsa,
+  status: "validated"
+)
+elsa.tribe.credits -= Booking.last.total_price
+
+Booking.create!(
+  arrival: Date.new(2022, 3, 12),
+  departure: Date.new(2022, 3, 13),
+  house: chaumiere,
+  user: nicolas,
+  status: "validated"
+)
+nicolas.tribe.credits -= Booking.last.total_price
+
+Booking.create!(
+  arrival: Date.new(2022, 3, 17),
+  departure: Date.new(2022, 3, 21),
+  house: chaumiere,
+  platform: airbnb,
+  status: "validated"
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 4, 4),
+  departure: Date.new(2022, 4, 6),
+  house: chaumiere,
+  platform: abritel,
+  status: "validated"
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 4, 16),
+  departure: Date.new(2022, 4, 22),
+  house: chaumiere,
+  user: elsa
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 4, 23),
+  departure: Date.new(2022, 4, 24),
+  house: chaumiere,
+  platform: abritel,
+  status: "validated"
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 5, 7),
+  departure: Date.new(2022, 5, 8),
+  house: chaumiere,
+  user: laure
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 5, 26),
+  departure: Date.new(2022, 5, 29),
+  house: chaumiere,
+  user: jeremy,
+  status: "validated"
+)
+jeremy.tribe.credits -= Booking.last.total_price
+
+Booking.create!(
+  arrival: Date.new(2022, 6, 11),
+  departure: Date.new(2022, 6, 17),
+  house: chaumiere,
+  user: jacques,
+)
+# as Jacques is admin, his tribe credits have been updated by #create! method
+
+Booking.create!(
+  arrival: Date.new(2022, 6, 20),
+  departure: Date.new(2022, 6, 22),
+  house: chaumiere,
+  user: sophie
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 7, 9),
+  departure: Date.new(2022, 7, 10),
+  # total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
   user: jeremy
 )
 
 Booking.create!(
-  arrival: Date.new(2022, 3, 19),
-  departure: Date.new(2022, 3, 26),
+  arrival: Date.new(2022, 7, 12),
+  departure: Date.new(2022, 7, 20),
   house: chaumiere,
-  platform: airbnb
-)
-
-Booking.create!(
-  arrival: Date.new(2022, 4, 1),
-  departure: Date.new(2022, 4, 3),
-  house: chaumiere,
-  platform: abritel
-)
-
-Booking.create!(
-  arrival: Date.new(2022, 4, 9),
-  departure: Date.new(2022, 4, 10),
-  house: chaumiere,
-  platform: airbnb
-)
-
-Booking.create!(
-  arrival: Date.new(2022, 7, 14),
-  departure: Date.new(2022, 7, 17),
-  house: chaumiere,
-  platform: abritel
+  platform: abritel,
+  status: "validated"
 )
 
 Booking.create!(
   arrival: Date.new(2022, 7, 30),
   departure: Date.new(2022, 8, 13),
   house: chaumiere,
-  platform: airbnb
+  platform: airbnb,
+  status: "validated"
 )
+
+Booking.create!(
+  arrival: Date.new(2022, 8, 21),
+  departure: Date.new(2022, 8, 27),
+  # total_price: (departure - arrival) * chaumiere.daily_price,
+  house: chaumiere,
+  user: nicolas
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 9, 4),
+  departure: Date.new(2022, 9, 17),
+  # total_price: (departure - arrival) * chaumiere.daily_price,
+  house: chaumiere,
+  user: nathalie
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 10, 28),
+  departure: Date.new(2022, 11, 1),
+  # total_price: (departure - arrival) * chaumiere.daily_price,
+  house: chaumiere,
+  user: elsa,
+  status: "validated"
+)
+elsa.tribe.credits -= Booking.last.total_price
 
 # make sure credit balances are up-to-date and stored in
 michel.tribe.save
