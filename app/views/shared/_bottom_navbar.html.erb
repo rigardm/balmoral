@@ -1,24 +1,23 @@
-<div class="bottom-bar d-flex flex-row justify-content-center px-3">
+<div class="bottom-bar d-flex flex-row justify-content-center px-3" data-controller="navbar">
   <% if user_signed_in? %>
       <%= link_to root_path, class: "icon-link" do %>
-        <%= inline_svg_tag('Home_light.svg')%>
-        <p class="picture-caption">Accueil</p>
+        <%= image_tag('Home_light.png')%>
+        <p class="picture-caption" data-navbar-target="home">Accueil</p>
       <% end %>
 
       <%= link_to house_channel_path(current_user.house, current_user.house.channels.last, :anchor => "last"), class: "icon-link" do %>
-        <%= inline_svg_tag('Chat_light.svg')%>
-        <p class="picture-caption">Messages</p>
+        <%= image_tag('Chat_light.png')%>
+        <p class="picture-caption" data-navbar-target="messages">Messages</p>
       <% end %>
 
-
       <%= link_to calendar_path(current_user.house), class: "icon-link" do %>
-      <%= inline_svg_tag('Date_range_light.svg')%>
-      <p class="picture-caption">Calendrier</p>
+      <%= image_tag('Date_range_light.png')%>
+      <p class="picture-caption" data-navbar-target="calendar">Calendrier</p>
       <% end %>
 
       <%= link_to house_spendings_path(current_user.tribe), class: "icon-link" do %>
-      <i class="fas fa-euro-sign"></i>
-      <p class="picture-caption">Dépenses</p>
+      <%= image_tag('spendings.png')%>
+      <p class="picture-caption" data-navbar-target="spendings">Dépenses</p>
       <% end %>
   <% end %>
 </div>
