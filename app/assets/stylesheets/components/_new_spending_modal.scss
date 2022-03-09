@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     height: 400px;
-    justify-content: space-between;
+    justify-content: center;
     border: 1px solid $balmoral_dark_grey;
     border-radius: 8px;
     background-color: $balmoral_background;
@@ -34,15 +34,7 @@
 }
 
 .new-spending-modal-footer {
-  display: flex;
-  justify-content: center;
-  font-size: 1.5rem;
-}
-
-.new-spending-modal-header {
-  display: flex;
-  justify-content: center;
-  position: relative;
+  padding: 20px;
 }
 
 #close-modal {
@@ -52,19 +44,18 @@
   font-size: 1.5rem;
 }
 
-.new-spending-preview {
-  position: absolute;
-  top: 50vh;
-  width: 90vw;
-}
-
-.spending-info {
-  gap: 15px;
-  height: 30vh;
-}
-
 // icones
 .admin-icones {
   color: $balmoral_yellow;
   font-size: 30px;
+}
+
+// simple form
+.spending-form-style {
+  color: $balmoral_icons;
+  // .form-control {
+  //   background: linear-gradient(-90deg, #80808012, transparent);
+  //   border-radius: 5px;
+  //   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  // }
 }
