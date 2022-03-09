@@ -201,8 +201,9 @@ Booking.create!(
   departure: departure = Date.new(2022, 3, 13),
   total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
-  user: nicolas
-).validated!
+  user: nicolas,
+  status: "validated"
+)
 nicolas.tribe.credits -= Booking.last.total_price
 
 Booking.create!(
@@ -210,8 +211,9 @@ Booking.create!(
   departure: departure = Date.new(2022, 4, 23),
   total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
-  user: elsa
-).validated!
+  user: elsa,
+  status: "validated"
+)
 elsa.tribe.credits -= Booking.last.total_price
 
 Booking.create!(
@@ -227,8 +229,9 @@ Booking.create!(
   departure: departure = Date.new(2022, 5, 29),
   total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
-  user: jeremy
-).validated!
+  user: jeremy,
+  status: "validated"
+)
 jeremy.tribe.credits -= Booking.last.total_price
 
 Booking.create!(
@@ -236,8 +239,9 @@ Booking.create!(
   departure: departure = Date.new(2022, 6, 18),
   total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
-  user: nathalie
-).validated!
+  user: nathalie,
+  status: "validated"
+)
 # as Nathalie is admin, her tribe credits have been updated by #create! method
 
 Booking.create!(
