@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
-      send_message("By Jove!! #{current_user.first_name} a réservé du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')}!!")
+      send_message("By Jove! #{current_user.first_name} a réservé du #{@booking.arrival.strftime('%d/%m')} au #{@booking.departure.strftime('%d/%m')} !")
       flash[:notice] = "By Jove!! <br> Votre réservation est créée et en attente de validation" if @booking.pending?
       flash[:notice] = "Hurrah!! <br> Votre réservation est validée" if @booking.validated?
       redirect_to calendar_path(@house, params: { start_date: @booking.arrival.to_s })
@@ -33,14 +33,14 @@ class BookingsController < ApplicationController
 
   def admin_denial
     @booking.declined! if @booking.pending?
-    send_message("Damned!! La réservation de #{@booking.user.first_name} du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')} a été refusée par #{@booking.user.tribe.admin.first_name}!!")
+    send_message("Damned!! La réservation de #{@booking.user.first_name} du #{@booking.arrival.strftime('%d/%m')} au #{@booking.departure.strftime('%d/%m')} a été refusée par #{@booking.user.tribe.admin.first_name}!!")
     flash[:notice] = "Damned!! <br> La réservation est refusée" if @booking.declined?
     redirect_to root_path
   end
 
   def admin_validation
     @booking.validated! if @booking.pending?
-    send_message("Heavens!! La réservation de #{@booking.user.first_name} du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')} a été validée par #{@booking.user.tribe.admin.first_name}!!")
+    send_message("Heavens!! La réservation de #{@booking.user.first_name} du #{@booking.arrival.strftime('%d/%m')} au #{@booking.departure.strftime('%d/%m')} a été validée par #{@booking.user.tribe.admin.first_name}!!")
     flash[:notice] = "Heavens!! <br> La réservation est validée" if @booking.validated?
     redirect_to root_path
   end

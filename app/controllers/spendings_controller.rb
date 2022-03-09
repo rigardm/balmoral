@@ -20,8 +20,6 @@ class SpendingsController < ApplicationController
     @spending.save
     authorize @spending
     render json: json_response
-    send_message("Blast!! #{current_user.first_name} a payé #{@spendings.amount} € pour : #{@spending.name}!!")
-    flash[:notice] = "Blast!! <br> Dépense enregistrée"
   end
 
   private

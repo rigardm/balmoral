@@ -3,7 +3,7 @@ const flashesFadeOut = () => {
   if (flash) {
     setTimeout( function() {
       removeFlash(flash)
-    }, 3000);
+    }, 2000);
   }
 };
 
