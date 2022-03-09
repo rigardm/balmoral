@@ -1,0 +1,15 @@
+<%= simple_form_for([house, spending], html: { data: { new_spending_modal_target: 'form' } }) do |f| %>
+  <%= f.input :amount, as: :integer %>
+  <%= f.input :name %>
+  <%= f.input :category, collection: Spending::CATEGORIES %>
+  <%= f.input :date, as: :date, html5: true %>
+  <%= f.input :details, as: :text %>
+  <%#= f.submit %>
+
+  <div class="new-spending-modal-footer">
+    <div class="d-flex w-50 justify-content-between">
+      <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->new-spending-modal#cancel" }) %>
+      <%= inline_svg_tag('check_validated.svg', data: { action: "click->new-spending-modal#submit" }) %>
+    </div>
+  </div>
+<% end %>

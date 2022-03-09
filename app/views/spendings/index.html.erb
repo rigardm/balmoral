@@ -19,23 +19,21 @@
       <% end %>
       <p class="m-0" data-action= "click->spendings-filter#showAll">Tous</p>
     </div>
-    <% @spendings.each do |spending| %>
-      <%= render 'shared/spending_preview', spending: spending %>
-    <% end %>
+    <div id="spendings">
+      <% @spendings.each do |spending| %>
+        <%= render 'shared/spending_preview', spending: spending %>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<!-- button to display the new spending modal -->
-  <div class="new-spending" data-controller="new-spending-modal">
+  <!-- button to display the new spending modal -->
+  <div class="new-spending-container" data-controller="new-spending-modal">
     <div id="spending-button" data-new-spending-modal-target="spendingButton" data-action="click->new-spending-modal#show">
       <%= render 'shared/add_spending' %>
     </div>
 
-    <!-- new spending modal -->
-    <div class="container">
-      <div class="new-spending-overlay d-none" data-new-spending-modal-target="newSpendingOverlay">
-        <%= render 'shared/new_spending_modal' %>
-      </div>
+    <div class="new-spending-overlay d-none" data-new-spending-modal-target="newSpendingOverlay">
+      <%= render 'shared/new_spending_modal' %>
     </div>
-
   </div>
+</div>

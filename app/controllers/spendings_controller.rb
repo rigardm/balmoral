@@ -17,14 +17,20 @@ class SpendingsController < ApplicationController
   def create
     @spending = Spending.new(spending_params)
     @spending.tribe = current_user.tribe
-   if @spending.save
-    redirect_to house_spendings_path
-   end
-
+    @spending.save
     authorize @spending
+    render json: json_response
   end
 
   private
+
+  def json_response
+    {
+      form: render_to_string(partial: 'spendings/spending_form.html', locals: { house: @spending.house, spending: @spending }),
+      spending: render_to_string(partial: 'shared/spending_preview.html', locals: { spending: @spending }),
+      valid: @spending.valid?
+    }
+  end
 
   def spending_params
     params.require(:spending).permit(:amount, :name, :category, :date, :details)
