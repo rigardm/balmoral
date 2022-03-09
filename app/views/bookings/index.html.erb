@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="header-buttons d-flex justify-content-center mb-3">
+  <div class="header-buttons d-flex justify-content-center mb-4">
     <span class="icon-link">
       <%= link_to calendar_path(@house) do %>
         <%= inline_svg_tag('Date_range_light.svg') %>
       <%end%>
     </span>
     <span class="icon-link" style= "opacity:0.4">
-      <%= inline_svg_tag('sort.svg') %>
+      <%= inline_svg_tag('menu.svg') %>
     </span>
   </div>
   <h2>Liste des réservations pour <%= @house.name %></h2>
