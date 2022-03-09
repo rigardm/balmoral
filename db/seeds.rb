@@ -8,10 +8,11 @@
 
 puts "START SEEDING..."
 
-puts "1 out of 8: DESTROY ALL RECORDS"
+puts "1 out of 9: DESTROY ALL RECORDS"
 House.destroy_all
+Platform.destroy_all
 
-puts "2 out of 8: SEED HOUSE"
+puts "2 out of 9: SEED HOUSE"
 chaumiere = House.create!(
   name: "La Chaumière",
   daily_price: "5",
@@ -22,31 +23,51 @@ chaumiere = House.create!(
 
 puts "created #{House.count} #{'house'.pluralize(House.count)}"
 
-puts "3 out of 8: SEED TRIBES"
+puts "3 out of 9: SEED TRIBES"
 tribu_verte = Tribe.create!(
-  credits: 250,
+  credits: House::CREDIT_BASE * 0.25,
   color: "tribe-green",
   shareholding: 0.25,
   house: chaumiere,
   colorhexa: "#2CC7AF"
 )
 tribu_rose = Tribe.create!(
-  credits: 250,
+  credits: House::CREDIT_BASE * 0.25,
   color: "tribe-red",
   shareholding: 0.25,
   house: chaumiere,
   colorhexa: "#FA672A"
 )
 tribu_bleue = Tribe.create!(
-  credits: 500,
+  credits: House::CREDIT_BASE * 0.50,
   color: "tribe-blue",
   shareholding: 0.50,
   house: chaumiere,
   colorhexa: "#6D62D0"
 )
+
+tribu_systeme = Tribe.create!(
+  credits: 0,
+  color: "system",
+  shareholding: 0,
+  house: chaumiere
+)
 puts "created #{Tribe.count} #{'tribe'.pluralize(Tribe.count)}"
 
-puts "4 out of 8: SEED USERS"
+puts "4 out of 9: SEED USERS"
+
+babeth = User.new(
+  email: 'babeth@babeth.com',
+  password: '000000',
+  first_name: 'Babeth II (Balmoral)',
+  last_name: 'System-Bot',
+  role: :admin,
+  tribe: tribu_systeme
+)
+file = File.open('app/assets/images/avatar_happy.png')
+babeth.photo.attach(io: file, filename: 'babeth.jpg', content_type: 'image/jpg')
+babeth.save!
+
 michel = User.new(
   email: 'michel@michel.com',
   password: '000000',
@@ -157,7 +178,24 @@ jeremy.save!
 
 puts "created #{User.count} users including #{User.admins.count} admins"
 
-puts "5 out of 8: SEED BOOKINGS"
+puts "5 out of 9: SEED PLATFORMS"
+airbnb = Platform.new(
+  name: "Airbnb"
+)
+file = URI.open('app/assets/images/airbnb.jpg')
+airbnb.photo.attach(io: file, filename: 'airbnb', content_type: 'image/jpg')
+airbnb.save!
+
+abritel = Platform.new(
+  name: "Abritel"
+)
+file = URI.open('app/assets/images/abritel2.png')
+abritel.photo.attach(io: file, filename: 'abritel', content_type: 'image/jpg')
+abritel.save!
+
+puts "created #{Platform.count} platforms"
+
+puts "6 out of 9: SEED BOOKINGS"
 Booking.create!(
   arrival: arrival = Date.new(2022, 3, 12),
   departure: departure = Date.new(2022, 3, 13),
@@ -210,6 +248,41 @@ Booking.create!(
   user: jeremy
 )
 
+Booking.create!(
+  arrival: Date.new(2022, 3, 19),
+  departure: Date.new(2022, 3, 26),
+  house: chaumiere,
+  platform: airbnb
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 4, 1),
+  departure: Date.new(2022, 4, 3),
+  house: chaumiere,
+  platform: abritel
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 4, 9),
+  departure: Date.new(2022, 4, 10),
+  house: chaumiere,
+  platform: airbnb
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 7, 14),
+  departure: Date.new(2022, 7, 17),
+  house: chaumiere,
+  platform: abritel
+)
+
+Booking.create!(
+  arrival: Date.new(2022, 7, 30),
+  departure: Date.new(2022, 8, 13),
+  house: chaumiere,
+  platform: airbnb
+)
+
 # make sure credit balances are up-to-date and stored in
 michel.tribe.save
 jacques.tribe.save
@@ -217,7 +290,7 @@ nathalie.tribe.save
 
 puts "created #{Booking.count} #{'booking'.pluralize(Booking.count)}"
 
-puts "6 out of 8: SEED SPENDINGS"
+puts "7 out of 9: SEED SPENDINGS"
 Spending.create!(
   amount: 96,
   name: "Femme de ménage",
@@ -300,14 +373,14 @@ Spending.create!(
 )
 puts "created #{Spending.count} #{'spending'.pluralize(Spending.count)}"
 
-puts "7 out of 8: SEED CHANNELS"
+puts "8 out of 9: SEED CHANNELS"
 general = Channel.create!(
   name: "general",
   house: chaumiere
 )
 puts "created #{Channel.count} #{'channel'.pluralize(Channel.count)}"
 
-puts "8 out of 8: SEED MESSAGES"
+puts "9 out of 9: SEED MESSAGES"
 Message.create!(
   content: "Salut la familia👋! La chaudière était kaput, j'ai du la faire remplacer. Ca douille un peu: 3500 balles!😖",
   user: jacques,

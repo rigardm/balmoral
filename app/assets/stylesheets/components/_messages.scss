@@ -6,20 +6,34 @@ background-color: $balmoral_background;
 padding-bottom: 8vh;
 }
 .message-box-user {
-text-align: right;
+text-align: left;
 align-self:flex-end;
 max-width: 70vw;
 border-radius: 8px;
-background-color: white;
+background: linear-gradient(-90deg, #80808012, transparent);
+box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 margin-top: 4vh;
+padding: 1vh;
 }
+
+.message-box-system {
+  text-align: left;
+  align-self: left;
+  max-width: 70vw;
+  border-radius: 8px;
+  background-color: $balmoral_background;
+  margin-top: 4vh;
+  padding: 1vh;
+  }
 
 .message-box {
 text-align: left;
 max-width: 70vw;
 border-radius: 8px;
 background-color: white;
+box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 margin-top: 4vh;
+padding: 1vh;
 }
 
 .message-author-tribe-green {
@@ -36,6 +50,18 @@ color: $tribe_green;
     font-weight: bold;
     color: $tribe_red;
     }
+
+.message-author-system {
+    font-weight: bold;
+    color: $balmoral_yellow;
+    }
+
+.message-time {
+  font-weight: 200;
+  font-size : 0.8em;
+  font-style: italic ;
+  color: $balmoral_dark_grey;
+}
 
 .message-content {
 color: $balmoral_dark_grey;

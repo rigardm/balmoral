@@ -2,15 +2,20 @@
   <div class="simple-booking-details" data-controller="rename-booking" data-booking-modal-target="reset" >
     <i id="close-modal" class="fas fa-chevron-circle-left admin-icones" data-action="click->booking-modal#closeBookingModal"></i>
     <div class="simple-booking-header">
-      <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered-large #{booking.user.tribe.color}") %>
+      <% if booking.user? %>
+        <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered-large #{booking.user.tribe.color}") %>
+      <% else %>
+        <%= cl_image_tag(booking.platform.photo.key, :class => "avatar-bordered-large platform") %>
+      <% end %>
     </div>
     <div class="simple-booking-info">
-      <% if booking.user == current_user %>
-        <h2 class="text-center px-3 py-1">Votre réservation</h2>
-      <% else %>
-        <h2 class="text-center px-3 py-1"> La réservation de <%= booking.user.first_name %> </h2>
+      <% if booking.user? %>
+        <% if booking.user == current_user %>
+          <h2 class="text-center px-3 py-1">Votre réservation</h2>
+        <% else %>
+          <h2 class="text-center px-3 py-1"> La réservation de <%= booking.user.first_name %> </h2>
+        <% end %>
       <% end %>
-
       <div data-rename-booking-target="currentInfo">
         <div class="px-3 py-1">
           <p>du <strong><%= I18n.l(booking.arrival, format: '%A %d %B') %></strong></p>
@@ -19,58 +24,68 @@
             <%= inline_svg_tag('calendar-illustration.svg')%>
           </div>
         </div>
-        <div class="d-flex justify-content-evenly mt-5">
-          <div>
-            <h2><%= inline_svg_tag('booking_home.svg') %></h2>
-            <p>Réalisée le <%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
+        <% if booking.user? %>
+          <div class="d-flex justify-content-evenly mt-5">
+            <div>
+              <h2><%= inline_svg_tag('booking_home.svg') %></h2>
+              <p>Réalisée le <%= booking.created_at.to_date.strftime('%d/%m/%y') %></p>
+            </div>
+            <div>
+            <% if booking.validated? %>
+              <h2> <%= inline_svg_tag('booking_validated.svg') %> </h2>
+              <p>Validée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+            <% elsif booking.pending? %>
+              <h2><%= inline_svg_tag('booking_pending.svg') %></h2>
+              <p><em>En attente de validation</em></p>
+            <% elsif booking.declined? %>
+              <h2><%= inline_svg_tag('booking_refused.svg') %></h2>
+              <p>Refusée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+            <% end %>
+            </div>
           </div>
-          <div>
-          <% if booking.validated? %>
-            <h2> <%= inline_svg_tag('booking_validated.svg') %> </h2>
-            <p>Validée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
-          <% elsif booking.pending? %>
-            <h2><%= inline_svg_tag('booking_pending.svg') %></h2>
-            <p><em>En attente de validation</em></p>
-          <% elsif booking.declined? %>
-            <h2><%= inline_svg_tag('booking_refused.svg') %></h2>
-            <p>Refusée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
-          <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="d-none" data-rename-booking-target="displayForm">
-        <%= simple_form_for(booking,:url => update_booking_path(booking) ,html: { data: { rename_booking_target: "form" } }) do |f| %>
-          <%= f.input :arrival, as: :date, html5: true, label: false%>
-          <%= f.input :departure, as: :date, html5: true, label: false%>
         <% end %>
       </div>
+
+      <% if booking.user? %>
+        <div class="d-none" data-rename-booking-target="displayForm">
+          <%= simple_form_for(booking,:url => update_booking_path(booking) ,html: { data: { rename_booking_target: "form" } }) do |f| %>
+            <%= f.input :arrival, as: :date, html5: true, label: false%>
+            <%= f.input :departure, as: :date, html5: true, label: false%>
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
-    <div class="simple-booking-modal-footer" data-rename-booking-target="currentFooter">
-      <% if booking.user == current_user %>
-        <i class="fas fa-edit admin-icones" data-action = "click->rename-booking#form"></i>
-      <% end %>
-      <% if current_user.admin? && booking.user.tribe == current_user.tribe && booking.pending? %>
-        <div class="d-flex w-50 justify-content-between">
-          <%= link_to admin_decline_booking_path(booking), method: :patch do %>
-            <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->rename-booking#clear" }) %>
-            <p>Refuser</p>
-          <% end %>
-          <%= link_to admin_validate_booking_path(booking), method: :patch do %>
-            <%= inline_svg_tag('check_validated.svg') %>
-            <p>Valider</p>
-          <% end %>
-        </div>
-      <% end %>
-      </div>
-    <div class="simple-booking-modal-footer d-none" data-rename-booking-target="displayFooter">
-      <div class="d-flex w-75 justify-content-between">
-        <%= link_to delete_booking_path(booking), method: :delete, data: { confirm: "Oh, Dear! Plus de vacances ??" } do %>
-          <%= inline_svg_tag('trashcan.svg') %></a>
+    <% if booking.user? %>
+      <div class="simple-booking-modal-footer" data-rename-booking-target="currentFooter">
+        <% if booking.user == current_user %>
+          <i class="fas fa-edit admin-icones" data-action = "click->rename-booking#form"></i>
         <% end %>
-        <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->rename-booking#clear" }) %>
-        <%= inline_svg_tag('check_validated.svg', data: { action: "click->rename-booking#submit" }) %>
+        <% if current_user.admin? && booking.user.tribe == current_user.tribe && booking.pending? %>
+          <div class="d-flex w-50 justify-content-between">
+            <%= link_to admin_decline_booking_path(booking), method: :patch do %>
+              <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->rename-booking#clear" }) %>
+              <p>Refuser</p>
+            <% end %>
+            <%= link_to admin_validate_booking_path(booking), method: :patch do %>
+              <%= inline_svg_tag('check_validated.svg') %>
+              <p>Valider</p>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    </div>
+    <% end %>
+
+    <% if booking.user? %>
+      <div class="simple-booking-modal-footer d-none" data-rename-booking-target="displayFooter">
+        <div class="d-flex w-75 justify-content-between">
+          <%= link_to delete_booking_path(booking), method: :delete, data: { confirm: "Oh, Dear! Plus de vacances ??" } do %>
+            <%= inline_svg_tag('trashcan.svg') %></a>
+          <% end %>
+          <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->rename-booking#clear" }) %>
+          <%= inline_svg_tag('check_validated.svg', data: { action: "click->rename-booking#submit" }) %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

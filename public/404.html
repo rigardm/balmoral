@@ -1,67 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>We are completely lost (404)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" charset=utf-8 >
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+   body {
+     font-family: Arial, Helvetica, sans-serif;
+     font-weight: 200;
+     background-color: #FBC24C;
+     color: white;
+     text-align: center;
+   }
+   .avatar {
+     border-radius: 50%;
+     box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+   }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+   p{
+     font-size: 0.8em
+   }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+   .container {
+    width:90vw;
+    margin: 0 auto;
+   }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+   .footer{
+     position:fixed;
+     bottom:0;
+     padding-bottom: 4vh;
+     width:90vw;
+   }
+   img {
+    margin: auto;
+   }
+
   </style>
 </head>
 
-<body class="rails-default-error-page">
+<body>
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+  <div class="container">
+     <div class= "content">
+      <h1> Damn'it! You are lost!</h1>
+      <img src="avatar_surprised.png" alt="oh god!" class="avatar">
+      <h2>404</h2>
+      <h3>Vous vous êtes trompé dans l'adresse, old chap.</h3>
+      <p>(ou bien le site est cassé)</p>
+      <p>(mais cela paraît peu probable)</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+  </div>
+  <div class="footer">
+    <img src="logo.svg" alt="yeah, this is us">
   </div>
 </body>
 </html>

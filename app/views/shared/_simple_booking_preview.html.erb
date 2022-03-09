@@ -4,11 +4,21 @@
       <%= render 'shared/simple_booking_modal', booking: booking %>
     </div>
   </div>
-  <div class="item-preview <%= booking.user.tribe.color %>" data-action="click->booking-modal#openBookingModal" data-booking-modal-target="openBookingButton">
-    <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered #{booking.user.tribe.color}") %>
+  <div class="item-preview <%= booking.user? ? booking.user.tribe.color : "platform" %>" data-action="click->booking-modal#openBookingModal" data-booking-modal-target="openBookingButton">
+    <% if booking.user? %>
+      <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered #{booking.user.tribe.color}") %>
+    <% else %>
+      <%= cl_image_tag(booking.platform.photo.key, :class => "avatar-bordered platform") %>
+    <% end %>
     <div class="item-data">
       <div class="d-flex">
-        <h2><%= current_user == booking.user ? "Vous" : "#{booking.user.first_name}" %></h2>
+        <h2>
+          <% if booking.user? %>
+            <%= current_user == booking.user ? "Vous" : "#{booking.user.first_name}" %>
+          <% else %>
+            <%= booking.platform.name %>
+          <% end %>
+        </h2>
         <% if booking.pending? %>
           <p><em> - En attente de validation</em></p>
         <% elsif booking.declined? %>

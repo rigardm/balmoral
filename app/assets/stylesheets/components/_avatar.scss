@@ -14,6 +14,9 @@
   &.tribe-green {
     border-color: $tribe_green;
   }
+  &.platform {
+    border-color: $platform;
+  }
 }
 
 .avatar-bordered {
@@ -39,6 +42,12 @@
     border-color: $tribe_green;
     &.selected {
       box-shadow: 4px 4px 16px $tribe_green;
+    }
+  }
+  &.platform {
+    border-color: $platform;
+    &.selected {
+      box-shadow: 4px 4px 16px $platform;
     }
   }
 }

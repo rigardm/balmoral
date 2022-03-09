@@ -13,7 +13,7 @@
       <%= month_calendar(events: @bookings, attribute: :arrival, end_attribute: :departure) do |date, bookings| %>
         <%= date %>
         <% bookings.each do |booking| %>
-          <div class="meeting-<%= booking.user.tribe.color %>" data-booking-id="<%= booking.id %>">
+          <div class="meeting-<%= booking.user? ? booking.user.tribe.color : "platform" %>" data-booking-id="<%= booking.id %>">
             <%= date %>
           </div>
         <% end %>
