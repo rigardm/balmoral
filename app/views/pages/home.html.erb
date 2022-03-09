@@ -14,7 +14,7 @@
       <% end %>
     </div>
   </div>
-  <div class="container pb-0">
+  <div class="container pb-1">
     <% if current_user.admin? && @bookings_to_validate.any? %>
       <div class="text-start">
         <h1>Vos réservations à valider</h1>
@@ -25,7 +25,7 @@
     <% end %>
   </div>
   <div class="container">
-    <div class="text-start mb-4">
+    <div class="text-start mb-4 pb-1">
       <h1>Les prochains séjours à <%= current_user.house.name %></h1>
       <% @next_bookings.each do |booking| %>
         <%= render 'shared/simple_booking_preview', booking: booking %>
