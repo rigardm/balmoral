@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+SHARE = 1.fdiv(3)
+
 puts "START SEEDING..."
 
 puts "1 out of 9: DESTROY ALL RECORDS"
@@ -25,23 +27,23 @@ puts "created #{House.count} #{'house'.pluralize(House.count)}"
 
 puts "3 out of 9: SEED TRIBES"
 tribu_verte = Tribe.create!(
-  credits: House::CREDIT_BASE * 0.25,
+  credits: (House::CREDIT_BASE * SHARE).round,
   color: "tribe-green",
-  shareholding: 0.25,
+  shareholding: SHARE,
   house: chaumiere,
   colorhexa: "#2CC7AF"
 )
 tribu_rose = Tribe.create!(
-  credits: House::CREDIT_BASE * 0.25,
+  credits: (House::CREDIT_BASE * SHARE).round,
   color: "tribe-red",
-  shareholding: 0.25,
+  shareholding: SHARE,
   house: chaumiere,
   colorhexa: "#FA672A"
 )
 tribu_bleue = Tribe.create!(
-  credits: House::CREDIT_BASE * 0.50,
+  credits: (House::CREDIT_BASE * SHARE).round,
   color: "tribe-blue",
-  shareholding: 0.50,
+  shareholding: SHARE,
   house: chaumiere,
   colorhexa: "#6D62D0"
 )
@@ -357,7 +359,10 @@ michel.tribe.save
 jacques.tribe.save
 nathalie.tribe.save
 
-puts "created #{Booking.count} #{'booking'.pluralize(Booking.count)}"
+booking_platform = Booking.where(user: nil).count
+booking_user = Booking.where(platform: nil).count
+
+puts "created #{Booking.count} bookings. Including #{booking_user} from users and #{booking_platform} from platforms "
 
 puts "7 out of 9: SEED SPENDINGS"
 Spending.create!(

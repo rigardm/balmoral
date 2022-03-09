@@ -1,5 +1,5 @@
 class House < ApplicationRecord
-  CREDIT_BASE = 1000
+  CREDIT_BASE = 600
 
   has_many :tribes, dependent: :destroy
   has_many :users, through: :tribes

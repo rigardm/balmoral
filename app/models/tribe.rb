@@ -5,8 +5,8 @@ class Tribe < ApplicationRecord
   has_many :spendings, dependent: :destroy
   has_many :bookings, through: :users
 
-  validates :color, :credits, presence: true
-  validates :color, uniqueness: { scope: :house }
+  validates :color, presence: true, uniqueness: { scope: :house }
+  validates :credits, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def admin
     users.find_by(role: :admin)
