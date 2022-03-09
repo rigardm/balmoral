@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { flashesFadeOut } from '../components/flashes'
 
 export default class extends Controller {
   static targets = [
@@ -101,12 +102,30 @@ export default class extends Controller {
           this.modalInfoTarget.insertAdjacentHTML('afterbegin', html);
         } else {
           // HERE: credits are not sufficient enough.
-          window.alert("Crédits insuffisants. Choisissez de nouvelles dates.")
+          // window.alert("Crédits insuffisants. Choisissez de nouvelles dates.")
+          const alert_html = `
+          <div class="flash alert alert-info alert-dismissible fade show m-1" role="alert">
+            <div class = "babeth">Babeth II (Balmoral)</div>
+            Banane: Crédits insuffisants. Choisissez de nouvelles dates.
+          </div>
+          `
+          this.element.insertAdjacentHTML('afterend', alert_html);
+          flashesFadeOut();
           arrival.classList.remove('new-booking');
           arrival.removeChild(arrival.lastChild);}
       } else {
         // Departure is before arrival or it is already booked
         // So we need to reset the calendar
+        if(!this.#notAlreadyBooked(arrivalDate, departureDate)) {
+          const alert_html = `
+          <div class="flash alert alert-info alert-dismissible fade show m-1" role="alert">
+            <div class = "babeth">Babeth II (Balmoral)</div>
+            Il y a déjà une réservation. Choisissez d'autres dates.
+          </div>
+          `
+          this.element.insertAdjacentHTML('afterend', alert_html);
+          flashesFadeOut();
+        }
         arrival.classList.remove('new-booking');
         arrival.removeChild(arrival.lastChild);
       }
