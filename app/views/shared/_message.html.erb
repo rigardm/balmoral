@@ -29,10 +29,8 @@
     </div>
   <% elsif message.user.tribe.color == "system" %>
       <div class="message-box-system">
-        <a id = "last">
         <div class = "message-author-<%= message.user.tribe.color %>"><%= message.user.first_name %>    <span class = "message-time">  (il y a <%=time_ago_in_words(message.created_at)%>)</span></div>
         <div class="message-content"><%=message.content%></div>
-        </a>
       </div>
   <%else%>
     <div class="message-box">

@@ -30,6 +30,18 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <style>
+    <%=".message-box-#{current_user.id}"%> {
+     text-align: left;
+     align-self:flex-end;
+     max-width: 70vw;
+     background-color: white;
+     border-radius: 8px;
+     box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+     margin-top: 4vh;
+     padding: 1vh;
+    }
+    </style>
   </head>
 
   <body>

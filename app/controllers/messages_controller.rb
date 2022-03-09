@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
       if @message.save
         ChannelChannel.broadcast_to(
           @channel,
-          render_to_string(partial: "shared/message", locals: {message: @message})
+          render_to_string(partial: "shared/messagebroadcast", locals: {message: @message})
         )
         head :ok
       else
