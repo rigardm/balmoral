@@ -9,4 +9,12 @@ class SpendingPolicy < ApplicationPolicy
   def balances?
     user.admin?
   end
+
+  def new?
+    user.admin?
+  end
+
+  def create?
+    user.admin?
+  end
 end

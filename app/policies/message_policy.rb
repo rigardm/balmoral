@@ -5,6 +5,7 @@ class MessagePolicy < ApplicationPolicy
       scope.all
     end
   end
+
   def show?
     true
   end
@@ -20,5 +21,4 @@ class MessagePolicy < ApplicationPolicy
   def destroy?
     true
   end
-
 end
