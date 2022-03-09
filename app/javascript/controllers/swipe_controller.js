@@ -3,7 +3,7 @@ let touchstartX = 0
 let touchstartY = 0
 let swipemove = ""
 export default class extends Controller {
-  static targets = ["swipezone","nextbutton","previousbutton"]
+  static targets = ["swipezone","nextbutton","previousbutton", "listbutton"]
 
 //event = 'touchstart', 'touchend'
 
@@ -36,6 +36,8 @@ connect() {
       this.previousbuttonTarget.click();
     } else if (swipemove == "swipe up") {
       this.nextbuttonTarget.click();
+    } else if (swipemove == "swipe left") {
+      this.listbuttonTarget.click();
     }
   }
 }
