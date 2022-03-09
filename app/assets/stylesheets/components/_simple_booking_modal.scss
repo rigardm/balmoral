@@ -14,10 +14,10 @@
   position: absolute;
   top: 14vh;
   .simple-booking-details {
+    position: relative;
     display: flex;
     flex-direction: column;
-    height: 400px;
-    justify-content: space-between;
+    justify-content: flex-start;
     border: 1px solid $balmoral_dark_grey;
     border-radius: 8px;
     background-color: $balmoral_background;
@@ -65,9 +65,28 @@
 }
 
 // new_booking_modal
+.calendar-booking-details {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid $balmoral_dark_grey;
+  border-radius: 8px;
+  background-color: $balmoral_background;
+  color: $balmoral_dark_grey;
+  height: 70vh;
+  width: 80vw;
+}
+
 .booking-info {
-  gap: 15px;
-  height: 30vh;
+  height: 37vh;
+  padding: 20px;
+}
+
+.booking-new-illustration{
+  position: absolute;
+  bottom: 0;
+  padding: 0px;
 }
 
 // select-dates-controller

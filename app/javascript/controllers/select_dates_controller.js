@@ -195,7 +195,8 @@ export default class extends Controller {
     <div class=" px-3 py-1">
     <p class="credit-balance text-start">${totalPrice} crédits requis</p>
     <p class="credit-balance text-start">${creditBalance} crédits disponibles</p>
-    <p class="credit-balance text-start">${creditBalance} crédits restants</p>
+    <HR>
+    <p class="credit-balance text-start">${creditBalance - totalPrice} crédits restants</p>
     </div>
     `;
     return bookingInfoHtml
