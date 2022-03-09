@@ -7,6 +7,12 @@
   padding-bottom: 10px;
 }
 
+.bottom-bar svg {
+  &.selected {
+    box-shadow: 4px 4px 16px $balmoral_yellow;
+  }
+}
+
 .icon-link {
   color: $balmoral_yellow;
   margin: auto;

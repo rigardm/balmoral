@@ -1,23 +1,22 @@
-<div class="bottom-bar d-flex flex-row justify-content-center px-3">
+<div class="bottom-bar d-flex flex-row justify-content-center px-3" data-controller="navbar">
   <% if user_signed_in? %>
-      <%= link_to root_path, class: "icon-link" do %>
-        <%= inline_svg_tag('Home_light.svg')%>
+      <%= link_to root_path, class: "icon-link", :'data-action'=> "click->navbar#select" do %>
+        <%= inline_svg_tag('Home_light.svg', 'data-navbar-target'=> "icon")%>
         <p class="picture-caption">Accueil</p>
       <% end %>
 
-      <%= link_to house_channel_path(current_user.house, current_user.house.channels.last, :anchor => "last"), class: "icon-link" do %>
-        <%= inline_svg_tag('Chat_light.svg')%>
+      <%= link_to house_channel_path(current_user.house, current_user.house.channels.last, :anchor => "last"), class: "icon-link", :'data-action'=> "click->navbar#select" do %>
+        <%= inline_svg_tag('Chat_light.svg', 'data-navbar-target'=> "icon")%>
         <p class="picture-caption">Messages</p>
       <% end %>
 
-
-      <%= link_to calendar_path(current_user.house), class: "icon-link" do %>
-      <%= inline_svg_tag('Date_range_light.svg')%>
+      <%= link_to calendar_path(current_user.house), class: "icon-link", :'data-action'=> "click->navbar#select" do %>
+      <%= inline_svg_tag('Date_range_light.svg', 'data-navbar-target'=> "icon")%>
       <p class="picture-caption">Calendrier</p>
       <% end %>
 
-      <%= link_to house_spendings_path(current_user.tribe), class: "icon-link" do %>
-      <i class="fas fa-euro-sign"></i>
+      <%= link_to house_spendings_path(current_user.tribe), class: "icon-link", :'data-action'=> "click->navbar#select" do %>
+      <i class="fas fa-euro-sign", data-navbar-target="icon"></i>
       <p class="picture-caption">Dépenses</p>
       <% end %>
   <% end %>
