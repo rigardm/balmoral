@@ -38,43 +38,32 @@ class Booking < ApplicationRecord
   end
 
   def create_booking_check
-    credits_must_be_sufficient
-    return unless credits_are_sufficient? && user.admin?
+    return if platform?
+    return unless user.admin?
 
-    user.tribe.credits -= total_price
-    user.tribe.save
+    set_total_price
+    credit_decrease(total_price)
   end
 
   def update_booking_check
-    if declined? && (arrival_changed? || departure_changed?)
-      credits_must_be_sufficient
-      update_column(:status, "pending") if credits_are_sufficient?
-    elsif pending?
-      # booking is either pending and dates have changed
-      credits_must_be_sufficient
-    elsif total_price_changed?
-      # booking is validated and price has changed
-      if (total_price_change[1] - total_price_change[0]) > user.tribe.credits
-        errors.add("Crédits insuffisants pour cette modification")
-      elsif user.admin?
-        user.tribe.credits -= (total_price_change[1] - total_price_change[0])
-        user.tribe.save
+    if status_changed?
+      set_total_price
+      credit_decrease(total_price) if validated? && credits_are_sufficient?
+    elsif declined?
+      update_column(:status, "pending") if credits_must_be_sufficient
+    elsif validated?
+      if total_price_changed?
+        if (total_price_change[1] - total_price_change[0]) > user.tribe.credits
+          errors.add("Crédits insuffisants pour cette modification")
+        elsif user.admin?
+          credit_increase(total_price_change[0])
+          credit_decrease(total_price_change[1])
+        elsif user.member?
+          update_column(:status, "pending")
+          credit_increase(total_price_change[0])
+        end
       elsif user.member?
         update_column(:status, "pending")
-        user.tribe.credits += total_price_change[0]
-        user.tribe.save
-      end
-    elsif user.member?
-      # booking is validated, total_price has not changed but dates have changed (booking has same nb of days)
-      update_column(:status, "pending")
-      user.tribe.credits += total_price
-      user.tribe.save
-    elsif status_changed?
-      # user is admin and is validating a pending booking
-      credits_must_be_sufficient
-      if credits_are_sufficient?
-        user.tribe.credits -= total_price
-        user.tribe.save
       end
     end
   end
@@ -97,17 +86,28 @@ class Booking < ApplicationRecord
     self.total_price = nb_days * house.daily_price
   end
 
-  def credits_are_sufficient?
-    return unless user # in case booking has a platform rather than a user
+  def credit_decrease(number)
+    user.tribe.credits -= number
+    user.tribe.save
+  end
 
-    set_total_price
-    user.tribe.credits >= total_price
+  def credit_increase(number)
+    user.tribe.credits += number
+    user.tribe.save
   end
 
   def credits_must_be_sufficient
-    return unless user # in case booking has a platform rather than a user
+    return if credits_are_sufficient?
+
+    errors.add("Crédits insuffisants pour cette réservation")
+  end
+
+  def credits_are_sufficient?
+    return true unless user.present?
 
     set_total_price
-    errors.add("Crédits insuffisants pour cette réservation") if user.tribe.credits < total_price
+    return true unless user.tribe.credits < total_price
+
+    return false
   end
 end
