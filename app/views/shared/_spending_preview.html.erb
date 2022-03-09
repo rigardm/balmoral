@@ -2,7 +2,7 @@
   <div class="item-data">
     <div class="main">
       <h2><%= spending.name %></h2>
-      <h2><%= spending.amount %> Euros</h2>
+      <h2><%= number_with_delimiter(spending.amount.round, :delimiter => ' ') %> €</h2>
     </div>
     <div class="second">
       <p>Payé par <%= current_user == spending.tribe.admin ? "Vous" : "#{spending.tribe.admin.first_name}" %></p>

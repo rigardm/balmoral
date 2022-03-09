@@ -8,7 +8,7 @@ export default class extends Controller {
     this.messagesTarget.classList.remove('selected-nav');
     this.calendarTarget.classList.remove('selected-nav');
     this.spendingsTarget.classList.remove('selected-nav');
-    if (document.URL.includes('calendar')) {
+    if (document.URL.match(/calendar|booking/)) {
       this.calendarTarget.classList.add('selected-nav');
     } else if (document.URL.includes('channel')) {
       this.messagesTarget.classList.add('selected-nav');

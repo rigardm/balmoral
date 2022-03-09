@@ -17,6 +17,6 @@
   </div>
   <div>
     <h1>Equilibre des dépenses :</h1>
-    <%= bar_chart(@balance_per_tribe, suffix: " €", colors: ["#ed4e60", "#50BFA5"], round: 2, zeros: true, discrete: true, thousands: " ", points: false) %>
+    <%= bar_chart(@balance_per_tribe.except(:colors), suffix: " €", colors: @balance_per_tribe[:colors], round: 2, zeros: true, discrete: true, thousands: " ", points: false) %>
   </div>
 </div>
