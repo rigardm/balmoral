@@ -1,7 +1,7 @@
 <div class="bottom-bar d-flex flex-row justify-content-center px-3" data-controller="navbar">
   <% if user_signed_in? %>
       <%= link_to root_path, class: "icon-link", :'data-action'=> "click->navbar#select" do %>
-        <%= inline_svg_tag('Home_light.svg', 'data-navbar-target'=> "icon")%>
+        <%= cl_image_tag('Home_light.png', 'data-navbar-target'=> "icon")%>
         <p class="picture-caption">Accueil</p>
       <% end %>
 
