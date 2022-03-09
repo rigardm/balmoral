@@ -33,15 +33,15 @@ class BookingsController < ApplicationController
 
   def admin_denial
     @booking.declined! if @booking.pending?
-    send_message("Damned!! la réservation de #{@booking.first_name} du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')} a été refusée par #{@booking.user.tribe.admin.first_name}!!")
-    flash[:notice] = "Damned!! <br> cette réservation a été refusée" if @booking.declined?
+    send_message("Damned!! La réservation de #{@booking.user.first_name} du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')} a été refusée par #{@booking.user.tribe.admin.first_name}!!")
+    flash[:notice] = "Damned!! <br> La réservation est refusée" if @booking.declined?
     redirect_to root_path
   end
 
   def admin_validation
     @booking.validated! if @booking.pending?
-    send_message("Heavens!! la réservation de #{@booking.first_name} du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')} a été validée par #{@booking.user.tribe.admin.first_name}!!")
-    flash[:notice] = "Heavens!! <br> la réservation a été validée" if @booking.validated?
+    send_message("Heavens!! La réservation de #{@booking.user.first_name} du #{@booking.arrival.strftime('%d/%m/%y')} au #{@booking.departure.strftime('%d/%m/%y')} a été validée par #{@booking.user.tribe.admin.first_name}!!")
+    flash[:notice] = "Heavens!! <br> La réservation est validée" if @booking.validated?
     redirect_to root_path
   end
 
@@ -94,9 +94,7 @@ end
 
   def send_message(content)
     @message = Message.new(content: content)
-    authorize @message
-    @channel = @house.channels.last
-    @message.channel = @channel
+    @message.channel = @booking.house.channels.last
     @message.user = User.find_by(last_name: 'System-Bot')
     @message.save
   end

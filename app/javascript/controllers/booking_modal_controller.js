@@ -6,7 +6,6 @@ export default class extends Controller {
   openBookingModal() {
     this.bookingModalTarget.classList.remove('d-none');
     this.bookingOverlayTarget.classList.remove('d-none');
-    // ideally, we should check if openBookingButtonTarget exists or not
     this.openBookingButtonTarget.classList.add('d-none');
     }
 
@@ -15,7 +14,6 @@ export default class extends Controller {
     renameBookingController.clear();
     this.bookingModalTarget.classList.add('d-none');
     this.bookingOverlayTarget.classList.add('d-none');
-    // ideally, we should check if openBookingButtonTarget exists or not
     this.openBookingButtonTarget.classList.remove('d-none');
   }
 }
