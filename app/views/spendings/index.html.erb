@@ -3,27 +3,39 @@
     <span class="icon-link" style= "opacity:0.4">
       <%= link_to house_spendings_path(@house) do %>
         <%= inline_svg_tag('sort.svg') %>
-      <%end%>
+      <% end %>
     </span>
     <span class="icon-link">
       <%= link_to house_balances_path(@house) do %>
         <%= inline_svg_tag('balance.svg') %>
-      <%end%>
+      <% end %>
     </span>
   </div>
   <div data-controller="spendings-filter">
     <div class="filter-tab px-5">
+      <p class="m-0" data-action= "click->spendings-filter#showAll">Tous</p>
       <% current_user.house.tribes.each do |tribe| %>
         <%= cl_image_tag(tribe.admin.photo.key,
         :class => "avatar-bordered #{tribe.color}",
         :'data-action'=> "click->spendings-filter#selectTribe",
         :'data-spendings-filter-target'=> "avatar") unless tribe.color == "system" %>
       <% end %>
-      <p class="m-0" data-action= "click->spendings-filter#showAll">Tous</p>
     </div>
-    <% @spendings.each do |spending| %>
-      <%= render 'shared/spending_preview', spending: spending %>
-    <% end %>
+    <div id="spendings">
+      <% @spendings.each do |spending| %>
+        <%= render 'shared/spending_preview', spending: spending %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- button to display the new spending modal -->
+  <div class="new-spending-container" data-controller="new-spending-modal">
+    <div id="spending-button" data-new-spending-modal-target="spendingButton" data-action="click->new-spending-modal#show">
+      <%= render 'shared/add_spending' %>
+    </div>
+
+    <div class="new-spending-overlay d-none" data-new-spending-modal-target="newSpendingOverlay">
+      <%= render 'shared/new_spending_modal' %>
+    </div>
   </div>
 </div>
-<%= render 'shared/add_spending' %>

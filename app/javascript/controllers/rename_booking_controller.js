@@ -5,23 +5,43 @@ export default class extends Controller {
 
   form(event) {
     this.currentInfoTarget.classList.add("d-none");
-    this.displayFormTarget.classList.remove("d-none");
-    this.currentFooterTarget.classList.add("d-none");
-    this.displayFooterTarget.classList.remove("d-none");
+    if (this.hasDisplayFormTarget) {
+      this.displayFormTarget.classList.remove("d-none");
+    }
+    if (this.hasCurrentFooterTarget) {
+      this.currentFooterTarget.classList.add("d-none");
+    }
+    if (this.hasDisplayFooterTarget) {
+      this.displayFooterTarget.classList.remove("d-none");
+    }
   }
 
   submit() {
-    this.formTarget.submit();
+    if (this.hasDisplayFormTarget) {
+      this.formTarget.submit();
+    }
     this.currentInfoTarget.classList.remove("d-none");
-    this.displayFormTarget.classList.add("d-none");
-    this.currentFooterTarget.classList.remove("d-none");
-    this.displayFooterTarget.classList.add("d-none");
+    if (this.hasDisplayFormTarget) {
+      this.displayFormTarget.classList.add("d-none");
+    }
+      if (this.hasCurrentFooterTarget) {
+      this.currentFooterTarget.classList.remove("d-none");
+    }
+      if (this.hasDisplayFooterTarget) {
+      this.displayFooterTarget.classList.add("d-none");
+    }
   }
 
   clear() {
     this.currentInfoTarget.classList.remove("d-none");
-    this.displayFormTarget.classList.add("d-none");
-    this.currentFooterTarget.classList.remove("d-none");
-    this.displayFooterTarget.classList.add("d-none");
+    if (this.hasDisplayFormTarget) {
+      this.displayFormTarget.classList.add("d-none");
+    }
+    if (this.hasCurrentFooterTarget) {
+      this.currentFooterTarget.classList.remove("d-none");
+    }
+    if (this.hasDisplayFooterTarget) {
+      this.displayFooterTarget.classList.add("d-none");
+    }
   }
 }

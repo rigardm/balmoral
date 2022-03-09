@@ -1,0 +1,12 @@
+<h1>New Spending</h1>
+
+<div id="new-spending-modal" class="new-spending d-none" data-new-spending-modal-target="newSpendingModal">
+  <i id="close-modal" class="fas fa-chevron-circle-left admin-icones" data-action="click->new-spending-modal#close"></i>
+  <div class="new-spending-details">
+    <div class="spending-info d-flex flex-column" data-new-spending-modal-target="modalInfo">
+      <div>
+        <%= render 'spendings/spending_form', house: @house, spending: @spending %>
+      </div>
+    </div>
+  </div>
+</div>
