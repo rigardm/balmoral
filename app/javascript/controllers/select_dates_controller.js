@@ -21,8 +21,10 @@ export default class extends Controller {
 
   connect() {
     const today = document.querySelector('[class*="today"]');
-    const day_display = parseInt(today.dataset.date.slice(-2), 10);
-    today.insertAdjacentHTML('beforeend', `<div class="day-today">${day_display}</div>`);
+    if (today) {
+      const day_display = parseInt(today.dataset.date.slice(-2), 10);
+      today.insertAdjacentHTML('beforeend', `<div class="day-today">${day_display}</div>`);
+    }
   }
 
   select(event) {

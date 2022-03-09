@@ -15,7 +15,10 @@
     <div class="filter-tab">
       <h2>filtrer</h2>
       <% current_user.house.tribes.each do |tribe| %>
-        <%= cl_image_tag(tribe.admin.photo.key, :class => "avatar-bordered #{tribe.color}", :'data-action'=> "click->spendings-filter#selectTribe") %>
+        <%= cl_image_tag(tribe.admin.photo.key,
+        :class => "avatar-bordered #{tribe.color}",
+        :'data-action'=> "click->spendings-filter#selectTribe",
+        :'data-spendings-filter-target'=> "avatar") %>
       <% end %>
       <p class="m-0" data-action= "click->spendings-filter#showAll">Tous</p>
     </div>

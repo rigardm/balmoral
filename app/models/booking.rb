@@ -1,27 +1,40 @@
 class Booking < ApplicationRecord
   belongs_to :house
-  belongs_to :user
+  belongs_to :user, optional: true
+  belongs_to :platform, optional: true
   delegate :tribe, to: :user
 
-  validates :arrival, :departure, :status, presence: true
+  before_create :create_booking_check
+  after_create :validated_status_for_admins_and_platforms
+  before_update :update_booking_check
+  before_destroy :destroy_booking_check
+
   validate :credits_must_be_sufficient
+
+  validates :arrival, :departure, :status, presence: true
+  validates :user, presence: true, unless: :platform?
+  validates :platform, presence: true, unless: :user?
+
+  scope :pending, -> { where(status: :pending) }
+  scope :validated, -> { where(status: :validated) }
+  scope :declined, -> { where(status: :declined) }
 
   enum status: {
     pending: 0,
     validated: 1,
     declined: 2
   }
-  scope :pending, -> { where(status: :pending) }
-  scope :validated, -> { where(status: :validated) }
-  scope :declined, -> { where(status: :declined) }
 
-  before_create :create_booking_check
-  after_create :validated_status_for_admin
-  before_update :update_booking_check
-  before_destroy :destroy_booking_check
+  def platform?
+    platform.present?
+  end
 
-  def validated_status_for_admin
-    update_column(:status, "validated") if user.admin?
+  def user?
+    user.present?
+  end
+
+  def validated_status_for_admins_and_platforms
+    update_column(:status, "validated") if (user? && user.admin?) || platform?
   end
 
   def create_booking_check
@@ -67,6 +80,7 @@ class Booking < ApplicationRecord
   end
 
   def destroy_booking_check
+    return unless user?
     return unless validated?
 
     user.tribe.credits += total_price
@@ -84,11 +98,15 @@ class Booking < ApplicationRecord
   end
 
   def credits_are_sufficient?
+    return unless user # in case booking has a platform rather than a user
+
     set_total_price
     user.tribe.credits >= total_price
   end
 
   def credits_must_be_sufficient
+    return unless user # in case booking has a platform rather than a user
+
     set_total_price
     errors.add("Crédits insuffisants pour cette réservation") if user.tribe.credits < total_price
   end

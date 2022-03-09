@@ -14,6 +14,9 @@
   &.tribe-green {
     border-color: $tribe_green;
   }
+  &.platform {
+    border-color: $platform;
+  }
 }
 
 .avatar-bordered {
@@ -25,12 +28,27 @@
   border: 3px solid;
   &.tribe-blue {
     border-color: $tribe_blue;
+    &.selected {
+      box-shadow: 4px 4px 16px $tribe_blue;
+    }
   }
   &.tribe-red {
     border-color: $tribe_red;
+    &.selected {
+      box-shadow: 4px 4px 16px $tribe_red;
+    }
   }
   &.tribe-green {
     border-color: $tribe_green;
+    &.selected {
+      box-shadow: 4px 4px 16px $tribe_green;
+    }
+  }
+  &.platform {
+    border-color: $platform;
+    &.selected {
+      box-shadow: 4px 4px 16px $platform;
+    }
   }
 }
 
