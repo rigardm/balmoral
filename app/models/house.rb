@@ -29,6 +29,7 @@ class House < ApplicationRecord
     tribes.each do |tribe|
       unless tribe.color == "system"
         result[tribe.admin.first_name] = spendings.where(tribe: tribe).sum(&:amount) - (spendings.sum(&:amount) * tribe.shareholding)
+        result[:colors] = result[:colors] ? result[:colors] << tribe.colorhexa : [tribe.colorhexa]
       end
     end
     result
