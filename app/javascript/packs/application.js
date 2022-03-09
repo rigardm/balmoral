@@ -21,12 +21,12 @@ document.addEventListener("turbolinks:load", ()=>{
   flashesFadeOut();
 })
 
-//document.addEventListener("turbolinks:before-cache", () => {
+document.addEventListener("turbolinks:before-cache", () => {
   // tu cherches le ou les éléments qui ont la classe fade-in
-  //document.querySelectorAll('[class*="fade-in"]').forEach( (element) => {
- // element.classList.remove('fade-in');
- // element.style.opacity = "0.5";
-//  });
+  document.querySelectorAll('[class*="fade-in"]').forEach( (element) => {
+ element.classList.remove('fade-in');
+ element.style.opacity = 0;
+  });
   // si tu en trouve un ou plusieurs, tu leurs enlève la classe
   // lui mettre une opacité à 0 quand il a pas la classe
-//})
+})
