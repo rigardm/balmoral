@@ -35,7 +35,7 @@ export default class extends Controller {
         document.querySelector('#spendings').insertAdjacentHTML('afterbegin', data.spending)
         this.formTarget.reset()
       } else {
-        this.formTarget.outerHTML = data.html
+        this.formTarget.outerHTML = data.form
       }
     }
   }

@@ -6,7 +6,7 @@
     </div>
     <div class="second">
       <p>Payé par <%= current_user == spending.tribe.admin ? "Vous" : "#{spending.tribe.admin.first_name}" %></p>
-      <p>le <%= spending.date.strftime('%d/%m/%y') %></p>
+      <p>le <%= spending.date&.strftime('%d/%m/%y') %></p>
     </div>
   </div>
   <div class="chevron">
