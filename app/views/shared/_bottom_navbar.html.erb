@@ -5,18 +5,18 @@
         <p class="picture-caption">Accueil</p>
       <% end %>
 
-      <%= link_to house_channel_path(current_user.house, current_user.house.channels.last, :anchor => "last"), class: "icon-link" do %>
+      <%= link_to house_channel_path(current_user.house, current_user.house.channels.last, :anchor => "last"), class: "icon-link", data: { turbo: false } do %>
         <%= inline_svg_tag('Chat_light.svg')%>
         <p class="picture-caption">Messages</p>
       <% end %>
 
 
-      <%= link_to calendar_path(current_user.house), class: "icon-link" do %>
+      <%= link_to calendar_path(current_user.house), class: "icon-link", data: { turbo: false } do %>
       <%= inline_svg_tag('Date_range_light.svg')%>
       <p class="picture-caption">Calendrier</p>
       <% end %>
 
-      <%= link_to house_spendings_path(current_user.tribe), class: "icon-link" do %>
+      <%= link_to house_spendings_path(current_user.tribe), class: "icon-link", data: { turbo: false } do %>
       <i class="fas fa-euro-sign"></i>
       <p class="picture-caption">Dépenses</p>
       <% end %>

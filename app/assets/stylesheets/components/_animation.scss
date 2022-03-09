@@ -1,3 +1,13 @@
+
+.body-fade-in {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 .fade-out {
   animation: fadeOut 1000ms forwards;
 }
@@ -5,12 +15,4 @@
 @keyframes fadeOut {
   0% { opacity: 1; }
   100% { opacity: 0; }
-}
-.fade-in {
-  animation: fadeIn 1000ms forwards;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
 }
