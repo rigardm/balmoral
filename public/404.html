@@ -2,24 +2,57 @@
 <html>
 <head>
   <title>We are completely lost (404)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1" charset=utf-8 >
   <style>
+   body {
+     font-family: Arial, Helvetica, sans-serif;
+     font-weight: 200;
+     background-color: #FBC24C;
+     color: white;
+     text-align: center;
+   }
+   .avatar {
+     border-radius: 50%;
+     box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+   }
+
+   p{
+     font-size: 0.8em
+   }
+
+   .container {
+    width:90vw;
+    margin: 0 auto;
+   }
+
+
+   .footer{
+     position:fixed;
+     bottom:0;
+     padding-bottom: 4vh;
+     width:90vw;
+   }
+   img {
+    margin: auto;
+   }
+
   </style>
 </head>
 
-<body class="rails-default-error-page">
+<body>
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
+  <div class="container">
+     <div class= "content">
       <h1> Damn'it! You are lost!</h1>
-      <img src="avatar_surprised.png" alt="oh god!">
+      <img src="avatar_surprised.png" alt="oh god!" class="avatar">
       <h2>404</h2>
-      <p>You may have mistyped the address, old chap.</p>
-      <p>(or else, the app is broken)</p>
-      <p>(but it seems very unlikely)</p>
-
+      <h3>Vous vous êtes trompé dans l'adresse, old chap.</h3>
+      <p>(ou bien le site est cassé)</p>
+      <p>(mais cela paraît peu probable)</p>
     </div>
-    <p></p>
+  </div>
+  <div class="footer">
+    <img src="logo.svg" alt="yeah, this is us">
   </div>
 </body>
 </html>

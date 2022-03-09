@@ -10,7 +10,7 @@ text-align: left;
 align-self:flex-end;
 max-width: 70vw;
 border-radius: 8px;
-background-color: white;
+background: linear-gradient(-90deg, #80808012, transparent);
 box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 margin-top: 4vh;
 padding: 1vh;
@@ -22,7 +22,6 @@ padding: 1vh;
   max-width: 70vw;
   border-radius: 8px;
   background-color: $balmoral_background;
- 
   margin-top: 4vh;
   padding: 1vh;
   }

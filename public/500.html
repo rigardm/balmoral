@@ -2,21 +2,57 @@
 <html>
 <head>
   <title>My Goodness!! 500 !!</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1" charset=utf-8>
   <style>
+body {
+     font-family: Arial, Helvetica, sans-serif;
+     font-weight: 200;
+     background-color: #FBC24C;
+     color: white;
+     text-align: center;
+   }
+   .avatar {
+     border-radius: 50%;
+     box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+     width: 300px;
+     height: 300px;
+  }
 
+   p{
+     font-size: 0.8em
+   }
+   .container {
+    width:90vw;
+    margin: 0 auto;
+   }
+
+   .footer{
+     position:fixed;
+     bottom:0;
+     padding-bottom: 4vh;
+     width:90vw;
+   }
+   img {
+    margin: auto;
+   }
+  </style>
+</head>
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/500.html -->
-  <div>
+  <div class="container">
     <div>
-      <h1>Oh, My... We won't be home for tea, won't we ?</h1>
-         <img src="avatar_not_happy_at_all.png" alt="not happy at all">
+      <h1>Oh, My... </h1>
+         <img src="avatar_not_happy_at_all.png" alt="not happy at all" class="avatar">
       <h2>500</h2>
     </div>
-    <p>and I am here, standing in the rain, waiting for the server to answer...</p>
+     <h3>On ne sera jamais rentrés pour le thé, n'est-ce pas?</h3>
+    <p>dire que j'avais fait des scones...</p>
+  </div>
+  <div class="footer">
+    <img src="logo.svg" alt="yeah, this is us">
   </div>
 </body>
 </html>
