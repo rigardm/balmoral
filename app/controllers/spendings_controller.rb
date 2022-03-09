@@ -35,4 +35,11 @@ class SpendingsController < ApplicationController
   def spending_params
     params.require(:spending).permit(:amount, :name, :category, :date, :details)
   end
+
+  def send_message(content)
+    @message = Message.new(content: content)
+    @message.channel = current_user.house.channels.last
+    @message.user = User.find_by(last_name: 'System-Bot')
+    @message.save
+  end
 end

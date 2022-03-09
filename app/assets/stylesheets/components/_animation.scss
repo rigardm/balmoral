@@ -1,5 +1,5 @@
 
-.body-fade-in {
+.fade-in {
   animation: fadeIn 1s;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .fade-out {
-  animation: fadeOut 1000ms forwards;
+  animation: fadeOut 2s forwards;
 }
 
 @keyframes fadeOut {

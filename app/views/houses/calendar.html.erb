@@ -9,7 +9,7 @@
       <%end%>
     </span>
   </div>
-  <div class="calendar-container fade-in" data-action = "touchstart->swipe#identifyswipe touchend->swipe#identifyswipe">
+  <div class="calendar-container" data-action = "touchstart->swipe#identifyswipe touchend->swipe#identifyswipe">
       <%= month_calendar(events: @bookings, attribute: :arrival, end_attribute: :departure) do |date, bookings| %>
         <%= date %>
         <% bookings.each do |booking| %>
