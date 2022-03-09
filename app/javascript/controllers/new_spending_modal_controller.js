@@ -17,6 +17,7 @@ export default class extends Controller {
     close(event) {
       this.newSpendingModalTarget.classList.add('d-none');
       this.newSpendingOverlayTarget.classList.add('d-none');
+      this.newSpendingOverlayTarget.classList.add('d-none');
     }
 
     async submit(evt) {
@@ -32,6 +33,7 @@ export default class extends Controller {
       if (data.valid) {
         this.close();
         document.querySelector('#spendings').insertAdjacentHTML('afterbegin', data.spending)
+        this.formTarget.reset()
       } else {
         this.formTarget.outerHTML = data.html
       }
