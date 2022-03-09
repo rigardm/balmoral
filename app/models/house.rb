@@ -16,8 +16,10 @@ class House < ApplicationRecord
   def spending_per_tribe
     result = {}
     tribes.each do |tribe|
-      result[tribe.admin.first_name] = spendings.where(tribe: tribe).sum(&:amount)
-      result[:colors] = result[:colors] ? result[:colors] << tribe.colorhexa : [tribe.colorhexa]
+      unless tribe.color == "system"
+        result[tribe.admin.first_name] = spendings.where(tribe: tribe).sum(&:amount)
+        result[:colors] = result[:colors] ? result[:colors] << tribe.colorhexa : [tribe.colorhexa]
+      end
     end
     result
   end
@@ -25,7 +27,9 @@ class House < ApplicationRecord
   def balance_per_tribe
     result = {}
     tribes.each do |tribe|
-      result[tribe.admin.first_name] = spendings.where(tribe: tribe).sum(&:amount) - (spendings.sum(&:amount) * tribe.shareholding)
+      unless tribe.color == "system"
+        result[tribe.admin.first_name] = spendings.where(tribe: tribe).sum(&:amount) - (spendings.sum(&:amount) * tribe.shareholding)
+      end
     end
     result
   end

@@ -33,7 +33,7 @@
   </head>
 
   <body>
-    <div class="app-container">
+    <div class="app-container<%= ' position-fixed' if params['controller'] == 'houses' && params["action"] == 'calendar' %>">
       <%= render 'shared/header' %>
       <%= render 'shared/flashes' %>
       <%= yield %>

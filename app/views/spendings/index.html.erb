@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container fade-in">
   <div class="header-buttons d-flex justify-content-center mb-4">
     <span class="icon-link" style= "opacity:0.4">
       <%= link_to house_spendings_path(@house) do %>
@@ -18,7 +18,7 @@
         <%= cl_image_tag(tribe.admin.photo.key,
         :class => "avatar-bordered #{tribe.color}",
         :'data-action'=> "click->spendings-filter#selectTribe",
-        :'data-spendings-filter-target'=> "avatar") %>
+        :'data-spendings-filter-target'=> "avatar") unless tribe.color == "system" %>
       <% end %>
     </div>
     <div id="spendings">
