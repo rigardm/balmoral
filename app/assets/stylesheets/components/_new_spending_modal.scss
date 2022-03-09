@@ -12,20 +12,15 @@
 
 .new-spending {
   position: absolute;
-  top: 14vh;
-
   .new-spending-details {
-    display: flex;
-    flex-direction: column;
-    height: 400px;
     justify-content: center;
+    padding-top: 7vh;
     border: 1px solid $balmoral_dark_grey;
-    border-radius: 8px;
     background-color: $balmoral_background;
+    background: linear-gradient(-50deg, #E7E7EE, #F3F3F7);
     color: $balmoral_dark_grey;
-    height: 70vh;
-    width: 80vw;
-    padding: 20px;
+    height: 100vh;
+    width: 100vw;
   }
   & p {
     margin: 0;
@@ -33,29 +28,22 @@
   }
 }
 
-.new-spending-modal-footer {
-  padding: 20px;
+.spending-info {
+  width: 80%;
+  height: 70%;
 }
 
-#close-modal {
+.new-spending-modal-footer {
+  padding: 10px;
+}
+
+.new-spending-header {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 1.5rem;
+  padding: 2vh;
 }
 
 // icones
 .admin-icones {
   color: $balmoral_yellow;
   font-size: 30px;
-}
-
-// simple form
-.spending-form-style {
-  color: $balmoral_icons;
-  // .form-control {
-  //   background: linear-gradient(-90deg, #80808012, transparent);
-  //   border-radius: 5px;
-  //   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  // }
 }
