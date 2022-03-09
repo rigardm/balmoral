@@ -2,7 +2,7 @@
   <% if message.user == current_user %>
     <div class="message-box-user">
       <a id = "last">
-      <div class = "message-author-<%= message.user.tribe.color %>">Vous    <span class = "message-time">  (il y a <%=time_ago_in_words(message.created_at)%>)</span></div>
+      <div class = "message-author-<%= message.user.tribe.color %>"><%= message.user.first_name %>  <span class = "message-time">  (il y a <%=time_ago_in_words(message.created_at)%>)</span></div>
       <div class="message-content"><%=message.content%></div>
       </a>
     </div>
@@ -24,7 +24,7 @@
 <%else%>
   <% if message.user == current_user %>
     <div class="message-box-user">
-      <div class = "message-author-<%= message.user.tribe.color %>">Vous    <span class = "message-time">  (il y a <%=time_ago_in_words(message.created_at)%>)</span></div>
+      <div class = "message-author-<%= message.user.tribe.color %>"><%= message.user.first_name %>   <span class = "message-time">  (il y a <%=time_ago_in_words(message.created_at)%>)</span></div>
       <div class="message-content"><%=message.content%></div>
     </div>
   <% elsif message.user.tribe.color == "system" %>
