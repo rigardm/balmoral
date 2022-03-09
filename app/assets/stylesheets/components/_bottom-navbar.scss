@@ -7,10 +7,8 @@
   padding-bottom: 10px;
 }
 
-.bottom-bar svg {
-  &.selected {
-    box-shadow: 4px 4px 16px $balmoral_yellow;
-  }
+.selected-nav {
+  color: $balmoral_yellow !important;
 }
 
 .icon-link {

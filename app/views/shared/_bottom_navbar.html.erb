@@ -1,23 +1,23 @@
 <div class="bottom-bar d-flex flex-row justify-content-center px-3" data-controller="navbar">
   <% if user_signed_in? %>
-      <%= link_to root_path, class: "icon-link", :'data-action'=> "click->navbar#select" do %>
-        <%= cl_image_tag('Home_light.png', 'data-navbar-target'=> "icon")%>
-        <p class="picture-caption">Accueil</p>
+      <%= link_to root_path, class: "icon-link" do %>
+        <%= image_tag('Home_light.png')%>
+        <p class="picture-caption" data-navbar-target="home">Accueil</p>
       <% end %>
 
-      <%= link_to house_channel_path(current_user.house, current_user.house.channels.last, :anchor => "last"), class: "icon-link", :'data-action'=> "click->navbar#select" do %>
-        <%= inline_svg_tag('Chat_light.svg', 'data-navbar-target'=> "icon")%>
-        <p class="picture-caption">Messages</p>
+      <%= link_to house_channel_path(current_user.house, current_user.house.channels.last, :anchor => "last"), class: "icon-link" do %>
+        <%= image_tag('Chat_light.png')%>
+        <p class="picture-caption" data-navbar-target="messages">Messages</p>
       <% end %>
 
-      <%= link_to calendar_path(current_user.house), class: "icon-link", :'data-action'=> "click->navbar#select" do %>
-      <%= inline_svg_tag('Date_range_light.svg', 'data-navbar-target'=> "icon")%>
-      <p class="picture-caption">Calendrier</p>
+      <%= link_to calendar_path(current_user.house), class: "icon-link" do %>
+      <%= image_tag('Date_range_light.png')%>
+      <p class="picture-caption" data-navbar-target="calendar">Calendrier</p>
       <% end %>
 
-      <%= link_to house_spendings_path(current_user.tribe), class: "icon-link", :'data-action'=> "click->navbar#select" do %>
-      <i class="fas fa-euro-sign", data-navbar-target="icon"></i>
-      <p class="picture-caption">Dépenses</p>
+      <%= link_to house_spendings_path(current_user.tribe), class: "icon-link" do %>
+      <%= image_tag('spendings.png')%>
+      <p class="picture-caption" data-navbar-target="spendings">Dépenses</p>
       <% end %>
   <% end %>
 </div>
