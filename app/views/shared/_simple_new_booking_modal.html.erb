@@ -3,21 +3,16 @@
   </div>
   <div class="modal-title-box">
     <div class="modal-back">
-      <i class="fas fa-chevron-circle-left admin-icones" data-action="click->booking-modal#closeBookingModal"></i>
+      <i class="fas fa-chevron-circle-left admin-icones" data-action="click->select-dates#cancel"></i>
     </div>
     <div class="modal-title">
       <h1>NOUVELLE RÉSERVATION</h1>
     </div>
   </div>
-  <div class="modal-margin">
-  </div>
   <div class="new-modal-content" data-select-dates-target="modalInfo">
   </div>
   <div class="modal-button">
-    <div class="booking-modal-action d-flex w-100 justify-content-around">
-      <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->select-dates#cancel" }) %>
-      <%= inline_svg_tag('check_validated.svg', data: { action: "click->select-dates#submit" }) %>
-    </div>
+    <%= inline_svg_tag('check_validated.svg', data: { action: "click->select-dates#submit" }) %>
   </div>
   <div class="new-modal-footer">
     <%= image_tag('modal_bottom.png') %>
