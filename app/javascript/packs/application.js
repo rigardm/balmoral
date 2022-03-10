@@ -18,12 +18,10 @@ import "bootstrap"
 
 import { flashesFadeOut } from '../components/flashes'
 import { hideNavbarOnKeyboardShow} from '../components/keyboard'
-import {ripple} from '../components/ripple'
 
 document.addEventListener("turbolinks:load", ()=>{
   flashesFadeOut();
   hideNavbarOnKeyboardShow();
-  ripple();
 })
 
 document.addEventListener("turbolinks:before-cache", () => {
