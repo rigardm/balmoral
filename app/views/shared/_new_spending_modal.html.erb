@@ -1,16 +1,20 @@
-<h1>New Spending</h1>
-
-<div class="new-spending d-none" data-new-spending-modal-target="newSpendingModal">
-  <div class="new-spending-header">
-    <i id="close-modal-spending" class="fas fa-chevron-circle-left admin-icones" data-action="click->new-spending-modal#close"></i>
+<div class="modal-container d-none" data-new-spending-modal-target="newSpendingModal">
+  <div class="modal-margin">
   </div>
-
-  <div class="new-spending-details d-flex">
-    <div class="spending-info" data-new-spending-modal-target="modalInfo">
-      <div>
-        <%= render 'spendings/spending_form', house: @house, spending: @spending %>
-        <%= inline_svg_tag('checking_boxes_illustration.svg') %>
-      </div>
+  <div class="modal-title-box">
+    <div class="modal-back">
+      <i class="fas fa-chevron-circle-left admin-icones" data-action="click->new-spending-modal#close"></i>
     </div>
+    <div class="modal-title">
+      <h1>NOUVELLE DÉPENSE</h1>
+    </div>
+  </div>
+  <div class="new-modal-content pt-1" data-new-spending-modal-target="modalInfo">
+    <div>
+        <%= render 'spendings/spending_form', house: @house, spending: @spending %>
+      </div>
+  </div>
+  <div class="new-modal-footer">
+    <%= image_tag('modal_bottom.png') %>
   </div>
 </div>

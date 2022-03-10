@@ -4,11 +4,6 @@ import { csrfToken } from "@rails/ujs"
 export default class extends Controller {
   static targets = ["newSpendingOverlay", "newSpendingModal", "openSpendingButton", "reset", "form"]
 
-    connect() {
-      // console.log("Hello from our first Stimulus controller")
-      console.log(this.formTarget.action)
-    }
-
     show(event) {
       this.newSpendingModalTarget.classList.remove('d-none');
       this.newSpendingOverlayTarget.classList.remove('d-none');

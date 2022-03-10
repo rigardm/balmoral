@@ -41,7 +41,7 @@
             <%= image_tag('validated.png', size: "80x80") %>
             <p>Validée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
           <% elsif booking.pending? %>
-            <%= image_tag('validated.png', size: "80x80") %>
+            <%= image_tag('pending.png', size: "80x80") %>
             <p><em>En attente de validation</em></p>
           <% elsif booking.declined? %>
             <%= image_tag('cancelled.png', size: "80x80") %>
@@ -70,11 +70,9 @@
           <div class="d-flex w-50 justify-content-between">
             <%= link_to admin_decline_booking_path(booking), method: :patch do %>
               <%= image_tag('canceled.png', size: "50x50", data: { action: "click->rename-booking#clear" }) %>
-              <p>Refuser</p>
             <% end %>
             <%= link_to admin_validate_booking_path(booking), method: :patch do %>
               <%= image_tag('validated.png', size: "50x50") %>
-              <p>Valider</p>
             <% end %>
           </div>
         <% end %>
