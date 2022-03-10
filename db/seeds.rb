@@ -293,7 +293,7 @@ Booking.create!(
   arrival: Date.new(2022, 6, 11),
   departure: Date.new(2022, 6, 17),
   house: chaumiere,
-  user: jacques,
+  user: jacques
 )
 # as Jacques is admin, his tribe credits have been updated by #create! method
 
@@ -301,13 +301,14 @@ Booking.create!(
   arrival: Date.new(2022, 6, 20),
   departure: Date.new(2022, 6, 22),
   house: chaumiere,
-  user: sophie
+  user: sophie,
+  status: "validated"
 )
+sophie.tribe.credits -= Booking.last.total_price
 
 Booking.create!(
   arrival: Date.new(2022, 7, 9),
   departure: Date.new(2022, 7, 10),
-  # total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
   user: jeremy
 )
@@ -329,9 +330,16 @@ Booking.create!(
 )
 
 Booking.create!(
+  arrival: Date.new(2022, 8, 14),
+  departure: Date.new(2022, 8, 20),
+  house: chaumiere,
+  user: michel
+)
+sophie.tribe.credits -= Booking.last.total_price
+
+Booking.create!(
   arrival: Date.new(2022, 8, 21),
   departure: Date.new(2022, 8, 27),
-  # total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
   user: nicolas
 )
@@ -339,7 +347,6 @@ Booking.create!(
 Booking.create!(
   arrival: Date.new(2022, 9, 4),
   departure: Date.new(2022, 9, 17),
-  # total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
   user: nathalie
 )
@@ -347,7 +354,6 @@ Booking.create!(
 Booking.create!(
   arrival: Date.new(2022, 10, 28),
   departure: Date.new(2022, 11, 1),
-  # total_price: (departure - arrival) * chaumiere.daily_price,
   house: chaumiere,
   user: elsa,
   status: "validated"
@@ -365,6 +371,7 @@ booking_user = Booking.where(platform: nil).count
 puts "created #{Booking.count} bookings. Including #{booking_user} from users and #{booking_platform} from platforms "
 
 puts "7 out of 9: SEED SPENDINGS"
+
 Spending.create!(
   amount: 96,
   name: "Femme de ménage",
@@ -373,6 +380,7 @@ Spending.create!(
   details: '',
   tribe: tribu_verte
 )
+
 Spending.create!(
   amount: 753,
   name: "Taxe foncière",
@@ -381,6 +389,7 @@ Spending.create!(
   details: 'Admin',
   tribe: tribu_bleue
 )
+
 Spending.create!(
   amount: 160,
   name: "Plombier",
@@ -389,14 +398,16 @@ Spending.create!(
   details: "Problème de fuite sur l'évacuation du lave-vaisselle",
   tribe: tribu_bleue
 )
+
 Spending.create!(
   amount: 1880,
   name: "Chaudière",
   category: 'Travaux',
   date: Date.new(2022, 1, 31),
   details: 'Chaudière HS. Remplacement obligatoire. Nouveau modèle avec thermostat variable.',
-  tribe: tribu_rose
+  tribe: tribu_verte
 )
+
 Spending.create!(
   amount: 96,
   name: "Femme de ménage",
@@ -405,6 +416,7 @@ Spending.create!(
   details: '',
   tribe: tribu_verte
 )
+
 Spending.create!(
   amount: 80,
   name: "Jardinier",
@@ -413,6 +425,7 @@ Spending.create!(
   details: '',
   tribe: tribu_bleue
 )
+
 Spending.create!(
   amount: 96,
   name: "Femme de ménage",
@@ -421,6 +434,7 @@ Spending.create!(
   details: '',
   tribe: tribu_verte
 )
+
 Spending.create!(
   amount: 80,
   name: "Electricité janvier",
@@ -429,6 +443,7 @@ Spending.create!(
   details: '',
   tribe: tribu_bleue
 )
+
 Spending.create!(
   amount: 80,
   name: "Electricité février",
@@ -437,6 +452,26 @@ Spending.create!(
   details: '',
   tribe: tribu_bleue
 )
+
+Spending.create!(
+  amount: 534,
+  name: 'Bières IPA',
+  category: 'Bar',
+  date: Date.new(2022, 2, 28),
+  details: "Oui, je sais, ça peut paraître beaucoup. Mais ça picole sévère dans la famille.
+   Et puis c'est pour la SEED: le pie chart est plus joli comme ça",
+  tribe: tribu_bleue
+)
+
+Spending.create!(
+  amount: 50,
+  name: "Calvados",
+  category: 'Bar',
+  date: Date.new(2022, 3, 5),
+  details: "Le stock de Calvados était très bas. J'ai du réagir vite...",
+  tribe: tribu_verte
+)
+
 Spending.create!(
   amount: 80,
   name: "Electricité mars",
@@ -445,6 +480,16 @@ Spending.create!(
   details: '',
   tribe: tribu_bleue
 )
+
+Spending.create!(
+  amount: 120,
+  name: "Hendrick's & Hibiki",
+  category: 'Bar',
+  date: Date.new(2022, 3, 12),
+  details: "J'ai racheté 2 bouteilles de whisky japonais et une bouteille de Hendrick's",
+  tribe: tribu_rose
+)
+
 puts "created #{Spending.count} #{'spending'.pluralize(Spending.count)}"
 
 puts "8 out of 9: SEED CHANNELS"
@@ -452,59 +497,82 @@ general = Channel.create!(
   name: "general",
   house: chaumiere
 )
+
 puts "created #{Channel.count} #{'channel'.pluralize(Channel.count)}"
 
 puts "9 out of 9: SEED MESSAGES"
 Message.create!(
-  content: "Salut la familia👋! La chaudière était kaput, j'ai du la faire remplacer. Ca douille un peu: 3500 balles!😖",
+  content: "Salut la familia👋! J'ai du remplacer la chaudière (3500€)",
+  user: michel,
+  channel: general
+)
+
+Message.create!(
+  content: "3500 balles!! Ca douille. Aïe aïe aïe. 😖",
   user: jacques,
   channel: general
 )
+
 Message.create!(
   content: "Jacques, on sera bien là à 10h samedi pour récupérer les clefs",
   user: nathalie,
   channel: general
 )
+
 Message.create!(
   content: "Super weekend avec les enfants qui ont fait leur premier stage de kite.",
   user: sophie,
   channel: general
 )
+
 Message.create!(
   content: "Le jardinier a planté 3 nouveaux pins du côté de la palissade.🌲🌲🌲",
   user: nathalie,
   channel: general
 )
+
 Message.create!(
   content: "J'ai changé la photo de la piscine sur AirBNB",
   user: michel,
   channel: general
 )
+
 Message.create!(
   content: "Bon anniv Nico!!! (de la part de TOUTES les cousines)😘🎂🎉🎁",
   user: elsa,
   channel: general
 )
+
 Message.create!(
   content: "Oups! J'ai cassé le filet de badminton. J'en rapporte un neuf à l'Ascension.",
   user: jeremy,
   channel: general
 )
+
+Message.create!(
+  content: "By Jove! Elsa a réservé du 28/10 au 01/11 !",
+  user: babeth,
+  channel: general
+)
+
 Message.create!(
   content: "Quelqu'un saurait où est le double du cadenas du tandem?",
   user: nicolas,
   channel: general
 )
+
 Message.create!(
   content: "Dans ton casier 🙄",
   user: oscar,
   channel: general
 )
+
 Message.create!(
   content: "@Laure: il y a un stage de tir à l'arc 🏹 au Croquan pendant les vacances de Pâques",
   user: nicolas,
   channel: general
 )
+
 puts "created #{Message.count} #{'message'.pluralize(Message.count)}"
 
 puts "DONE SEEDING. HAVE A GOOD DAY!"
