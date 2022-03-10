@@ -100,3 +100,41 @@
   color: $balmoral_yellow;
   font-size: 30px;
 }
+
+.credit-line-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.credit-base-line {
+  width: 90%;
+  height: 20px;
+  background-color: $balmoral_light_gray;
+  box-shadow: inset 0px 0px 10px rgba(150, 150, 150, 0.9);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  .credit-balance-line {
+    // width: 45%; // derived from 90 / 200 (credit balance / credit base)
+    height : 20px;
+    background-color: $tribe-green;
+    box-shadow: 0px 0px 10px rgba(150,150,150,0.9);
+    display : flex;
+    justify-content: end;
+    align-items: center;
+    border-radius : 10px;
+    .credit-price-line {
+      // width : 22.22%; // derived from 20 / 90 (credit price / credit balance)
+      height : 20px;
+      background-color : $balmoral_yellow;
+      box-shadow: 0px 0px 10px rgba(150,150,150,0.9);
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      border-radius: 0 10px 10px 0;
+    }
+  }
+}
