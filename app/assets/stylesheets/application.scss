@@ -15,6 +15,7 @@
 @import "pages/index";
 
 .app-container {
+  margin-top: $nav-height;
   width: 100vw;
   background-color: $balmoral_background;
 }
