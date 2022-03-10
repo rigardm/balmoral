@@ -8,15 +8,15 @@
   .today {
     background: $balmoral_background;
   }
-  i {
-    color: $balmoral_dark_grey;
-    margin-right: 1vh;
-  }
 }
 
 .calendar-heading {
   display:flex;
   justify-content: space-between;
+  i {
+    color: $balmoral_dark_grey;
+    margin-right: 1vh;
+  }
 }
 
 .table >tbody {

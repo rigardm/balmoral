@@ -28,25 +28,56 @@
     <% end %>
   </div>
   <div class="new-modal-content">
-    <div class="d-flex align-items-center" data-rename-booking-target="currentInfo">
-      <div class="modal-dates col-7 p-2">
-        <h2>du <strong><%= I18n.l(booking.arrival, format: '%A %d %B') %></strong></h2>
-        <h2> au <strong><%=  I18n.l(booking.departure, format: '%A %d %B') %></strong></h2>
-        <p>(<%= booking.nb_days %> jours)</p>
+    <div class="d-flex flex-column justify-content-start align-items-start" data-rename-booking-target="currentInfo">
+      <%# DATES AND STATUS DIV %>
+      <div class="d-flex align-items-center">
+        <div class="modal-dates col-7 p-2">
+          <h2>du <strong><%= I18n.l(booking.arrival, format: '%A %d %B') %></strong></h2>
+          <h2> au <strong><%=  I18n.l(booking.departure, format: '%A %d %B') %></strong></h2>
+          <p>(<%= booking.nb_days %> jour<%= booking.nb_days == 1 ? "" : "s" %>)</p>
+        </div>
+        <% if booking.user? %>
+          <div class="d-flex justify-content-evenly col-5">
+            <div>
+            <% if booking.validated? %>
+              <%= image_tag('validated.png', size: "80x80") %>
+              <p>Validée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+            <% elsif booking.pending? %>
+              <%= image_tag('pending.png', size: "80x80") %>
+              <p><em>En attente de validation</em></p>
+            <% elsif booking.declined? %>
+              <%= image_tag('cancelled.png', size: "80x80") %>
+              <p>Refusée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
+            <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <% if booking.user? %>
-        <div class="d-flex justify-content-evenly col-5">
-          <div>
-          <% if booking.validated? %>
-            <%= image_tag('validated.png', size: "80x80") %>
-            <p>Validée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
-          <% elsif booking.pending? %>
-            <%= image_tag('pending.png', size: "80x80") %>
-            <p><em>En attente de validation</em></p>
-          <% elsif booking.declined? %>
-            <%= image_tag('cancelled.png', size: "80x80") %>
-            <p>Refusée le <%= booking.updated_at.to_date.strftime('%d/%m/%y') %></p>
-          <% end %>
+
+      <%# TWO CREDIT INFO DIVS %>
+      <% if booking.user? && current_user.admin? && booking.user.tribe == current_user.tribe && booking.pending? %>
+        <% credit_base = (House::CREDIT_BASE * current_user.tribe.shareholding).round %>
+        <% credit_price = booking.total_price %>
+        <% credit_balance = current_user.tribe.credits %>
+        <div class="mt-3">
+          <h2 class="credit-balance text-start"><strong>Crédits</strong></h2>
+          <h3 class="d-none credit-balance text-start"><span class="<%= booking.tribe.color %>-text"><strong><%= credit_base - credit_balance %></strong></span> crédits consommés</h3>
+          <h3 class="d-none credit-balance text-start"><span class="balmoral-yellow-text"><strong><%= credit_price %></strong></span> crédits requis</h3>
+          <h3 class="d-none credit-balance text-start"><strong><%= credit_balance - credit_price %></strong> crédits restants après réservation</h3>
+        </div>
+        <div class="credit-line-wrapper">
+          <div class="credit-base-line">
+            <div class="credit-consumed-after <%= booking.tribe.color %>" style="width: <%= 100 * (credit_base - credit_balance + credit_price) / credit_base %>%">
+              <div class="credit-consumed-before" style="width: <%= 100 * (credit_base - credit_balance) / (credit_base - credit_balance + credit_price) %>%">
+                <span><%= credit_base - credit_balance %></span>
+              </div>
+              <div class="credit-price-line" style="width: <%= 100 * credit_price / (credit_base - credit_balance + credit_price) %>%">
+                <span><%= credit_price %></span>
+              </div>
+            </div>
+            <div class="credit-remaining" style="width: <%= 100 * (credit_balance - credit_price) / credit_base %>%">
+              <span><%= credit_balance - credit_price %></span>
+            </div>
           </div>
         </div>
       <% end %>
