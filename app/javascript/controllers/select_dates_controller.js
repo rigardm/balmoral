@@ -81,7 +81,6 @@ export default class extends Controller {
         const depDate = new Date(departureDate);
         const totalPrice = ((depDate - arrDate) / (60000 * 60 * 24) + 1) * this.dailyPriceValue;
         const creditBalance = this.tribeCreditBalanceValue;
-        const tribeCreditBase = this.tribeCreditBaseValue;
         if (creditBalance >= totalPrice) {
           // credits are sufficient to book - so we can proceed with the booking in 4 steps
           // 1. highlight dates in the booking
@@ -98,7 +97,7 @@ export default class extends Controller {
           this.arrivalTarget.value = arrivalDate;
           this.departureTarget.value = departureDate;
           // 4. insert HTML in the new booking modal as a new booking recap
-          const html = this.#fillBookingModal(arrDate, depDate, totalPrice, creditBalance);
+          const html = this.#fillBookingModal(arrDate, depDate, totalPrice, creditBalance, this.tribeCreditBaseValue, this.tribeColorValue);
           this.modalInfoTarget.insertAdjacentHTML('afterbegin', html);
         } else {
           // HERE: credits are not sufficient enough.
@@ -161,7 +160,7 @@ export default class extends Controller {
     window.location.reload();
   }
 
-  #fillBookingModal(arrDate, depDate, creditPrice, creditBalance, tribeCreditBase, tribeColor) {
+  #fillBookingModal(arrDate, depDate, creditPrice, creditBalance, creditBase, color) {
     const arr = arrDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
     const dep = depDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
     const nb_of_days = ((depDate - arrDate) / (60000 * 60 * 24) + 1);
@@ -204,9 +203,9 @@ export default class extends Controller {
       <p class="credit-balance text-start tribe-green"><span class="tribe-green-text"><strong>${creditBalance - creditPrice}</strong></span> crédits restants</p>
     </div>
     <div class="credit-line-wrapper">
-      <div class="credit-base-line" width="">
-        <div class="credit-balance-line" width="${creditBalance / tribeCreditBase}" color="${tribeColor}">
-          <div class="credit-price-line" width="${creditPrice / creditBalance}">
+      <div class="credit-base-line">
+        <div class="credit-balance-line" style="width: ${100 * creditBalance / creditBase}%; color=${color}">
+          <div class="credit-price-line" style="width: ${100 * creditPrice / creditBalance}%">
           </div>
         </div>
       </div>
