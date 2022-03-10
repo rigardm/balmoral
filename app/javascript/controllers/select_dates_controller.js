@@ -17,7 +17,9 @@ export default class extends Controller {
   ]
   static values = {
     dailyPrice: Number,
-    tribeCreditBalance: Number
+    tribeCreditBalance: Number,
+    tribeCreditBase: Number,
+    tribeColor: String
    }
 
   connect() {
@@ -95,7 +97,7 @@ export default class extends Controller {
           this.arrivalTarget.value = arrivalDate;
           this.departureTarget.value = departureDate;
           // 4. insert HTML in the new booking modal as a new booking recap
-          const html = this.#fillBookingModal(arrDate, depDate, totalPrice, creditBalance);
+          const html = this.#fillBookingModal(arrDate, depDate, totalPrice, creditBalance, this.tribeCreditBaseValue, this.tribeColorValue);
           this.modalInfoTarget.insertAdjacentHTML('afterbegin', html);
         } else {
           // HERE: credits are not sufficient enough.
@@ -158,7 +160,7 @@ export default class extends Controller {
     window.location.reload();
   }
 
-  #fillBookingModal(arrDate, depDate, totalPrice, creditBalance) {
+  #fillBookingModal(arrDate, depDate, creditPrice, creditBalance, creditBase, color) {
     const arr = arrDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
     const dep = depDate.toLocaleString('fr-FR', { weekday:"long", day: '2-digit', month: 'long' });
     const nb_of_days = ((depDate - arrDate) / (60000 * 60 * 24) + 1);
@@ -197,13 +199,13 @@ export default class extends Controller {
     <div class=" px-3 py-1">
       <p class="credit-balance text-start"><strong>Crédits:</strong></p>
       <p class="credit-balance text-start"><strong>${creditBalance}</strong> crédits disponibles</p>
-      <p class="credit-balance text-start"><span class="balmoral-yellow-text"><strong>${totalPrice}</strong></span> crédits requis</p>
-      <p class="credit-balance text-start tribe-green"><span class="tribe-green-text"><strong>${creditBalance - totalPrice}</strong></span> crédits restants</p>
+      <p class="credit-balance text-start"><span class="balmoral-yellow-text"><strong>${creditPrice}</strong></span> crédits requis</p>
+      <p class="credit-balance text-start"><span class="${color}-text"><strong>${creditBalance - creditPrice}</strong></span> crédits restants</p>
     </div>
     <div class="credit-line-wrapper">
       <div class="credit-base-line">
-        <div class="credit-balance-line">
-          <div class="credit-price-line">
+        <div class="credit-balance-line ${color}" style="width: ${100 * creditBalance / creditBase}%">
+          <div class="credit-price-line" style="width: ${100 * creditPrice / creditBalance}%">
           </div>
         </div>
       </div>

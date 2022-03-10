@@ -1,4 +1,4 @@
-<div class="simple-calendar" data-controller="select-dates" data-select-dates-daily-price-value="<%= @house.daily_price %>" data-select-dates-tribe-credit-balance-value="<%= current_user.tribe.credits %>">
+<div class="simple-calendar" data-controller="select-dates" data-select-dates-daily-price-value="<%= @house.daily_price %>" data-select-dates-tribe-credit-balance-value="<%= current_user.tribe.credits %>" data-select-dates-tribe-credit-base-value="<%= (House::CREDIT_BASE * current_user.tribe.shareholding).round %>" data-select-dates-tribe-color-value="<%= current_user.tribe.color %>">
   <div class="calendar-heading">
     <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
     <span>
