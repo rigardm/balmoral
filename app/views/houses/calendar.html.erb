@@ -1,15 +1,15 @@
-<div class= "container" style="overflow:hidden" data-controller="swipe">
+<div class= "container fade-in" style="overflow:hidden" data-controller="swipe">
   <div class="header-buttons d-flex justify-content-center mb-4">
     <span class="icon-link" style= "opacity:0.4">
       <%= inline_svg_tag('Date_range_light.svg') %>
     </span>
     <span class="icon-link">
-      <%= link_to house_bookings_path(@house), {:"data-swipe-target" => "listbutton"} do %>
+      <%= link_to house_bookings_path(@house), {:"data-swipe-target" => "listbutton", class:"button"} do %>
         <%= inline_svg_tag('sort.svg') %>
       <%end%>
     </span>
   </div>
-  <div class="calendar-container" data-action = "touchstart->swipe#identifyswipe touchend->swipe#identifyswipe">
+  <div class="calendar-container fade-in" data-action = "touchstart->swipe#identifyswipe touchend->swipe#identifyswipe">
       <%= month_calendar(events: @bookings, attribute: :arrival, end_attribute: :departure) do |date, bookings| %>
         <%= date %>
         <% bookings.each do |booking| %>

@@ -79,7 +79,7 @@
 }
 
 .booking-info {
-  height: 37vh;
+  height: 44vh;
   padding: 20px;
 }
 
@@ -94,6 +94,20 @@
   gap: 20px;
 }
 
+.credit-balance {
+  .balmoral-yellow-text {
+    color: $balmoral_yellow;
+  }
+  .tribe-green-text {
+    color: $tribe-green;
+  }
+  .tribe-blue-text {
+    color: $tribe-blue;
+  }
+  .tribe-red-text {
+    color: $tribe-red;
+  }
+}
 
 // icones
 .admin-icones {

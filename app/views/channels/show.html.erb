@@ -1,7 +1,7 @@
-<div class="container" data-controller="channel-subscription" data-channel-subscription-channel-id-value="<%= @channel.id %>">
+<div class="container fade-in" data-controller="channel-subscription" data-channel-subscription-channel-id-value="<%= @channel.id %>">
   <h2> <%= @house.name %> : <%=@channel.name.capitalize%></h2>
         <div class = "message-board" data-channel-subscription-target="messages">
-            <% @channel.messages.each do |message| %>
+            <% @channel.messages.sort_by{|message| message.created_at}.each do |message| %>
             <%= render 'shared/message', message: message %>
             <% end %>
        </div>
