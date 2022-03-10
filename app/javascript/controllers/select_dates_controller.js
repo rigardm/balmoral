@@ -200,11 +200,11 @@ export default class extends Controller {
       <p class="credit-balance text-start"><strong>Crédits:</strong></p>
       <p class="credit-balance text-start"><strong>${creditBalance}</strong> crédits disponibles</p>
       <p class="credit-balance text-start"><span class="balmoral-yellow-text"><strong>${creditPrice}</strong></span> crédits requis</p>
-      <p class="credit-balance text-start tribe-green"><span class="tribe-green-text"><strong>${creditBalance - creditPrice}</strong></span> crédits restants</p>
+      <p class="credit-balance text-start"><span class="${color}-text"><strong>${creditBalance - creditPrice}</strong></span> crédits restants</p>
     </div>
     <div class="credit-line-wrapper">
       <div class="credit-base-line">
-        <div class="credit-balance-line" style="width: ${100 * creditBalance / creditBase}%; color=${color}">
+        <div class="credit-balance-line ${color}" style="width: ${100 * creditBalance / creditBase}%">
           <div class="credit-price-line" style="width: ${100 * creditPrice / creditBalance}%">
           </div>
         </div>
