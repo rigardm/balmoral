@@ -4,5 +4,5 @@ class Spending < ApplicationRecord
 
   validates :amount, :name, :category, :date, presence: true
 
-  CATEGORIES = ['Admin', 'Charges', 'Entretien', 'Travaux']
+  CATEGORIES = ['Admin', 'Bar', 'Charges', 'Entretien', 'Travaux']
 end

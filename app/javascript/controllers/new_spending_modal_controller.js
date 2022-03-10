@@ -18,6 +18,13 @@ export default class extends Controller {
       this.newSpendingModalTarget.classList.add('d-none');
       this.newSpendingOverlayTarget.classList.add('d-none');
       this.newSpendingOverlayTarget.classList.add('d-none');
+      this._clearForm();
+    }
+
+    _clearForm() {
+      this.formTarget.reset();
+      document.querySelectorAll('.invalid-feedback').forEach(item => item.remove())
+      document.querySelectorAll('.is-invalid').forEach(item => item.classList.remove('is-invalid'))
     }
 
     async submit(evt) {
@@ -29,6 +36,7 @@ export default class extends Controller {
 
       const response = await fetch(this.formTarget.action, options);
       const data = await response.json();
+      console.log(data)
 
       if (data.valid) {
         this.close();

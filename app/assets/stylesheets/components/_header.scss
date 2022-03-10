@@ -1,11 +1,13 @@
 .header {
   background: $balmoral_yellow;
-  height: 7vh;
+  height: $nav-height;
+  width: 100vw;
   align-items: flex-start;
   padding: 10px;
   padding-top: 1px;
-  position: sticky;
+  position: fixed;
   z-index: 100;
+  top: 0;
 }
 
 .header .logo img {

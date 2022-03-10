@@ -25,11 +25,18 @@ class SpendingsController < ApplicationController
   private
 
   def json_response
-    {
-      form: render_to_string(partial: 'spendings/spending_form.html', locals: { house: @spending.house, spending: @spending }),
-      spending: render_to_string(partial: 'shared/spending_preview.html', locals: { spending: @spending }),
-      valid: @spending.valid?
-    }
+    if @spending.valid?
+      {
+        form: render_to_string(partial: 'spendings/spending_form.html', locals: { house: @spending.house, spending: Spending.new }),
+        spending: render_to_string(partial: 'shared/spending_preview.html', locals: { spending: @spending }),
+        valid: true
+      }
+    else
+      {
+        form: render_to_string(partial: 'spendings/spending_form.html', locals: { house: @spending.house, spending: @spending }),
+        valid: false
+      }
+    end
   end
 
   def spending_params
