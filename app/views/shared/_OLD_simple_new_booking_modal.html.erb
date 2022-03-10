@@ -1,0 +1,22 @@
+<div id="new-booking-modal" class="simple-booking d-none" data-select-dates-target="newBookingModal">
+  <div class="calendar-booking-details d-flex flex-column">
+    <div class="booking-info" data-select-dates-target="modalInfo">
+    </div>
+
+    <div class="booking-modal-action d-flex w-100 justify-content-around">
+      <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->select-dates#cancel" }) %>
+      <%= inline_svg_tag('check_validated.svg', data: { action: "click->select-dates#submit" }) %>
+    </div>
+
+    <div class="booking-new-illustration">
+      <%= inline_svg_tag('booking_new.svg') %>
+    </div>
+  </div>
+</div>
+
+<div>
+  <%= simple_form_for([ @house, @booking ], html: { data: { select_dates_target:"form" } }) do |f| %>
+    <%= f.input :arrival, as: :date, html5: true, label: false, input_html: {:"data-select-dates-target"=> "arrival", :"class"=>"d-none"} %>
+    <%= f.input :departure, as: :date, html5: true, label: false, input_html: {:"data-select-dates-target"=> "departure", :"class"=>"d-none"} %>
+  <% end %>
+</div>
