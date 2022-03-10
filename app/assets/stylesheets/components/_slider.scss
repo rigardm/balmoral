@@ -6,7 +6,7 @@
 .slider-container {
   overflow-x: scroll;
   overflow-y: hidden;
-  margin-left: 15px;
+  padding: 0 15px;
   padding-bottom: 8px;
 }
 
@@ -39,6 +39,7 @@
   }
   &.tribe-blue {
     border-color: $tribe_blue;
+    margin-right: 0;
     .top-slider {
       background-color: $tribe_blue;
     }

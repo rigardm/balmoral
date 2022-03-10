@@ -7,7 +7,7 @@
       <h1>Les tribus de <%= @house.name %></h1>
     </div>
   </div>
-  <div class="slider-container">
+  <div class="slider-container d-flex">
     <div class="slider">
       <% @tribes.each do |tribe| %>
           <%= render 'shared/tribes', tribe: tribe unless tribe.color == "system"%>
