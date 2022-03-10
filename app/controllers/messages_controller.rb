@@ -13,9 +13,12 @@ class MessagesController < ApplicationController
       @message.channel = @channel
       @message.user = current_user
       if @message.save
+        html = render_to_string(partial: "shared/messagebroadcast", locals: {message: @message})
         ChannelChannel.broadcast_to(
-          @channel,
-          render_to_string(partial: "shared/messagebroadcast", locals: {message: @message})
+          @channel, {
+            html: html,
+            user_id: current_user.id
+          }
         )
         head :ok
       else
