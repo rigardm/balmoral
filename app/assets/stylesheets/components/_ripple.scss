@@ -1,35 +1,28 @@
-
-.button{
-  position: relative;
-  cursor:pointer;
-  user-select:none;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition-duration: 0.4s;
+.ripple-container {
+position: absolute;
+left: 0;
+top: 0;
+height: 0;
+width: 0;
+pointer-events: none;
+overflow: hidden;
 }
 
-.button:after {
-  content: "";
-  opacity: 0;
-  display: block;
-  position: absolute;
-  left: 0;
-  top:0;
-  height:100%;
-  width:100%;
-  transition: all 0.5s;
-  box-shadow: 0 0 10px 40px $balmoral_yellow;
+.ripple-effect {
+margin-top: 0px;
+margin-left: 0px;
+width: 1px;
+height: 1px;
+background-color: rgba(0, 0, 0, 0.033);
+transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+border-radius: 50%;
+pointer-events: none;
 }
 
-.button:active:after {
-  box-shadow: 0 0 0 0 $balmoral_yellow;
-  height:100%;
-  width:100%;
-  opacity: 1;
-  transition: 0s;
+.ripple-effect.light {
+background-color: rgba(255, 255, 255, 0.15);
 }
 
-.button:active {
-  top: 1px;
-}
+.ripple-effect.dark {
+background-color: rgba(0, 0, 0, 0.075);
+ }
