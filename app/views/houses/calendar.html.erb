@@ -4,8 +4,8 @@
       <%= inline_svg_tag('Date_range_light.svg') %>
     </span>
     <span class="icon-link">
-      <%= link_to house_bookings_path(@house), {:"data-swipe-target" => "listbutton", class:"button"} do %>
-        <%= inline_svg_tag('sort.svg') %>
+      <%= link_to house_bookings_path(@house), {:"data-swipe-target" => "listbutton", class:"ripple"} do %>
+        <%= inline_svg_tag('sort.svg', class: "ripple dark") %>
       <%end%>
     </span>
   </div>
