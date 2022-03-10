@@ -17,8 +17,11 @@ import "controllers"
 import "bootstrap"
 
 import { flashesFadeOut } from '../components/flashes'
+import { hideNavbarOnKeyboardShow} from '../components/keyboard'
+
 document.addEventListener("turbolinks:load", ()=>{
   flashesFadeOut();
+  hideNavbarOnKeyboardShow();
 })
 
 document.addEventListener("turbolinks:before-cache", () => {
