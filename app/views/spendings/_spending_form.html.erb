@@ -1,14 +1,13 @@
 <div class="mx-2">
   <%= simple_form_for([house, spending], html: { data: { new_spending_modal_target: 'form' } }) do |f| %>
-    <%= f.input :name, label: 'Motif' %>
-    <%= f.input :amount, as: :integer, label: 'Montant' %>
-    <%= f.input :category, collection: Spending::CATEGORIES, label: 'Catégorie' %>
+    <%= f.input :name, label: "Qu'avez-vous payé?", placeholder: "Le plombier ?" %>
+    <%= f.input :amount, as: :integer, label: "C'était combien ?", placeholder: "20 €" %>
+    <%= f.input :category, collection: Spending::CATEGORIES, label: "Pour quoi faire ?" %>
     <%= f.input :date, as: :date, html5: true %>
-    <%= f.input :details, as: :text, label: 'Informations' %>
     <%#= f.submit %>
 
     <div class="new-spending-modal-footer">
-        <%= inline_svg_tag('spending_import.svg', data: { action: "click->new-spending-modal#submit" }) %>
+        <%= image_tag('validated.png', size: "50x50", data: { action: "click->new-spending-modal#submit" }) %>
     </div>
   <% end %>
 </div>
