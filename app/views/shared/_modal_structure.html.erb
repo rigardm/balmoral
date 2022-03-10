@@ -1,0 +1,38 @@
+<div class="modal-container">
+  <div class="modal-margin">
+  </div>
+  <div class="modal-title-box">
+    <div class="modal-back">
+      <i class="fas fa-chevron-circle-left admin-icones" data-action="click->booking-modal#closeBookingModal"></i>
+    </div>
+    <div class="modal-title">
+      <h1>LA RÉSERVATION DE NICO</h1>
+    </div>
+  </div>
+  <div class="modal-avatar">
+   <% if booking.user? %>
+      <%= cl_image_tag(booking.user.photo.key, :class => "avatar-bordered-large #{booking.user.tribe.color}") %>
+    <% else %>
+      <%= cl_image_tag(booking.platform.photo.key, :class => "avatar-bordered-large platform") %>
+    <% end %>
+  </div>
+  <div class="modal-margin">
+  </div>
+  <div class="new-modal-content">
+    <h1>This is the content</h1>
+    <h2>and here is a beautiful H2</h2>
+    <p>fill it with beautiful content !!</p>
+    <p>fill it with beautiful content !!</p>
+    <p>fill it with beautiful content !!</p>
+    <p>fill it with beautiful content !!</p>
+  </div>
+  <div class="modal-button">
+    <div class="booking-modal-action d-flex w-100 justify-content-around">
+      <%= inline_svg_tag('check_red_cross.svg', data: { action: "click->select-dates#cancel" }) %>
+      <%= inline_svg_tag('check_validated.svg', data: { action: "click->select-dates#submit" }) %>
+    </div>
+  </div>
+  <div class="new-modal-footer">
+    <%= image_tag('modal_bottom.png') %>
+  </div>
+</div>

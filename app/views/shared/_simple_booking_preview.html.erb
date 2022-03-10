@@ -1,7 +1,7 @@
 <div class="container p-0" data-controller="booking-modal">
   <div class="simple-booking-overlay d-none" data-booking-modal-target="bookingOverlay">
     <div class='simple-booking d-none' data-booking-modal-target="bookingModal">
-      <%= render 'shared/simple_booking_modal', booking: booking %>
+      <%= render 'shared/modal_structure', booking: booking %>
     </div>
   </div>
   <div class="item-preview <%= booking.user? ? booking.user.tribe.color : "platform" %>" data-action="click->booking-modal#openBookingModal" data-booking-modal-target="openBookingButton">
