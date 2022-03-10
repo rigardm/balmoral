@@ -28,7 +28,7 @@ export default class extends Controller {
     }
   }
 
-  select(event) {
+  select(event) {œ
     if (this.bodyTarget.dataset.click === 'arrival') {
       // this is the FIRST click on the calendar
       // the user may have selected an arrival date
@@ -191,12 +191,22 @@ export default class extends Controller {
     <p>Du <b>${arr}</b></p>
     <p>Au <b>${dep}</b></p>
     </div>
+<<<<<<< Updated upstream
     </div>
     <div class=" px-3 py-1">
     <p class="credit-balance text-start">${totalPrice} crédits requis</p>
     <p class="credit-balance text-start">${creditBalance} crédits disponibles</p>
     <HR>
     <p class="credit-balance text-start">${creditBalance - totalPrice} crédits restants</p>
+=======
+    <div class="credit-line-wrapper">
+      <div class="credit-base-line" width="${creditBalance *100 / creditBase}%">
+        <div class="credit-balance-line">
+          <div class="credit-price-line">
+          </div>
+        </div>
+      </div>
+>>>>>>> Stashed changes
     </div>
     `;
     return bookingInfoHtml
