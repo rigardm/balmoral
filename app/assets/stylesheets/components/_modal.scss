@@ -27,8 +27,12 @@
   }
 }
 
+.modal-title {
+  flex: auto 1 0;
+}
+
 .modal-button {
-  padding: 32px;
+  padding: 32px 80px;
 }
 
 .new-modal-footer > img {
@@ -43,5 +47,9 @@
 }
 
 .new-modal-content {
-  padding: 32px;
+  padding: 32px 16px;
+}
+
+.modal-back {
+  padding-left: 16px;
 }
