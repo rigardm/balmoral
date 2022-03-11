@@ -18,6 +18,7 @@ class Booking < ApplicationRecord
   scope :pending, -> { where(status: :pending) }
   scope :validated, -> { where(status: :validated) }
   scope :declined, -> { where(status: :declined) }
+  scope :not_declined, -> { where.not(status: :declined) }
 
   enum status: {
     pending: 0,

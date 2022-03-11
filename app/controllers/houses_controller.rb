@@ -37,7 +37,7 @@ class HousesController < ApplicationController
   def calendar
     start_date = params.fetch(:start_date, Date.today).to_date
     # For a monthly view:
-    @bookings = @house.bookings.where(arrival: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
+    @bookings = @house.bookings.where(arrival: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).or(@house.bookings.where(departure: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)).not_declined
     @booking = Booking.new
     # Or, for a weekly view:
     # @meetings = Meeting.where(starts_at: start_date.beginning_of_week..start_date.end_of_week)
