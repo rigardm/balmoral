@@ -173,9 +173,9 @@ export default class extends Controller {
       <hr>
       <div>
         <h2 class="credit-balance text-start"><strong>Crédits:</strong></h2>
-        <h3 class="credit-balance text-start"><strong>${creditBalance - creditPrice}</strong> crédits restants après réservation</h3>
+        <h3 class="credit-balance text-start"><span class="${color}-text"><strong>${creditBalance - creditPrice}</strong></span> crédits restants après réservation</h3>
         <h3 class="credit-balance text-start"><span class="balmoral-yellow-text"><strong>${creditPrice}</strong></span> crédits requis</h3>
-        <h3 class="credit-balance text-start"><span class="${color}-text"><strong>${creditBase - creditBalance}</strong></span> crédits déjà consommés</h3>
+        <h3 class="credit-balance text-start"><span><strong>${creditBase - creditBalance}</strong></span> crédits déjà consommés</h3>
       </div>
       <div class="credit-line-wrapper">
         <div class="credit-base-line">
@@ -183,7 +183,7 @@ export default class extends Controller {
             <div class="credit-remaining-after" style="width: ${100 * (creditBase - creditBalance - creditPrice) / creditBalance}%">
               <span>${creditBalance - creditPrice}</span>
             </div>
-            <div class="credit-price-line" style="width: ${100 * creditPrice / creditBalance}%">
+            <div class="credit-price-line" style="width: ${100 * creditPrice / (creditBase - creditBalance + creditPrice)}%">
               <span>${creditPrice}</span>
             </div>
           </div>

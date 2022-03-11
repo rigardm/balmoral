@@ -61,22 +61,22 @@
         <% credit_balance = current_user.tribe.credits %>
         <div class="mt-3">
           <h2 class="credit-balance text-start"><strong>Crédits</strong></h2>
-          <h3 class="d-none credit-balance text-start"><span class="<%= booking.tribe.color %>-text"><strong><%= credit_base - credit_balance %></strong></span> crédits consommés</h3>
+          <h3 class="d-none credit-balance text-start"><span class="<%= booking.tribe.color %>-text"><strong><%= credit_balance - credit_price %></strong></span> crédits restants après réservation</h3>
           <h3 class="d-none credit-balance text-start"><span class="balmoral-yellow-text"><strong><%= credit_price %></strong></span> crédits requis</h3>
-          <h3 class="d-none credit-balance text-start"><strong><%= credit_balance - credit_price %></strong> crédits restants après réservation</h3>
+          <h3 class="d-none credit-balance text-start"><strong><%= credit_base - credit_balance %></strong> crédits consommés</h3>
         </div>
         <div class="credit-line-wrapper">
           <div class="credit-base-line">
-            <div class="credit-consumed-after <%= booking.tribe.color %>" style="width: <%= 100 * (credit_base - credit_balance + credit_price) / credit_base %>%">
-              <div class="credit-consumed-before" style="width: <%= 100 * (credit_base - credit_balance) / (credit_base - credit_balance + credit_price) %>%">
-                <span><%= credit_base - credit_balance %></span>
+            <div class="credit-remaining-before <%= booking.tribe.color %>" style="width: <%= 100 * credit_balance / credit_base %>%">
+              <div class="credit-remaining-after" style="width: <%= 100 * (credit_base - credit_balance - credit_price) / credit_balance %>%">
+                <span><%= credit_balance - credit_price %></span>
               </div>
               <div class="credit-price-line" style="width: <%= 100 * credit_price / (credit_base - credit_balance + credit_price) %>%">
                 <span><%= credit_price %></span>
               </div>
             </div>
-            <div class="credit-remaining" style="width: <%= 100 * (credit_balance - credit_price) / credit_base %>%">
-              <span><%= credit_balance - credit_price %></span>
+            <div class="credit-consumed" style="width: <%= 100 * (credit_base - credit_balance) / credit_base %>%">
+              <span><%= credit_base - credit_balance %></span>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@
         <% if current_user.admin? && booking.user.tribe == current_user.tribe && booking.pending? %>
           <div class="d-flex w-50 justify-content-between">
             <%= link_to admin_decline_booking_path(booking), method: :patch do %>
-              <%= image_tag('canceled.png', size: "50x50", data: { action: "click->rename-booking#clear" }) %>
+              <%= image_tag('cancelled.png', size: "50x50", data: { action: "click->rename-booking#clear" }) %>
             <% end %>
             <%= link_to admin_validate_booking_path(booking), method: :patch do %>
               <%= image_tag('validated.png', size: "50x50") %>
