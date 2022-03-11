@@ -6,7 +6,7 @@
     <span class="icon-link">
       <%= link_to house_bookings_path(@house), {:"data-swipe-target" => "listbutton", class:"ripple"} do %>
         <%= inline_svg_tag('sort.svg', class: "ripple dark") %>
-      <%end%>
+      <% end %>
     </span>
   </div>
   <div class="calendar-container fade-in" data-action = "touchstart->swipe#identifyswipe touchend->swipe#identifyswipe">
