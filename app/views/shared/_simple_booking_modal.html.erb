@@ -68,10 +68,10 @@
         <div class="credit-line-wrapper">
           <div class="credit-base-line">
             <div class="credit-remaining-before <%= booking.tribe.color %>" style="width: <%= 100 * credit_balance / credit_base %>%">
-              <div class="credit-remaining-after" style="width: <%= 100 * (credit_base - credit_balance - credit_price) / credit_balance %>%">
+              <div class="credit-remaining-after" style="width: <%= 100 * (credit_balance - credit_price) / credit_balance %>%">
                 <span><%= credit_balance - credit_price %></span>
               </div>
-              <div class="credit-price-line" style="width: <%= 100 * credit_price / (credit_base - credit_balance + credit_price) %>%">
+              <div class="credit-price-line" style="width: <%= 100 * credit_price / credit_balance %>%">
                 <span><%= credit_price %></span>
               </div>
             </div>

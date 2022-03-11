@@ -180,10 +180,10 @@ export default class extends Controller {
       <div class="credit-line-wrapper">
         <div class="credit-base-line">
           <div class="credit-remaining-before ${color}" style="width: ${100 * creditBalance / creditBase}%">
-            <div class="credit-remaining-after" style="width: ${100 * (creditBase - creditBalance - creditPrice) / creditBalance}%">
+            <div class="credit-remaining-after" style="width: ${100 * (creditBalance - creditPrice) / creditBalance}%">
               <span>${creditBalance - creditPrice}</span>
             </div>
-            <div class="credit-price-line" style="width: ${100 * creditPrice / (creditBase - creditBalance + creditPrice)}%">
+            <div class="credit-price-line" style="width: ${100 * creditPrice / creditBalance}%">
               <span>${creditPrice}</span>
             </div>
           </div>
