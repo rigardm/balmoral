@@ -173,22 +173,22 @@ export default class extends Controller {
       <hr>
       <div>
         <h2 class="credit-balance text-start"><strong>Crédits:</strong></h2>
-        <h3 class="credit-balance text-start"><span class="${color}-text"><strong>${creditBase - creditBalance}</strong></span> crédits consommés</h3>
-        <h3 class="credit-balance text-start"><span class="balmoral-yellow-text"><strong>${creditPrice}</strong></span> crédits requis</h3>
         <h3 class="credit-balance text-start"><strong>${creditBalance - creditPrice}</strong> crédits restants après réservation</h3>
+        <h3 class="credit-balance text-start"><span class="balmoral-yellow-text"><strong>${creditPrice}</strong></span> crédits requis</h3>
+        <h3 class="credit-balance text-start"><span class="${color}-text"><strong>${creditBase - creditBalance}</strong></span> crédits déjà consommés</h3>
       </div>
       <div class="credit-line-wrapper">
         <div class="credit-base-line">
-          <div class="credit-consumed-after ${color}" style="width: ${100 * (creditBase - creditBalance + creditPrice) / creditBase}%">
-            <div class="credit-consumed-before" style="width: ${100 * (creditBase - creditBalance) / (creditBase - creditBalance + creditPrice)}%">
-              <span>${creditBase - creditBalance}</span>
+          <div class="credit-remaining-before ${color}" style="width: ${100 * creditBalance / creditBase}%">
+            <div class="credit-remaining-after" style="width: ${100 * (creditBase - creditBalance - creditPrice) / creditBalance}%">
+              <span>${creditBalance - creditPrice}</span>
             </div>
-            <div class="credit-price-line" style="width: ${100 * creditPrice / (creditBase - creditBalance + creditPrice)}%">
+            <div class="credit-price-line" style="width: ${100 * creditPrice / creditBalance}%">
               <span>${creditPrice}</span>
             </div>
           </div>
-          <div class="credit-remaining" style="width: ${100 * (creditBalance - creditPrice) / creditBase}%">
-            <span>${creditBalance - creditPrice}</span>
+          <div class="credit-consumed" style="width: ${100 * (creditBase - creditBalance) / creditBase}%">
+            <span>${creditBase - creditBalance}</span>
           </div>
         </div>
       </div>
