@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-
   before_action :set_booking, except: %i[index new create]
   before_action :set_house, only: %i[index new create]
 
@@ -90,7 +89,6 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:arrival, :departure)
   end
-end
 
   def send_message(content)
     @message = Message.new(content: content)
@@ -98,3 +96,4 @@ end
     @message.user = User.find_by(last_name: 'System-Bot')
     @message.save
   end
+end
